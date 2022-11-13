@@ -2,21 +2,21 @@ package drug_request_entity;
 //consider removing public
 public class CommonDrugRequest implements DrugRequest{
     private final String drugName;
-    private final int drugBottle;
+    private final String drugBottle;
 
-    CommonDrugRequest(String drugName, int drugBottle){
+    CommonDrugRequest(String drugName, String drugBottle){
         this.drugName = drugName;
         this.drugBottle = drugBottle;
     }
 
     @Override
     public boolean drugBottleIsValid() {
-        return 1 < drugBottle && drugBottle < 100;
+        return 1 < Integer.parseInt(drugBottle) && Integer.parseInt(drugBottle) < 100;
     }
 
     @Override
     public boolean drugNameIsValid() {
-        return false;
+        return drugName.matches("[a-zA-Z]+");
     }
     //Looks like drugNameIsValid needs to be checked in the interactor by referencing the database. Not sure
 
@@ -26,7 +26,7 @@ public class CommonDrugRequest implements DrugRequest{
     }
 
     @Override
-    public int getDrugBottle() {
+    public String getDrugBottle() {
         return drugBottle;
     }
 }

@@ -4,5 +4,5 @@ public interface DrugRequest {
     boolean drugBottleIsValid();
     boolean drugNameIsValid();
     String getDrugName();
-    int getDrugBottle();
+    String getDrugBottle();
 }

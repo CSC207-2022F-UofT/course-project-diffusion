@@ -2,9 +2,9 @@ package drug_request_use_case;
 
 public class DrugRequestInvokeModel {
     private String drugName;
-    private int drugBottle;
+    private String drugBottle;
 
-    public DrugRequestInvokeModel(String drugName, int drugBottle){
+    public DrugRequestInvokeModel(String drugName, String drugBottle){
         this.drugName = drugName;
         this.drugBottle = drugBottle;
     }
@@ -17,11 +17,11 @@ public class DrugRequestInvokeModel {
         this.drugName = drugName;
     }
 
-    int getDrugBottle(){
+    String getDrugBottle(){
         return drugBottle;
     }
 
-    public void setDrugBottle(int drugBottle) {
+    public void setDrugBottle(String drugBottle) {
         this.drugBottle = drugBottle;
     }
 }

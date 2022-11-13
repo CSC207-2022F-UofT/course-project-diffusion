@@ -5,10 +5,10 @@ import java.time.LocalDateTime;
 public class DrugRequestDsInvokeModel {
     //consider if it's necessary to use Final or not, is drugName expected to be modified
     private  String drugName;
-    private int drugBottle;
+    private String drugBottle;
     private final LocalDateTime drugRequestCreationTime;
 
-    public DrugRequestDsInvokeModel(String drugName, int drugBottle, LocalDateTime drugRequestCreationTime){
+    public DrugRequestDsInvokeModel(String drugName, String drugBottle, LocalDateTime drugRequestCreationTime){
         this.drugName = drugName;
         this.drugBottle = drugBottle;
         this.drugRequestCreationTime = drugRequestCreationTime;
@@ -18,7 +18,7 @@ public class DrugRequestDsInvokeModel {
         return drugName;
     }
 
-    public int getDrugBottle(){
+    public String getDrugBottle(){
         return drugBottle;
     }
 
@@ -26,7 +26,7 @@ public class DrugRequestDsInvokeModel {
         this.drugName = drugName;
     }
 
-    public void setDrugBottle(int drugBottle){
+    public void setDrugBottle(String drugBottle){
         this.drugBottle = drugBottle;
     }
 
