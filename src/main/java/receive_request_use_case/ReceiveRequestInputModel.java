@@ -9,19 +9,19 @@ public class ReceiveRequestInputModel {
         this.drugBottle = drugBottle;
     }
 
-    public String getDrugName() {
+    public String getName() {
         return drugName;
     }
 
-    public void setDrugName(String drugName) {
-        this.drugName = drugName;
-    }
-
-    public String getDrugBottle() {
+    public String getBottle() {
         return drugBottle;
     }
 
-    public void setDrugBottle(String drugBottle) {
+    public void setName(String drugName) {
+        this.drugName = drugName;
+    }
+
+    public void setBottle(String drugBottle) {
         this.drugBottle = drugBottle;
     }
 }
