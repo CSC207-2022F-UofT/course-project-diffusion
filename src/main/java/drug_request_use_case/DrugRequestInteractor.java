@@ -37,6 +37,7 @@ public class DrugRequestInteractor implements DrugRequestInputBoundary {
 
         DrugRequestDsInvokeModel drugRequestDsModel = new DrugRequestDsInvokeModel(drugRequest.getDrugName(),
                 drugRequest.getDrugBottle(), drugRequestDate);
+        drugRequestDsGateway.generateDrugRequest(drugRequestDsModel);
         /*
         Implement the saving feature below
          drugRequestDsGateway.saveDrugRequest(drugRequestDsModel);
@@ -45,5 +46,7 @@ public class DrugRequestInteractor implements DrugRequestInputBoundary {
         DrugRequestResponseModel drugRequestResponseModel = new DrugRequestResponseModel(drugRequest.getDrugName(),
                 drugRequestDate.toString());
         return drugRequestOutputBoundary.prepareSuccessView(drugRequestResponseModel);
+
+
     }
 }

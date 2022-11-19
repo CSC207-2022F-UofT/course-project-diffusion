@@ -101,6 +101,7 @@ public class DrugRequestScreen extends JPanel implements ActionListener {
         System.out.println("Clicked " + actionEvent.getActionCommand());
         try{
             drugRequestController.create(drugName.getText(), drugBottle.getText());
+//            drugrequestControllerDepot........
             JOptionPane.showMessageDialog(this, String.format("Drug Order Request recorded for %s bottles of %s", drugBottle.getText(), drugName.getText()));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
