@@ -2,14 +2,17 @@ package drug_request_frameworks_drivers;
 
 
 import drug_request_interface_adapters.DrugRequestController;
-import junit.framework.JUnit4TestAdapter;
+import drug_request_interface_adapters.DrugRequestPresenter;
+import drug_request_interface_adapters.DrugRequestPresenterOutputBoundary;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DrugRequestScreen extends JPanel implements ActionListener {
+public class DrugRequestScreen extends JPanel implements ActionListener, DrugRequestPresenterOutputBoundary {
+
+    private DrugRequestPresenter drugRequestPresenter;
 //public class DrugRequestScreen extends JFrame implements ActionListener{
     /**
      * The drugName requested by the site
@@ -28,8 +31,9 @@ public class DrugRequestScreen extends JPanel implements ActionListener {
      * the controller
      */
     DrugRequestController drugRequestController;
-//    public DrugRequestScreen(){
-    public DrugRequestScreen(DrugRequestController drugRequestController){
+
+    //    public DrugRequestScreen(){
+    public DrugRequestScreen(DrugRequestController drugRequestController) {
         this.drugRequestController = drugRequestController;
 
         /*
@@ -46,7 +50,7 @@ public class DrugRequestScreen extends JPanel implements ActionListener {
         Made the requestResponse panel read only, so it can't be edited by the user
         instead it will be used to display the response to the user.
          */
-        requestResponse.setEditable(false);
+//        requestResponse.setEditable(false);
 
         /*
           Packages multiple components as a single component using panel Generator.
@@ -99,12 +103,43 @@ public class DrugRequestScreen extends JPanel implements ActionListener {
     //@Override
     public void actionPerformed(ActionEvent actionEvent) {
         System.out.println("Clicked " + actionEvent.getActionCommand());
-        try{
-            drugRequestController.create(drugName.getText(), drugBottle.getText());
+        try {
+
+            //Is it ok to call this???
+//            drugRequestController.create(drugName.getText(), drugBottle.getText());
 //            drugrequestControllerDepot........
-            JOptionPane.showMessageDialog(this, String.format("Drug Order Request recorded for %s bottles of %s", drugBottle.getText(), drugName.getText()));
+            //this message is sent as long as the try is executed
+//            @Override
+//            requestResponse.setText("h");
+//            public void drugReque
+//            practiceDrugRequestSubmitted();
+
+
+            JOptionPane.showMessageDialog(this, String.format("Drug Order Request sent for %s bottles of %s", drugBottle.getText(), drugName.getText()));
+//            drugRequestSubmitted();
+//            requestResponse.setText("h");
+
+
+            drugRequestController.create(drugName.getText(), drugBottle.getText());
+//            requestResponse.setText("h");
+//            drugRequestPresenter.
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
+
+        public void practiceDrugRequestSubmitted() {
+            requestResponse.setText("h");
+        }
+
+    @Override
+    public void drugRequestSubmitted(){
+          requestResponse.setText("h");
+    }
+
+//    @Override
+//    public DrugRequestResponseModel drugRequestSubmitted(DrugRequestResponseModel drugRequestResponseModel) {
+//        return null;
+//    }
+
 }
