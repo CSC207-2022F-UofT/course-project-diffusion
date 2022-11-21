@@ -20,16 +20,18 @@ public class Main {
         application.add(screens);
 
         // Create the parts to plug into the Use Case+Entities engine
-        DrugFulfillDsGateway user;
+        DrugFulfillDsGateway receipts;
+        DrugFulfillDsGateway depot;
         try {
-            user = new FileDepotInventoryA("./depotx.csv");
+            depot = new FileDepotInventoryA("./depotAInventory.csv");
+            receipts = new FileReceiptsInventoryA("./depotAReceipts.csv");
         } catch (IOException e) {
             throw new RuntimeException("Could not create file.");
         }
         DrugRequestPresenter presenter = new DrugRequestResponseFormatter();
         DrugFulfillFactory orderFactory = new CommonDrugFulfillFactory();
         DrugFulfillInputBoundary interactor = new DrugFulfillInteractor(
-                user, presenter, orderFactory);
+                receipts, presenter, orderFactory);
         DrugRequestController drugRequestController = new DrugRequestController(
                 interactor
         );

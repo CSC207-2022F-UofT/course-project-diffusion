@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class FileDepotInventoryA implements DrugFulfillDsGateway {
+public class FileReceiptsInventoryA implements DrugFulfillDsGateway {
 
     private final File csvFile;
 
@@ -19,7 +19,7 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
 
     private final String[] drugList = {"DrugA", "DrugB", "DrugC"};
 
-    public FileDepotInventoryA(String csvPath) throws IOException {
+    public FileReceiptsInventoryA(String csvPath) throws IOException {
         csvFile = new File(csvPath);
 
         headers.put("drugName", 0);
@@ -27,9 +27,10 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
         headers.put("creation_time", 2);
         headers.put("batch Number", 3);
         headers.put("id Number", 4);
+        headers.put("emergency", 5);
 
         if (csvFile.length() == 0) {
-            fulfillOrder(); //createDepot(); bugs out for now
+            fulfillOrder();
         } else {
 
             BufferedReader reader = new BufferedReader(new FileReader(csvFile));
@@ -42,7 +43,8 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
                 int drugAmount = Integer.parseInt((col[headers.get("drugAmount")]));
                 String creationTimeText = String.valueOf(col[headers.get("creation_time")]);
                 LocalDateTime ldt = LocalDateTime.parse(creationTimeText);
-                DrugFulfillDsRequestModel saveReceipt = new DrugFulfillDsRequestModel(drugName, drugAmount, ldt, Boolean.FALSE /*, OrderID*/);
+                Boolean er = Boolean.valueOf(col[headers.get("emergency")]);
+                DrugFulfillDsRequestModel saveReceipt = new DrugFulfillDsRequestModel(drugName, drugAmount, ldt, er /*, OrderID*/);
                 madeOrders.put(String.valueOf(ldt)/*orderID*/, saveReceipt);
             }
 
@@ -85,9 +87,8 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
             writer.newLine();
 
             for (DrugFulfillDsRequestModel order : madeOrders.values()) {
-                //if (order.getName() == ;
-                String line = "%s,%s,%s,%s,%s".formatted(
-                        order.getName(), order.getBottle(), order.getCreationTime(), order.getBatchNumber(), order.getIDNumber());
+                String line = "%s,%s,%s,%s,%s,%s".formatted(
+                        order.getName(), order.getBottle(), order.getCreationTime(), order.getBatchNumber(), order.getIDNumber(), order.getIsEmergency());
                 writer.write(line);
                 writer.newLine();
             }
