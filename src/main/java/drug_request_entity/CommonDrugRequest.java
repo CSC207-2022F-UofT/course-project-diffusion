@@ -9,20 +9,41 @@ public class CommonDrugRequest implements DrugRequest{
         this.drugBottle = drugBottle;
     }
 
+
+    //Between 1 and 100 bottles inclusive is how many can be ordered in a single request
     @Override
     public boolean drugBottleIsValid() {
-        return 1 < Integer.parseInt(drugBottle) && Integer.parseInt(drugBottle) < 100;
+        return 0 < Integer.parseInt(drugBottle) && Integer.parseInt(drugBottle) < 101;
     }
 
+    //The entry for Drug Bottles must be only numeric characters between 0-9 inclusive.
+    @Override
+    public boolean drugBottleIsNumeric() {
+//        return drugBottle.matches("[0-9]+");
+        return drugBottle.matches("[0-9]+");
+    }
+
+    //Checks to see if Drug Bottle field is empty.
+    @Override
+    public boolean drugBottleIsEmpty(){
+        return drugBottle.matches("^$");
+    }
+
+    //The drug name entered must be only alphabetic characters with no digits or spaces in between.
     @Override
     public boolean drugNameIsValid() {
         return drugName.matches("[a-zA-Z]+");
     }
-    //Looks like drugNameIsValid needs to be checked in the interactor by referencing the database. Not sure
 
     @Override
     public String getDrugName() {
         return drugName;
+    }
+
+    //Checks to see if Drug Name field is empty.
+    @Override
+    public boolean drugNameIsEmpty(){
+        return drugName.matches("^$");
     }
 
     @Override

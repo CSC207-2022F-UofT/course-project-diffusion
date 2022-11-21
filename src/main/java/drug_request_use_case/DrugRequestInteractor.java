@@ -3,6 +3,7 @@ package drug_request_use_case;
 import drug_request_entity.CommonDrugRequestGenerator;
 import drug_request_entity.DrugRequest;
 import drug_request_entity.DrugRequestGenerator;
+import drug_request_frameworks_drivers.DrugRequestScreen;
 
 import java.time.LocalDateTime;
 
@@ -27,11 +28,21 @@ public class DrugRequestInteractor implements DrugRequestInputBoundary {
 
         DrugRequest drugRequest = drugRequestGenerator.create(drugRequestInvokeModel.getDrugName(),
                 drugRequestInvokeModel.getDrugBottle());
-        if (!drugRequest.drugBottleIsValid()) {
-            return drugRequestOutputBoundary.prepareFailView("Bottles ordered must be 1 and 100 (inclusive)");
+        if (drugRequest.drugNameIsEmpty()) {
+            return drugRequestOutputBoundary.prepareFailView("Drug Name not entered.");
         } else if (!drugRequest.drugNameIsValid()) {
             return drugRequestOutputBoundary.prepareFailView("Drug name must be alphabetic characters only.");
+        } else if (drugRequest.drugBottleIsEmpty()) {
+                return drugRequestOutputBoundary.prepareFailView("Drug Bottle quantity not entered.");
+        } else if (!drugRequest.drugBottleIsNumeric()) {
+                return drugRequestOutputBoundary.prepareFailView("Drug Bottles must be numeric characters only");
+
+        } else if (!drugRequest.drugBottleIsValid()) {
+            return drugRequestOutputBoundary.prepareFailView("Drug Bottles ordered must be between 1 and 100 (inclusive)");
+        } else if (drugRequestDsGateway.drugNameExists(drugRequest.getDrugName())) {
+            return drugRequestOutputBoundary.prepareFailView("Drug name already exists");
         }
+
 
         LocalDateTime drugRequestDate = LocalDateTime.now();
 
@@ -43,9 +54,11 @@ public class DrugRequestInteractor implements DrugRequestInputBoundary {
          drugRequestDsGateway.saveDrugRequest(drugRequestDsModel);
          */
 
-        DrugRequestResponseModel drugRequestResponseModel = new DrugRequestResponseModel(drugRequest.getDrugName(),
-                drugRequestDate.toString());
+        DrugRequestResponseModel drugRequestResponseModel = new DrugRequestResponseModel();
+//                (drugRequest.getDrugName(),
+//                drugRequestDate.toString(), drugRequest.getDrugBottle());
         return drugRequestOutputBoundary.prepareSuccessView(drugRequestResponseModel);
+//        return DrugRequestScreen.drugRequestSubmitted();
 
 
     }

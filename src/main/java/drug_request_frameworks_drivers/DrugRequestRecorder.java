@@ -28,7 +28,17 @@ public class DrugRequestRecorder implements DrugRequestDsGateway {
         headers.put("Requested Bottle Quantity", 4);
         headers.put("Drug Request Date and Time", 5);
 
-        generateDrugRequest();
+        //Check to see if file already exists, if it does not then add a header and the first drug request,
+        // if it does then simply append the latest drug request to the bottom.
+        if (csvFile.length() == 0){
+            generateHeader();
+//            appendDrugRequest();
+        }
+        else{
+            appendDrugRequest();
+        }
+
+//        generateDrugRequestHelper();
 
 //        if (csvFile.length() == 0) {
 //            generateDrugRequest();
@@ -55,26 +65,29 @@ public class DrugRequestRecorder implements DrugRequestDsGateway {
 
     @Override
     public boolean drugNameExists(String identifier) {
-        return false;
+        return drugRequests.containsKey(identifier);
     }
 
     @Override
     public void generateDrugRequest(DrugRequestDsInvokeModel drugRequestDsInvokeModel) {
         drugRequests.put(drugRequestDsInvokeModel.getDrugName(), drugRequestDsInvokeModel);
-        this.generateDrugRequest();
+        this.generateDrugRequestHelper();
     }
 
-    private void generateDrugRequest() {
+    private void generateDrugRequestHelper() {
 
         //Check to see if file already exists, if it does not then add a header and the first drug request,
         // if it does then simply append the latest drug request to the bottom.
         if (csvFile.length() == 0){
             generateHeader();
-            appendDrugRequest();
+//            appendDrugRequest();
         }
         else{
             appendDrugRequest();
         }
+
+
+
 //        generateHeader();
 //        appendDrugRequest();
 //        BufferedWriter drugRequestWriter;

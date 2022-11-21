@@ -1,21 +1,33 @@
 package drug_request_use_case;
 
-public class DrugRequestResponseModel {
+public class DrugRequestResponseModel{
 
-    String drugRequest;
+    String drugName;
+    String drugBottle;
     String creationTime;
 
-    public DrugRequestResponseModel(String drugRequest, String creationTime){
-        this.drugRequest = drugRequest;
-        this.creationTime = creationTime;
+    public DrugRequestResponseModel(){
+//        this.drugName = drugName;
+//        this.creationTime = creationTime;
+//        this.drugBottle = drugBottle;
+
+
     }
 
-    public String getDrugRequest(){
-        return drugRequest;
+    public String getDrugName(){
+        return drugName;
     }
 
-    public void setDrugRequest(String drugRequest) {
-        this.drugRequest = drugRequest;
+    public void setDrugName(String drugName) {
+        this.drugName = drugName;
+    }
+
+    public void getDrugBottle(String drugBottle){
+        this.drugBottle = drugBottle;
+    }
+
+    public void setDrugBottle(String drugBottle) {
+        this.drugBottle = drugBottle;
     }
 
     public String getCreationTime(){

@@ -22,7 +22,7 @@ public class DrugRequestFrame extends JFrame {
         //Below are the parts for the use case entities engine
         DrugRequestDsGateway drugRequestDsGateway;
         try{
-            drugRequestDsGateway = new DrugRequestRecorder("./Test12.csv");
+            drugRequestDsGateway = new DrugRequestRecorder("./Test16.csv");
 
         } catch (IOException e) {
             throw new RuntimeException("Can't create file.");

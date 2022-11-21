@@ -14,5 +14,6 @@ public class DrugRequestController {
     public DrugRequestResponseModel create(String drugName, String drugBottle){
         DrugRequestInvokeModel drugRequestInvokeModel = new DrugRequestInvokeModel(drugName, drugBottle);
         return drugRequestInputBoundary.create(drugRequestInvokeModel);
+//        return null;
     }
 }
