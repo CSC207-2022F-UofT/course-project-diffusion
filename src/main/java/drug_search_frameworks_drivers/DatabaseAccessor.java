@@ -1,10 +1,9 @@
-package database_backend;
+package drug_search_frameworks_drivers;
 
-import entities.DrugInfo;
-import entities.DrugList;
-import search_database_use_case.IDrugListAccessor;
+import drug_search_entities.DrugInfo;
+import drug_search_entities.DrugList;
+import drug_search_use_case.IDrugListAccessor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

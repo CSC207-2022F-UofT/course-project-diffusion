@@ -1,4 +1,4 @@
-package entities;
+package drug_search_entities;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,10 +1,12 @@
+package drug_search_frameworks_drivers;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ReceiptSearchForm {
+public class DrugSearchScreen {
 
-    public ReceiptSearchForm() {
+    public DrugSearchScreen() {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -13,12 +15,8 @@ public class ReceiptSearchForm {
         });
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("ReceiptSearchFrame");
-        frame.setContentPane(new ReceiptSearchForm().receiptSearch);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+    public JPanel getPanel() {
+        return receiptSearch;
     }
 
     private JButton searchButton;

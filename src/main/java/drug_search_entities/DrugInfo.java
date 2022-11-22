@@ -1,4 +1,4 @@
-package entities;
+package drug_search_entities;
 
 /**
  * Represents a drug item.

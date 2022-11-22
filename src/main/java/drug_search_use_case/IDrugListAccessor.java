@@ -1,7 +1,7 @@
-package search_database_use_case;
+package drug_search_use_case;
 
-import entities.DrugInfo;
-import entities.DrugList;
+import drug_search_entities.DrugInfo;
+import drug_search_entities.DrugList;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package search_database_use_case;
+package drug_search_use_case;
 
 /**
  * Represents a user-generated search request.
