@@ -30,15 +30,16 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
 
         //Check to see if file already exists, if it does not then add a header and the first drug request,
         // if it does then simply append the latest drug request to the bottom.
-        if (csvFile.length() == 0){
-            generateHeader();
+//        if (csvFile.length() == 0){
+//            generateHeader();
+//
+////            appendUserRegistrationRequest();
+//        }
+//        else{
 //            appendUserRegistrationRequest();
-        }
-        else{
-            appendUserRegistrationRequest();
-        }
+//        }
 
-//        generateDrugRequestHelper();
+        generateDrugRequestHelper();
 
 //        if (csvFile.length() == 0) {
 //            generateDrugRequest();
@@ -99,7 +100,7 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
         // if it does then simply append the latest drug request to the bottom.
         if (csvFile.length() == 0){
             generateHeader();
-//            appendRegistrationRequest();
+            appendUserRegistrationRequest();
         }
         else{
             appendUserRegistrationRequest();
