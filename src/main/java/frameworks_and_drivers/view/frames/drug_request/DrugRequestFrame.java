@@ -5,13 +5,12 @@ import drug_request_entity.DrugRequestGenerator;
 import frameworks_and_drivers.view.drug_request.DrugRequestScreen;
 import drug_request_interface_adapters.DrugRequestController;
 import drug_request_interface_adapters.DrugRequestPresenter;
-import drug_request_use_case.DrugRequestDsGateway;
+import drug_request_use_case.UserRegistrationDsGateway;
 import drug_request_use_case.DrugRequestInputBoundary;
 import drug_request_use_case.DrugRequestInteractor;
 import drug_request_use_case.DrugRequestOutputBoundary;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class DrugRequestFrame extends JFrame {
     public DrugRequestFrame() {
@@ -21,7 +20,7 @@ public class DrugRequestFrame extends JFrame {
 //        setLayout(new CardLayout());
 
         //Below are the parts for the use case entities engine
-        DrugRequestDsGateway drugRequestDsGateway = null;
+        UserRegistrationDsGateway drugRequestDsGateway = null;
         DrugRequestOutputBoundary outputBoundary = new DrugRequestPresenter();
         DrugRequestGenerator drugRequestGenerator = new CommonDrugRequestGenerator();
         DrugRequestInputBoundary interactor = new DrugRequestInteractor(drugRequestDsGateway,

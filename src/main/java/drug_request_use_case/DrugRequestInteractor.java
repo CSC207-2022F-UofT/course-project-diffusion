@@ -1,6 +1,5 @@
 package drug_request_use_case;
 
-import drug_request_entity.CommonDrugRequestGenerator;
 import drug_request_entity.DrugRequest;
 import drug_request_entity.DrugRequestGenerator;
 
@@ -8,11 +7,11 @@ import java.time.LocalDateTime;
 
 public class DrugRequestInteractor implements DrugRequestInputBoundary {
     //consider making the below final
-    final DrugRequestDsGateway drugRequestDsGateway;
+    final UserRegistrationDsGateway drugRequestDsGateway;
     final DrugRequestOutputBoundary drugRequestOutputBoundary;
     final DrugRequestGenerator drugRequestGenerator;
 
-    public DrugRequestInteractor(DrugRequestDsGateway drugRequestDsGateway, DrugRequestOutputBoundary drugRequestOutputBoundary,
+    public DrugRequestInteractor(UserRegistrationDsGateway drugRequestDsGateway, DrugRequestOutputBoundary drugRequestOutputBoundary,
                                  DrugRequestGenerator drugRequestGenerator) {
         this.drugRequestDsGateway = drugRequestDsGateway;
         this.drugRequestOutputBoundary = drugRequestOutputBoundary;
