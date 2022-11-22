@@ -1,6 +1,17 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ReceiptSearchForm {
+
+    public ReceiptSearchForm() {
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(receiptSearch, "Not yet implemented");
+            }
+        });
+    }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("ReceiptSearchFrame");

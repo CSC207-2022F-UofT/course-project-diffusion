@@ -22,6 +22,7 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
+                ReceiptSearchForm.main(new String[] {});
                 new DrugRequestFrame();
             }
         });
