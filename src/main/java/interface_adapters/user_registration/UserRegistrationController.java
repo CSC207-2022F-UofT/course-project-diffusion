@@ -1,7 +1,7 @@
 package interface_adapters.user_registration;
 
-import usecases.user_registration.database_access.UserRegistrationInputData;
 import usecases.user_registration.input.UserRegistrationInputBoundary;
+import usecases.user_registration.input.UserRegistrationInputData;
 import usecases.user_registration.output.UserRegistrationOutputData;
 
 public class UserRegistrationController {

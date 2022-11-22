@@ -3,8 +3,9 @@ package usecases.user_registration.interactor;
 import ports.use_case_and_entities.UserRegistration;
 import ports.use_case_and_entities.UserRegistrationGenerator;
 import usecases.user_registration.database_access.UserRegistrationDsGateway;
-import usecases.user_registration.database_access.UserRegistrationInputData;
+import usecases.user_registration.database_access.UserRegistrationDsInputData;
 import usecases.user_registration.input.UserRegistrationInputBoundary;
+import usecases.user_registration.input.UserRegistrationInputData;
 import usecases.user_registration.output.UserRegistrationOutputBoundary;
 import usecases.user_registration.output.UserRegistrationOutputData;
 
@@ -40,7 +41,7 @@ public class UserRegistrationInteractor implements UserRegistrationInputBoundary
         /**
          * Output for Database
          */
-        UserRegistrationInputData dsInputData = new UserRegistrationInputData(userRequest.getFirstName(),
+        UserRegistrationDsInputData dsInputData = new UserRegistrationDsInputData(userRequest.getFirstName(),
                 userRequest.getLastName(), userRequest.getUsername(), userRequest.getPassword(), registrationDateTime);
 
 

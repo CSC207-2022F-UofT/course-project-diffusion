@@ -1,6 +1,8 @@
+package frameworks_and_drivers.view.frames.drug_request;
+
 import drug_request_entity.CommonDrugRequestGenerator;
 import drug_request_entity.DrugRequestGenerator;
-import drug_request_frameworks_drivers.DrugRequestScreen;
+import frameworks_and_drivers.view.drug_request.DrugRequestScreen;
 import drug_request_interface_adapters.DrugRequestController;
 import drug_request_interface_adapters.DrugRequestPresenter;
 import drug_request_use_case.DrugRequestDsGateway;
@@ -9,6 +11,7 @@ import drug_request_use_case.DrugRequestInteractor;
 import drug_request_use_case.DrugRequestOutputBoundary;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class DrugRequestFrame extends JFrame {
     public DrugRequestFrame() {

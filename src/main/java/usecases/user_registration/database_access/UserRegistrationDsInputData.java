@@ -2,14 +2,14 @@ package usecases.user_registration.database_access;
 
 import java.time.LocalDateTime;
 
-public class UserRegistrationInputData {
+public class UserRegistrationDsInputData {
     private String firstname;
     private String lastname;
     private String username;
     private String password;
     private final LocalDateTime userRegistrationTime;
 
-    public UserRegistrationInputData(String firstname, String lastname, String username, String password,
+    public UserRegistrationDsInputData(String firstname, String lastname, String username, String password,
                                      LocalDateTime userRegistrationTime) {
         this.firstname = firstname;
         this.lastname = lastname;

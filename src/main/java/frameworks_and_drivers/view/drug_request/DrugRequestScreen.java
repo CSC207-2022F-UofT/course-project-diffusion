@@ -1,6 +1,7 @@
-package drug_request_frameworks_drivers;
+package frameworks_and_drivers.view.drug_request;
 
 
+import drug_request_frameworks_drivers.PanelGenerator;
 import drug_request_interface_adapters.DrugRequestController;
 import junit.framework.JUnit4TestAdapter;
 

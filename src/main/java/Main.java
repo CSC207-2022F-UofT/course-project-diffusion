@@ -1,15 +1,6 @@
-import drug_request_entity.CommonDrugRequestGenerator;
-import drug_request_entity.DrugRequestGenerator;
-import drug_request_frameworks_drivers.DrugRequestScreen;
-import drug_request_interface_adapters.DrugRequestController;
-import drug_request_interface_adapters.DrugRequestPresenter;
-import drug_request_use_case.DrugRequestDsGateway;
-import drug_request_use_case.DrugRequestInputBoundary;
-import drug_request_use_case.DrugRequestInteractor;
-import drug_request_use_case.DrugRequestOutputBoundary;
+import frameworks_and_drivers.view.frames.drug_request.DrugRequestFrame;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Main {
     ////    DrugRequestInputBoundary drugRequestInteractor = new DrugRequestInteractor(DrugRequestGenerator, DrugRequestDsGateway)
@@ -18,7 +9,7 @@ public class Main {
 
 
         //Purpose of the below is to handle cases where it does not run, as well as cleaning up
-        //the main method by outsourcing the JFrame construction to DrugRequestFrame.
+        //the main method by outsourcing the JFrame construction to frameworks_and_drivers.view.frames.drug_request.DrugRequestFrame.
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
