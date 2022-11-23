@@ -3,13 +3,13 @@ package usecases.user_registration.input;
 public class UserRegistrationInputData {
     private String firstName;
     private String lastName;
-    private String userame;
+    private String username;
     private String password;
 
     public UserRegistrationInputData(String firstName, String lastName, String username, String password){
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userame = username;
+        this.username = username;
         this.password = password;
     }
 
@@ -30,11 +30,11 @@ public class UserRegistrationInputData {
     }
 
     public String getUserame() {
-        return userame;
+        return username;
     }
 
     public void setUserame(String userame) {
-        this.userame = userame;
+        this.username = userame;
     }
 
     public String getPassword() {

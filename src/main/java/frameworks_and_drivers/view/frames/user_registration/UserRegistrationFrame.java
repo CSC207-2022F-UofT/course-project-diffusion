@@ -24,7 +24,7 @@ public class UserRegistrationFrame extends JFrame {
         //Below are the parts for the use case entities engine
         UserRegistrationDsGateway userRegistrationDsGateway;
         try{
-            userRegistrationDsGateway = new UserRegistrationRecorder("./Registration1.csv");
+            userRegistrationDsGateway = new UserRegistrationRecorder("./Registration2.csv");
 
         } catch (IOException e) {
             throw new RuntimeException("Can't create file.");
@@ -37,7 +37,7 @@ public class UserRegistrationFrame extends JFrame {
                 userRegistrationOutputBoundary, userRegistrationGenerator);
         UserRegistrationController userRegistrationController = new UserRegistrationController(userRegistrationInteractor);
 
-        //below is the DrugRequestScreen panel which is added to this JFrame Winfow
+        //below is the DrugRequestScreen panel which is added to this JFrame Window
         UserRegistrationScreen userRegistrationScreen = new UserRegistrationScreen(userRegistrationController);
         add(userRegistrationScreen);
 

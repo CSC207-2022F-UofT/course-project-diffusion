@@ -1,5 +1,6 @@
 package usecases.user_registration.interactor;
 
+import interface_adapters.user_registration.UserRegistrationController;
 import ports.use_case_and_entities.UserRegistration;
 import ports.use_case_and_entities.UserRegistrationGenerator;
 import usecases.user_registration.database_access.UserRegistrationDsGateway;
@@ -23,10 +24,11 @@ public class UserRegistrationInteractor implements UserRegistrationInputBoundary
         this.userRegistrationGenerator = userRegistrationGenerator;
     }
 
+    String x = "dddddd";
     @Override
-    public UserRegistrationOutputData createInputObject(usecases.user_registration.input.UserRegistrationInputData userPOJO) {
+    public UserRegistrationOutputData createInputObject(UserRegistrationInputData userPOJO) {
         UserRegistration userRequest = userRegistrationGenerator.createUser(userPOJO.getFirstName(),
-                userPOJO.getLastName(), userPOJO.getUserame(), userPOJO.getPassword());
+                userPOJO.getLastName(), x, userPOJO.getPassword());
         if (!userRequest.firstNameIsValid()) {
             return userRegistrationOutputBoundary.failureView("Firstname is invalid ");
         } else if (!userRequest.lastNameIsValid()) {
@@ -38,13 +40,17 @@ public class UserRegistrationInteractor implements UserRegistrationInputBoundary
         }
         LocalDateTime registrationDateTime = LocalDateTime.now();
 
+        String x = "dddddd";
+
+
         /**
          * Output for Database
          */
         UserRegistrationDsInputData dsInputData = new UserRegistrationDsInputData(userRequest.getFirstName(),
                 userRequest.getLastName(), userRequest.getUsername(), userRequest.getPassword(), registrationDateTime);
+        userRegistrationDsGateway.saveUserRegistration(dsInputData);
 
-
+//        UserRegistrationDsInputData x = new UserRegistrationDsInputData(String fef, )"dddd";
         UserRegistrationOutputData registrationOutputData = new UserRegistrationOutputData(userRequest.getFirstName(),
                 userRequest.getLastName(), userRequest.getUsername(), registrationDateTime.toString());
         return userRegistrationOutputBoundary.successView(registrationOutputData);

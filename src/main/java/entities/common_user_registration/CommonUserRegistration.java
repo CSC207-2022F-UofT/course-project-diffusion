@@ -48,11 +48,11 @@ public class CommonUserRegistration implements UserRegistration {
 
     @Override
     public String getUsername() {
-        return null;
+        return firstName;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 }
