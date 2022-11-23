@@ -1,15 +1,7 @@
-import drug_request_entity.CommonDrugRequestGenerator;
-import drug_request_entity.DrugRequestGenerator;
-import drug_request_frameworks_drivers.DrugRequestScreen;
-import drug_request_interface_adapters.DrugRequestController;
-import drug_request_interface_adapters.DrugRequestPresenter;
-import drug_request_use_case.DrugRequestDsGateway;
-import drug_request_use_case.DrugRequestInputBoundary;
-import drug_request_use_case.DrugRequestInteractor;
-import drug_request_use_case.DrugRequestOutputBoundary;
+import drug_search_frameworks_drivers.DrugSearchFrame;
+import drug_search_frameworks_drivers.DrugSearchScreen;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Main {
     ////    DrugRequestInputBoundary drugRequestInteractor = new DrugRequestInteractor(DrugRequestGenerator, DrugRequestDsGateway)
@@ -23,6 +15,13 @@ public class Main {
             @Override
             public void run() {
                 new DrugRequestFrame();
+            }
+        });
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new DrugSearchFrame();
             }
         });
 
