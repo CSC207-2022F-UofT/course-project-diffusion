@@ -28,7 +28,7 @@ public class UserRegistrationInteractor implements UserRegistrationInputBoundary
     @Override
     public UserRegistrationOutputData createInputObject(UserRegistrationInputData userPOJO) {
         UserRegistration userRequest = userRegistrationGenerator.createUser(userPOJO.getFirstName(),
-                userPOJO.getLastName(), x, userPOJO.getPassword());
+                userPOJO.getLastName(), userPOJO.getUserame(), userPOJO.getPassword());
         if (!userRequest.firstNameIsValid()) {
             return userRegistrationOutputBoundary.failureView("Firstname is invalid ");
         } else if (!userRequest.lastNameIsValid()) {
@@ -40,9 +40,6 @@ public class UserRegistrationInteractor implements UserRegistrationInputBoundary
         }
         LocalDateTime registrationDateTime = LocalDateTime.now();
 
-        String x = "dddddd";
-
-
         /**
          * Output for Database
          */
@@ -50,7 +47,6 @@ public class UserRegistrationInteractor implements UserRegistrationInputBoundary
                 userRequest.getLastName(), userRequest.getUsername(), userRequest.getPassword(), registrationDateTime);
         userRegistrationDsGateway.saveUserRegistration(dsInputData);
 
-//        UserRegistrationDsInputData x = new UserRegistrationDsInputData(String fef, )"dddd";
         UserRegistrationOutputData registrationOutputData = new UserRegistrationOutputData(userRequest.getFirstName(),
                 userRequest.getLastName(), userRequest.getUsername(), registrationDateTime.toString());
         return userRegistrationOutputBoundary.successView(registrationOutputData);
