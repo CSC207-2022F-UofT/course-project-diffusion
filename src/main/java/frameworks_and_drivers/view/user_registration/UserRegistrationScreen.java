@@ -1,7 +1,7 @@
-package frameworks_and_drivers.view.screens;
+package frameworks_and_drivers.view.user_registration;
 
 //import drug_request_frameworks_drivers.PanelGenerator;
-import drug_request_interface_adapters.DrugRequestController;
+
 import frameworks_and_drivers.view.screens.panel_creator.PanelCreator;
 import interface_adapters.user_registration.UserRegistrationController;
 

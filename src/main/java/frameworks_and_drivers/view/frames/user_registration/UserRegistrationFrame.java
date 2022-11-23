@@ -3,7 +3,7 @@ package frameworks_and_drivers.view.frames.user_registration;
 
 import entities.common_user_registration.CommonUserRegistrationFactory;
 import frameworks_and_drivers.view.database_access.UserRegistrationRecorder;
-import frameworks_and_drivers.view.screens.UserRegistrationScreen;
+import frameworks_and_drivers.view.user_registration.UserRegistrationScreen;
 import interface_adapters.user_registration.UserRegistrationController;
 import interface_adapters.user_registration.UserRegistrationPresenter;
 import ports.use_case_and_entities.UserRegistrationGenerator;

@@ -1,6 +1,5 @@
 package interface_adapters.user_registration;
 
-import drug_request_frameworks_drivers.DrugRequestFailed;
 import usecases.user_registration.output.UserRegistrationOutputBoundary;
 import usecases.user_registration.output.UserRegistrationOutputData;
 
@@ -17,6 +16,6 @@ public class UserRegistrationPresenter implements UserRegistrationOutputBoundary
 
     @Override
     public UserRegistrationOutputData failureView(String error) {
-        throw new DrugRequestFailed(error);
+        throw new RuntimeException(error);
     }
 }
