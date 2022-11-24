@@ -4,6 +4,8 @@ import drug_request_frameworks_drivers.DrugRequestRecorder;
 import drug_request_frameworks_drivers.DrugRequestScreen;
 import drug_request_interface_adapters.DrugRequestController;
 import drug_request_interface_adapters.DrugRequestPresenter;
+import drug_request_interface_adapters.DrugRequestPresenterOutputBoundary;
+import drug_request_interface_adapters.DrugRequestViewModel;
 import drug_request_use_case.DrugRequestDsGateway;
 import drug_request_use_case.DrugRequestInputBoundary;
 import drug_request_use_case.DrugRequestInteractor;
@@ -27,6 +29,11 @@ public class DrugRequestFrame extends JFrame {
         } catch (IOException e) {
             throw new RuntimeException("Can't create file.");
         }
+
+//        DrugRequestPresenterOutputBoundary drugRequestPresenterOutputBoundary = new DrugRequestViewmodel();
+////        DrugRequestScreen drugRequestScreen = new DrugRequestScreen(drugRequestPresenterOutputBoundary);
+
+
         DrugRequestOutputBoundary outputBoundary = new DrugRequestPresenter();
         DrugRequestGenerator drugRequestGenerator = new CommonDrugRequestGenerator();
         DrugRequestInputBoundary interactor = new DrugRequestInteractor(drugRequestDsGateway,
@@ -35,6 +42,9 @@ public class DrugRequestFrame extends JFrame {
 //
         //below is the DrugRequestScreen panel which is added to this JFrame Winfow
         DrugRequestScreen drugRequestScreen = new DrugRequestScreen(drugRequestController);
+//        DrugRequestPresenterOutputBoundary drugRequestPresenterOutputBoundary = drugRequestScreen;
+
+        ((DrugRequestPresenter) outputBoundary).setView(drugRequestScreen);
 
         add(drugRequestScreen);
 

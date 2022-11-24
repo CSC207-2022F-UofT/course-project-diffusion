@@ -54,7 +54,8 @@ public class DrugRequestInteractor implements DrugRequestInputBoundary {
          drugRequestDsGateway.saveDrugRequest(drugRequestDsModel);
          */
 
-        DrugRequestResponseModel drugRequestResponseModel = new DrugRequestResponseModel();
+        DrugRequestResponseModel drugRequestResponseModel = new DrugRequestResponseModel(drugRequest.getDrugName(),
+                drugRequest.getDrugBottle(), drugRequestDate.toString());
 //                (drugRequest.getDrugName(),
 //                drugRequestDate.toString(), drugRequest.getDrugBottle());
         return drugRequestOutputBoundary.prepareSuccessView(drugRequestResponseModel);

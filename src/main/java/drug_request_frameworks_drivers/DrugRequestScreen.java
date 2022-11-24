@@ -4,13 +4,18 @@ package drug_request_frameworks_drivers;
 import drug_request_interface_adapters.DrugRequestController;
 import drug_request_interface_adapters.DrugRequestPresenter;
 import drug_request_interface_adapters.DrugRequestPresenterOutputBoundary;
+import drug_request_interface_adapters.DrugRequestViewModel;
+import drug_request_use_case.DrugRequestResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+
 public class DrugRequestScreen extends JPanel implements ActionListener, DrugRequestPresenterOutputBoundary {
+    JButton drugRequestButton, cancelRequestbutton;
 
     private DrugRequestPresenter drugRequestPresenter;
 //public class DrugRequestScreen extends JFrame implements ActionListener{
@@ -25,7 +30,7 @@ public class DrugRequestScreen extends JPanel implements ActionListener, DrugReq
     JTextField drugBottle = new JTextField(15);
 //    JComboBox drugName = new JComboBox();
 
-    JTextField requestResponse = new JTextField(15);
+    JTextField requestResponse = new JTextField(40);
 
     /**
      * the controller
@@ -50,7 +55,7 @@ public class DrugRequestScreen extends JPanel implements ActionListener, DrugReq
         Made the requestResponse panel read only, so it can't be edited by the user
         instead it will be used to display the response to the user.
          */
-//        requestResponse.setEditable(false);
+        requestResponse.setEditable(false);
 
         /*
           Packages multiple components as a single component using panel Generator.
@@ -63,8 +68,8 @@ public class DrugRequestScreen extends JPanel implements ActionListener, DrugReq
         /*
           create new buttons submitDrugRequest and cancelDrugRequest
          */
-        JButton submitDrugRequest = new JButton(" Submit Drug Request");
-        JButton cancelDrugRequest = new JButton("Cancel");
+         drugRequestButton = new JButton(" Submit Drug Request");
+         cancelRequestbutton = new JButton("Cancel");
 
         /*
 
@@ -73,13 +78,15 @@ public class DrugRequestScreen extends JPanel implements ActionListener, DrugReq
         /*
           create drugRequestButtons panel to add buttons to
          */
-        JPanel drugRequestButtons = new JPanel();
+        JPanel drugRequestPanel = new JPanel();
 
-        drugRequestButtons.add(submitDrugRequest);
-        drugRequestButtons.add(cancelDrugRequest);
+//        public JPanel buttonGenerator()
 
-        submitDrugRequest.addActionListener(this);
-        cancelDrugRequest.addActionListener(this);
+        drugRequestPanel.add(drugRequestButton);
+        drugRequestPanel.add(cancelRequestbutton);
+
+        drugRequestButton.addActionListener(this);
+        cancelRequestbutton.addActionListener(this);
         /*
           setLayout invalidates componenet hierarchy and creates a layout manager, BoxLayout, which vertically
           lays out vcomponents.
@@ -90,56 +97,54 @@ public class DrugRequestScreen extends JPanel implements ActionListener, DrugReq
         /*
           Purpose of the below is to add the components to the end of the container in the order they are listed below
          */
+
+
         this.add(title);
         this.add(drugNamePanel);
         this.add(drugBottlePanel);
-        this.add(drugRequestButtons);
+        this.add(drugRequestPanel);
+//        this.add(setUpButtonListeners(drugRequestButtons));
         this.add(requestResponsePanel);
 
 
     }
 
-
-    //@Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        System.out.println("Clicked " + actionEvent.getActionCommand());
-        try {
-
-            //Is it ok to call this???
-//            drugRequestController.create(drugName.getText(), drugBottle.getText());
-//            drugrequestControllerDepot........
-            //this message is sent as long as the try is executed
-//            @Override
-//            requestResponse.setText("h");
-//            public void drugReque
-//            practiceDrugRequestSubmitted();
-
-
-            JOptionPane.showMessageDialog(this, String.format("Drug Order Request sent for %s bottles of %s", drugBottle.getText(), drugName.getText()));
-//            drugRequestSubmitted();
-//            requestResponse.setText("h");
-
-
-            drugRequestController.create(drugName.getText(), drugBottle.getText());
-//            requestResponse.setText("h");
-//            drugRequestPresenter.
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-    }
-
-        public void practiceDrugRequestSubmitted() {
-            requestResponse.setText("h");
-        }
-
+    /*
+    Two possible actions, one is for submit button which causes the sue case, and the second is for the cancel button
+    which terminates the program.
+     */
     @Override
-    public void drugRequestSubmitted(){
-          requestResponse.setText("h");
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == drugRequestButton) {
+            try {
+
+                //Is it ok to call this???
+                drugRequestController.create(drugName.getText(), drugBottle.getText());
+                System.out.println("SCREEN PASSED");
+                JOptionPane.showMessageDialog(drugRequestButton, String.format("Drug Order Request sent for %s bottles of %s.", drugBottle.getText(), drugName.getText()));
+            } catch (Exception ee) {
+                JOptionPane.showMessageDialog(cancelRequestbutton, ee.getMessage());
+            }
+
+        } else if ( e.getSource() == cancelRequestbutton){
+            System.exit(0);
+        }
     }
 
-//    @Override
-//    public DrugRequestResponseModel drugRequestSubmitted(DrugRequestResponseModel drugRequestResponseModel) {
-//        return null;
-//    }
+
+
+    /*
+    Updates the action performed field with the output of the usecase interactor.
+    Generates a string output from a drugRequestViewModel data structure.
+     */
+    @Override
+    public DrugRequestResponseModel viewPresenter(DrugRequestResponseModel requestResponseModel) {
+        DrugRequestViewModel drugRequestViewModel = new DrugRequestViewModel(requestResponseModel.getDrugName(),
+                requestResponseModel.getDrugBottle(), requestResponseModel.getCreationTime());
+         requestResponse.setText(String.format("Order successfully received for %s bottles of %s at %s.", drugRequestViewModel.getDrugBottle(),
+                drugRequestViewModel.getDrugName(), drugRequestViewModel.getCreationTime()));
+         return null;
+    }
+
 
 }
