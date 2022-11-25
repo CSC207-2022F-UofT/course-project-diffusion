@@ -1,6 +1,6 @@
 package usecases.user_registration.interactor;
 
-import interface_adapters.user_registration.UserRegistrationController;
+import interface_adapters.user_registration.UserPresenterOutputBoundary;
 import ports.use_case_and_entities.UserRegistration;
 import ports.use_case_and_entities.UserRegistrationGenerator;
 import usecases.user_registration.database_access.UserRegistrationDsGateway;

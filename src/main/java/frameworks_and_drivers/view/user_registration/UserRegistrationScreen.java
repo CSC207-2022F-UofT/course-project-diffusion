@@ -3,14 +3,17 @@ package frameworks_and_drivers.view.user_registration;
 //import drug_request_frameworks_drivers.PanelGenerator;
 
 import frameworks_and_drivers.view.screens.panel_creator.PanelCreator;
+import interface_adapters.user_registration.UserPresenterOutputBoundary;
 import interface_adapters.user_registration.UserRegistrationController;
+import usecases.user_registration.output.UserRegistrationOutputBoundary;
+import usecases.user_registration.output.UserRegistrationOutputData;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class UserRegistrationScreen extends JPanel implements ActionListener {
+public class UserRegistrationScreen extends JPanel implements ActionListener, UserPresenterOutputBoundary {
     /**
      * The first name of the user
      */
@@ -113,5 +116,10 @@ public class UserRegistrationScreen extends JPanel implements ActionListener {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+    }
+
+    @Override
+    public UserRegistrationOutputData presenterOutput(UserRegistrationOutputData userRegistrationOutputBoundary) {
+        return null;
     }
 }

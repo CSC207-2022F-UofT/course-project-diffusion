@@ -39,6 +39,10 @@ public class UserRegistrationFrame extends JFrame {
 
         //below is the DrugRequestScreen panel which is added to this JFrame Window
         UserRegistrationScreen userRegistrationScreen = new UserRegistrationScreen(userRegistrationController);
+//        add(userRegistrationScreen);
+        userRegistrationOutputBoundary.setView((UserRegistrationOutputBoundary) userRegistrationScreen);
+
+//        ((UserRegistrationPresenter) userRegistrationOutputBoundary.setView(userRegistrationScreen);
         add(userRegistrationScreen);
 
         //below makes the program stop running when you click close
