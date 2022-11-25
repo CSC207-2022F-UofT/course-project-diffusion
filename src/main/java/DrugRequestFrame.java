@@ -34,7 +34,7 @@ public class DrugRequestFrame extends JFrame {
 ////        DrugRequestScreen drugRequestScreen = new DrugRequestScreen(drugRequestPresenterOutputBoundary);
 
 
-        DrugRequestOutputBoundary outputBoundary = new DrugRequestPresenter();
+        DrugRequestPresenter outputBoundary = new DrugRequestPresenter();
         DrugRequestGenerator drugRequestGenerator = new CommonDrugRequestGenerator();
         DrugRequestInputBoundary interactor = new DrugRequestInteractor(drugRequestDsGateway,
                 outputBoundary, drugRequestGenerator);
@@ -44,7 +44,7 @@ public class DrugRequestFrame extends JFrame {
         DrugRequestScreen drugRequestScreen = new DrugRequestScreen(drugRequestController);
 //        DrugRequestPresenterOutputBoundary drugRequestPresenterOutputBoundary = drugRequestScreen;
 
-        ((DrugRequestPresenter) outputBoundary).setView(drugRequestScreen);
+        outputBoundary.setView(drugRequestScreen);
 
         add(drugRequestScreen);
 
