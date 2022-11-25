@@ -31,7 +31,7 @@ public class UserRegistrationFrame extends JFrame {
         }
 
 //        UserRegistrationDsGateway userRegistrationDsGateway = null;
-        UserRegistrationOutputBoundary userRegistrationOutputBoundary = new UserRegistrationPresenter();
+        UserRegistrationPresenter userRegistrationOutputBoundary = new UserRegistrationPresenter();
         UserRegistrationGenerator userRegistrationGenerator = new CommonUserRegistrationFactory();
         UserRegistrationInteractor userRegistrationInteractor = new UserRegistrationInteractor(userRegistrationDsGateway,
                 userRegistrationOutputBoundary, userRegistrationGenerator);
@@ -39,10 +39,11 @@ public class UserRegistrationFrame extends JFrame {
 
         //below is the DrugRequestScreen panel which is added to this JFrame Window
         UserRegistrationScreen userRegistrationScreen = new UserRegistrationScreen(userRegistrationController);
-//        add(userRegistrationScreen);
-        userRegistrationOutputBoundary.setView((UserRegistrationOutputBoundary) userRegistrationScreen);
+        add(userRegistrationScreen);
+//        userRegistrationOutputBoundary.setView((UserRegistrationOutputBoundary) userRegistrationScreen);
+//        ( (UserRegistrationOutputBoundary) userRegistrationOutputBoundary).setView(userRegistrationScreen);
 
-//        ((UserRegistrationPresenter) userRegistrationOutputBoundary.setView(userRegistrationScreen);
+//        userRegistrationOutputBoundary.setView((UserRegistrationOutputBoundary) userRegistrationScreen);
         add(userRegistrationScreen);
 
         //below makes the program stop running when you click close

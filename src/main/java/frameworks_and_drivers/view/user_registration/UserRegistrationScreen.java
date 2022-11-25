@@ -5,6 +5,7 @@ package frameworks_and_drivers.view.user_registration;
 import frameworks_and_drivers.view.screens.panel_creator.PanelCreator;
 import interface_adapters.user_registration.UserPresenterOutputBoundary;
 import interface_adapters.user_registration.UserRegistrationController;
+import interface_adapters.user_registration.UserRegistrationViewmodel;
 import usecases.user_registration.output.UserRegistrationOutputBoundary;
 import usecases.user_registration.output.UserRegistrationOutputData;
 
@@ -119,7 +120,11 @@ public class UserRegistrationScreen extends JPanel implements ActionListener, Us
     }
 
     @Override
-    public UserRegistrationOutputData presenterOutput(UserRegistrationOutputData userRegistrationOutputBoundary) {
-        return null;
+    public UserRegistrationOutputData presenterOutput(UserRegistrationOutputData presenterOutputData) {
+        UserRegistrationViewmodel userRegistrationViewmodel = new UserRegistrationViewmodel(presenterOutputData.getFirstName(),
+                presenterOutputData.getLastname(),presenterOutputData.getUsername(), presenterOutputData.getCreationTime());
+        requestResponse.setText(String.format("Welcome %s, %s,! Your new user, %s was created at %s", userRegistrationViewmodel.getFirstName(),
+                userRegistrationViewmodel.getLastname(), userRegistrationViewmodel.getUsername(), userRegistrationViewmodel.getCreationTime()));
+        return presenterOutputData;
     }
 }
