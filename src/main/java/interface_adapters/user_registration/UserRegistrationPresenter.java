@@ -21,7 +21,6 @@ public class UserRegistrationPresenter implements UserRegistrationOutputBoundary
         throw new RuntimeException(error);
     }
 
-    @Override
     public void setView(UserRegistrationOutputBoundary userPresenterOutBoundary) {
         this.userPresenterOutputBoundary = userPresenterOutputBoundary;
     }
