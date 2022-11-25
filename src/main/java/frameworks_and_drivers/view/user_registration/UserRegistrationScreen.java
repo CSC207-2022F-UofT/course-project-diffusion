@@ -36,7 +36,7 @@ public class UserRegistrationScreen extends JPanel implements ActionListener, Us
     JTextField password = new JTextField(15);
 //    JComboBox drugName = new JComboBox();
 
-    JTextField requestResponse = new JTextField(15);
+    JTextField requestResponse = new JTextField(35);
 
     /**
      * the controller

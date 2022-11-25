@@ -5,5 +5,5 @@ import interface_adapters.user_registration.UserPresenterOutputBoundary;
 public interface UserRegistrationOutputBoundary {
     UserRegistrationOutputData successView(UserRegistrationOutputData userData);
     UserRegistrationOutputData failureView(String error);
-    void setView (UserRegistrationOutputBoundary userPresenterOutBoundary);
+//    void setView (UserRegistrationOutputBoundary userPresenterOutBoundary);
 }
