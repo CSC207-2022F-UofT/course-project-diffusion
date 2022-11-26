@@ -42,6 +42,7 @@ public class DrugSearchScreen {
         }
         catch (Exception e) {
             JOptionPane.showMessageDialog(receiptSearch, "Impossible date selection, please try again!");
+            return;
         }
 
         // Send search request
