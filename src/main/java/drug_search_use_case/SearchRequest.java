@@ -1,48 +1,64 @@
 package drug_search_use_case;
 
+import java.time.LocalDateTime;
+import java.util.*;
+
 /**
  * Represents a user-generated search request.
  */
 public class SearchRequest {
-    public SearchRequest(String term, boolean generic, boolean brand, boolean alternatives) {
-        searchTerm = term;
-        includeGeneric = generic;
-        includeBrand = brand;
-        includeAlternatives = alternatives;
+    public SearchRequest(String accountId, String requestId, String siteId, String drugName, String quantity,
+                         boolean dateSearch, LocalDateTime date, int relativity) {
+        this.accountId = accountId;
+        this.requestId = requestId;
+        this.siteId = siteId;
+        this.drugName = drugName;
+        this.quantity = quantity;
+        this.dateSearch = dateSearch;
+        this.date = date;
+        this.relativity = relativity;
     }
 
     /**
-     * @return The specified search term.
+     * Gets the account ID to search for, if any.
      */
-    public String getSearchTerm() {
-        return searchTerm;
-    }
-
+    public String getAccountId() { return accountId; }
     /**
-     * @return Whether to include generic items in the search response.
+     * Gets the request ID to search for, if any.
      */
-    public boolean getIncludeGeneric() {
-        return includeGeneric;
-    }
-
+    public String getRequestId() { return requestId; }
     /**
-     * @return Whether to include branded items in the search response.
+     * Gets the site ID to search for, if any.
      */
-    public boolean getIncludeBrand() {
-        return includeBrand;
-    }
-
+    public String getSiteId() { return siteId; }
     /**
-     * @return Whether to include alternative items in the search response.
+     * Gets the drug name to search for, if any.
      */
-    public boolean getIncludeAlternatives() {
-        return includeAlternatives;
-    }
+    public String getDrugName() { return drugName; }
+    /**
+     * Gets the quantity requested to search for, if any.
+     */
+    public String getQuantity() { return quantity; }
+    /**
+     * Gets whether the search request includes date information.
+     */
+    public boolean isDateSearch() { return dateSearch; }
+    /**
+     * Gets the date to search for, if any.
+     */
+    public LocalDateTime getDate() { return date; }
+    /**
+     * Gets an integer representing how the date search functions: 1 to search for requests after the given date, -1
+     * to search for requests before it, and 0 to search for requests on it.
+     */
+    public int getRelativity() { return relativity; }
 
-    private final String searchTerm;
-    private final boolean includeGeneric;
-    private final boolean includeBrand;
-    private final boolean includeAlternatives;
-
-    // Add more fields if necessary
+    private final String accountId;
+    private final String requestId;
+    private final String siteId;
+    private final String drugName;
+    private final String quantity;
+    private final boolean dateSearch;
+    private final LocalDateTime date;
+    private final int relativity;
 }

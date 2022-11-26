@@ -1,5 +1,4 @@
 import drug_search_frameworks_drivers.DrugSearchFrame;
-import drug_search_frameworks_drivers.DrugSearchScreen;
 
 import javax.swing.*;
 
