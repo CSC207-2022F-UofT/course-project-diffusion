@@ -1,56 +1,47 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 import drug_fulfill_entities.CommonDrugFulfillFactory;
 import drug_fulfill_entities.DrugFulfillFactory;
-import drug_fulfill_use_case.DrugFulfillDsGateway;
 import drug_fulfill_use_case.DrugFulfillInputBoundary;
 import drug_fulfill_use_case.DrugFulfillInteractor;
 import drug_fulfill_use_case.DrugRequestPresenter;
-import screens.*;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.CardLayout;
 import java.io.IOException;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import screens.DrugRequestController;
+import screens.DrugRequestResponseFormatter;
+import screens.FileDepotInventoryA;
+import screens.RegisterScreen;
 
 public class Main {
-    public static void main(String[] args) {
+    public Main() {
+    }
 
-        // Build the main program window
+    public static void main(String[] args) {
         JFrame application = new JFrame("Order Example");
         CardLayout cardLayout = new CardLayout();
         JPanel screens = new JPanel(cardLayout);
         application.add(screens);
 
-        // Create the parts to plug into the Use Case+Entities engine
-        DrugFulfillDsGateway receipts;
-        DrugFulfillDsGateway depot;
+        FileDepotInventoryA depot;
         try {
             depot = new FileDepotInventoryA("./depotAInventory.csv");
-            receipts = new FileReceiptsInventoryA("./depotAReceipts.csv");
-        } catch (IOException e) {
+        } catch (IOException var11) {
             throw new RuntimeException("Could not create file.");
         }
+
         DrugRequestPresenter presenter = new DrugRequestResponseFormatter();
         DrugFulfillFactory orderFactory = new CommonDrugFulfillFactory();
-        DrugFulfillInputBoundary interactor = new DrugFulfillInteractor(
-                receipts, presenter, orderFactory);
-        DrugRequestController drugRequestController = new DrugRequestController(
-                interactor
-        );
-
-        // Build the GUI, plugging in the parts
+        DrugFulfillInputBoundary interactor = new DrugFulfillInteractor(depot, presenter, orderFactory);
+        DrugRequestController drugRequestController = new DrugRequestController(interactor);
         RegisterScreen registerScreen = new RegisterScreen(drugRequestController);
         screens.add(registerScreen, "welcome");
         cardLayout.show(screens, "register");
         application.pack();
         application.setVisible(true);
-
-        // Unused screens; we'll uncomment this later
-        //WelcomeScreen welcomeScreen = new WelcomeScreen();
-        //LoginScreen loginScreen = new LoginScreen();
-        //LoggedInScreen loggedInScreen = new LoggedInScreen();
-        //screens.add(welcomeScreen, "register");
-        //screens.add(loginScreen, "login");
-        //screens.add(loggedInScreen, "loggedIn");
-
     }
-
 }

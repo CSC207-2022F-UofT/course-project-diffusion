@@ -1,136 +1,139 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package screens;
 
 import drug_fulfill_use_case.DrugFulfillDsGateway;
 import drug_fulfill_use_case.DrugFulfillDsRequestModel;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class FileDepotInventoryA implements DrugFulfillDsGateway {
-
     private final File csvFile;
-
-    private final Map<String, Integer> headers = new LinkedHashMap<>();
-
-    private final Map<String, DrugFulfillDsRequestModel> madeOrders = new HashMap<>();
-
-    private final String[] drugList = {"DrugA", "DrugB", "DrugC"};
+    private final Map<String, Integer> headers = new LinkedHashMap();
+    private final Map<String, DrugFulfillDsRequestModel> CurrentInventory = new HashMap();
+    private final Map<String, DrugFulfillDsRequestModel> MadeOrders = new HashMap();
+    private final String[] drugList = new String[]{"DrugA", "DrugB", "DrugC"};
 
     public FileDepotInventoryA(String csvPath) throws IOException {
-        csvFile = new File(csvPath);
-
-        headers.put("drugName", 0);
-        headers.put("drugAmount", 1);
-        headers.put("creation_time", 2);
-        headers.put("batch Number", 3);
-        headers.put("id Number", 4);
-
-        if (csvFile.length() == 0) {
-            fulfillOrder(); //createDepot(); bugs out for now
+        this.csvFile = new File(csvPath);
+        this.headers.put("drugName", 0);
+        this.headers.put("drugAmount", 1);
+        this.headers.put("creation_time", 2);
+        this.headers.put("batch Number", 3);
+        this.headers.put("id Number", 4);
+        if (this.csvFile.length() == 0L) {
+            System.out.println("wtf empty csv inventory");
+            createDepot();
         } else {
-
-            BufferedReader reader = new BufferedReader(new FileReader(csvFile));
-            reader.readLine(); // skip header
+            BufferedReader reader = new BufferedReader(new FileReader(this.csvFile));
+            reader.readLine();
 
             String row;
-            while ((row = reader.readLine()) != null) {
+            while((row = reader.readLine()) != null) {
                 String[] col = row.split(",");
-                String drugName = String.valueOf(col[headers.get("drugName")]);
-                int drugAmount = Integer.parseInt((col[headers.get("drugAmount")]));
-                String creationTimeText = String.valueOf(col[headers.get("creation_time")]);
+                String drugName = String.valueOf(col[(Integer)this.headers.get("drugName")]);
+                int drugAmount = Integer.parseInt(col[(Integer)this.headers.get("drugAmount")]);
+                String creationTimeText = String.valueOf(col[(Integer)this.headers.get("creation_time")]);
                 LocalDateTime ldt = LocalDateTime.parse(creationTimeText);
-                DrugFulfillDsRequestModel saveReceipt = new DrugFulfillDsRequestModel(drugName, drugAmount, ldt, Boolean.FALSE /*, OrderID*/);
-                madeOrders.put(String.valueOf(ldt)/*orderID*/, saveReceipt);
+                DrugFulfillDsRequestModel saveReceipt = new DrugFulfillDsRequestModel(drugName, drugAmount, ldt, Boolean.FALSE);
+                this.CurrentInventory.put(String.valueOf(ldt), saveReceipt);
             }
 
             reader.close();
         }
+
     }
 
-    @Override
     public boolean isEmergency(Boolean isEmergencyToggle) {
-        return isEmergencyToggle; //isnt this redundant??
+        return isEmergencyToggle;
     }
 
-    @Override
     public boolean isInt(String DrugAmount) {
-        try{
+        try {
             int a = Integer.parseInt(DrugAmount);
             System.out.println(a);
-        } catch (Exception e) {
+            return true;
+        } catch (Exception var3) {
             return false;
         }
-
-        return true;
     }
 
-    /**
-     * Add requestModel to storage.
-     * @param requestModel the user information to save.
-     */
-    @Override
     public void fulfillOrder(DrugFulfillDsRequestModel requestModel) {
-        madeOrders.put(String.valueOf(requestModel.getCreationTime()), requestModel);
-        this.fulfillOrder(); //see .put for changing the amount of drugs we have
+        String fake_id = String.valueOf(requestModel.getCreationTime());
+        this.MadeOrders.put(fake_id, requestModel);
+        this.adjustInventory(fake_id);
     }
 
-    private void fulfillOrder() {
-        BufferedWriter writer;
+    private void adjustInventory(String fake_id) {
         try {
-            writer = new BufferedWriter(new FileWriter(csvFile));
-            writer.write(String.join(",", headers.keySet()));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(this.csvFile));
+            writer.write(String.join(",", this.headers.keySet()));
             writer.newLine();
+            DrugFulfillDsRequestModel plsfulfill = this.MadeOrders.get(fake_id);
 
-            for (DrugFulfillDsRequestModel order : madeOrders.values()) {
-                //if (order.getName() == ;
-                String line = "%s,%s,%s,%s,%s".formatted(
-                        order.getName(), order.getBottle(), order.getCreationTime(), order.getBatchNumber(), order.getIDNumber());
-                writer.write(line);
+            for (DrugFulfillDsRequestModel drugBin : this.CurrentInventory.values()) {
+                if (Objects.equals(drugBin.getName(), plsfulfill.getName())) {
+                    drugBin.setBottle(drugBin.getBottle() - plsfulfill.getBottle());
+                }
+
+                String line1 = "%s,%s,%s,%s,%s".formatted(drugBin.getName(), drugBin.getBottle(), drugBin.getCreationTime(), drugBin.getBatchNumber(), drugBin.getIDNumber());
+                writer.write(line1);
                 writer.newLine();
             }
 
             writer.close();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException var10) {
+            throw new RuntimeException(var10);
         }
     }
 
     private void createDepot() {
-        BufferedWriter writer;
         try {
-            writer = new BufferedWriter(new FileWriter(csvFile));
-            writer.write(String.join(",", headers.keySet()));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(this.csvFile));
+            writer.write(String.join(",", this.headers.keySet()));
             writer.newLine();
 
-            for (String DrugName : drugList) {
-                String line = "%s,%s,%s,%s,%s".formatted(
-                        DrugName, 10, 0, "000b", "000");
+
+            for (String DrugName : this.drugList) {
+                LocalDateTime ldt_now = LocalDateTime.now();
+                String line = "%s,%s,%s,%s,%s".formatted(DrugName, 20, ldt_now, "whatever", "IDtobeouted");
                 writer.write(line);
                 writer.newLine();
             }
 
             writer.close();
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            BufferedReader reader = new BufferedReader(new FileReader(this.csvFile));
+            reader.readLine();
+
+            String row;
+            while((row = reader.readLine()) != null) {
+                String[] col = row.split(",");
+                String drugName = String.valueOf(col[(Integer)this.headers.get("drugName")]);
+                int drugAmount = Integer.parseInt(col[(Integer)this.headers.get("drugAmount")]);
+                String creationTimeText = String.valueOf(col[(Integer)this.headers.get("creation_time")]);
+                LocalDateTime ldt = LocalDateTime.parse(creationTimeText);
+                DrugFulfillDsRequestModel saveReceipt = new DrugFulfillDsRequestModel(drugName, drugAmount, ldt, Boolean.FALSE);
+                this.CurrentInventory.put(String.valueOf(ldt), saveReceipt);
+            }
+
+            reader.close();
+
+        } catch (IOException var7) {
+            throw new RuntimeException(var7);
         }
     }
-
-
-    /**
-     * Return whether a user exists with username identifier.
-     * @param identifier the username to check.
-     * @return whether a user exists with username identifier
-     */
-    /*
-    @Override
-    public boolean existsByName(String identifier) {
-        return accounts.containsKey(identifier);
-    }
-
-     */
 }
