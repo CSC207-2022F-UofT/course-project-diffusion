@@ -30,37 +30,8 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
 
         //Check to see if file already exists, if it does not then add a header and the first drug request,
         // if it does then simply append the latest drug request to the bottom.
-//        if (csvFile.length() == 0){
-//            generateHeader();
-//
-////            appendUserRegistrationRequest();
-//        }
-//        else{
-//            appendUserRegistrationRequest();
-//        }
-
         generateDrugRequestHelper();
 
-//        if (csvFile.length() == 0) {
-//            generateDrugRequest();
-//            System.out.println(csvFile.length());
-//        } else{
-//            BufferedWriter appendWriter;
-//            try {
-//                appendWriter = new BufferedWriter(new FileWriter(csvFile, true));
-//                for (DrugRequestDsInvokeModel userDrugRequest : drugRequests.values()){
-//                    String line = String.format("%s, %s, %s, %s, %s, %s",  10001, 20001, 30001, userDrugRequest.getDrugName(),
-//                            userDrugRequest.getDrugBottle(), userDrugRequest.getDrugRequestCreationTime() );
-////                    appendWriter.newLine();
-//                    appendWriter.write(line);
-//                    appendWriter.newLine();
-//                }
-//
-//                appendWriter.close();
-//            } catch (IOException e){
-//                throw new RuntimeException(e);
-//            }
-//        }
 
     }
     @Override
@@ -83,16 +54,7 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
         userRegistrationRequest.put(registrationDsInputData.getUsername(),registrationDsInputData);
         this.generateDrugRequestHelper();
     }
-//    @Override
-//    public boolean drugNameExists(String identifier) {
-//        return drugRequests.containsKey(identifier);
-//    }
-//
-//    @Override
-//    public void generateDrugRequest(DrugRequestDsInvokeModel drugRequestDsInvokeModel) {
-//        drugRequests.put(drugRequestDsInvokeModel.getDrugName(), drugRequestDsInvokeModel);
-//        this.generateDrugRequestHelper();
-//    }
+
 
     private void generateDrugRequestHelper() {
 
@@ -105,38 +67,13 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
         else{
             appendUserRegistrationRequest();
         }
-
-
-
-//        generateHeader();
-//        appendDrugRequest();
-//        BufferedWriter drugRequestWriter;
-//        try {
-//            drugRequestWriter = new BufferedWriter(new FileWriter(csvFile, true));
-//            drugRequestWriter.write(String.join(",", headers.keySet()));
-//            drugRequestWriter.newLine();
-//
-//            for (DrugRequestDsInvokeModel userDrugRequest : drugRequests.values()) {
-//                String line = String.format("%s, %s, %s, %s, %s, %s", 10001, 20001, 30001, userDrugRequest.getDrugName(),
-//                        userDrugRequest.getDrugBottle(), userDrugRequest.getDrugRequestCreationTime());
-//                drugRequestWriter.write(line);
-//                drugRequestWriter.newLine();
-//            }
-//
-//            drugRequestWriter.close();
-//
-//
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
     }
 
     private void appendUserRegistrationRequest(){
         BufferedWriter userRegistrationWriter;
         try {
             userRegistrationWriter = new BufferedWriter(new FileWriter(csvFile, true));
-//            userRegistrationWriter.write(String.join(",", headers.keySet()));
-//            userRegistrationWriter.newLine();
+
 //
             for (UserRegistrationDsInputData userRegistrationInput : userRegistrationRequest.values()) {
                 String line = String.format("%s, %s, %s, %s, %s, %s", 10001, userRegistrationInput.getFirstname(),
@@ -152,7 +89,6 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     private void generateHeader(){

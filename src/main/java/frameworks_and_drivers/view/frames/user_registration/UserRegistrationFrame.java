@@ -24,7 +24,7 @@ public class UserRegistrationFrame extends JFrame {
         //Below are the parts for the use case entities engine
         UserRegistrationDsGateway userRegistrationDsGateway;
         try{
-            userRegistrationDsGateway = new UserRegistrationRecorder("./Registration2.csv");
+            userRegistrationDsGateway = new UserRegistrationRecorder("./RegistrationList3.csv");
 
         } catch (IOException e) {
             throw new RuntimeException("Can't create file.");
