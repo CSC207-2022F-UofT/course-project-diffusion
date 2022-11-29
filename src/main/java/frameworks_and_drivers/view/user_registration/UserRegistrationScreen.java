@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class UserRegistrationScreen extends JPanel implements ActionListener, UserPresenterOutputBoundary {
+    JButton submitUserRegistration, cancelUserRegistration;
     /**
      * The first name of the user
      */
@@ -76,8 +77,8 @@ public class UserRegistrationScreen extends JPanel implements ActionListener, Us
             /*
           create new buttons submitUserRegistration and cancelUserRegistration
          */
-        JButton submitUserRegistration = new JButton(" Submit User Registration");
-        JButton cancelUserRegistration = new JButton("Cancel");
+         submitUserRegistration = new JButton(" Submit User Registration");
+         cancelUserRegistration = new JButton("Cancel");
 
         /*
           create userRegistrationButtons panel to add buttons to
@@ -110,16 +111,23 @@ public class UserRegistrationScreen extends JPanel implements ActionListener, Us
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        System.out.println("Clicked " + actionEvent.getActionCommand());
-        try {
-            userRegistrationController.createInputObject(firstName.getText(), lastName.getText(), username.getText(),
-                    password.getText());
-            JOptionPane.showMessageDialog(this, String.format("User Registration Request recorded for " +
-                    "%s", username.getText()));
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+        if (actionEvent.getSource() == submitUserRegistration) {
+
+
+//        System.out.println("Clicked " + actionEvent.getActionCommand());
+            try {
+                userRegistrationController.createInputObject(firstName.getText(), lastName.getText(), username.getText(),
+                        password.getText());
+                JOptionPane.showMessageDialog(this, String.format("User Registration Request recorded for " +
+                        "%s", username.getText()));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(cancelUserRegistration, e.getMessage());
+            }
+            } else if (actionEvent.getSource() == cancelUserRegistration) {
+            System.exit(0);
+            }
         }
-    }
+
 
     @Override
     public UserRegistrationOutputData presenterOutput(UserRegistrationOutputData presenterOutputData) {
