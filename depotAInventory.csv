@@ -1,0 +1,4 @@
+drugName,drugAmount,creation_time,batch Number,id Number
+DrugC,0,2022-11-28T17:27:04.326697,XXX,80085
+DrugA,0,2022-11-28T17:27:04.293349,XXX,80085
+DrugB,0,2022-11-28T17:27:04.326539,XXX,80085
