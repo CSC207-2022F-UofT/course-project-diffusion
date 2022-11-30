@@ -1,4 +1,4 @@
-package frameworks_and_drivers.view.user_registration;
+package frameworks_and_drivers.view.screen;
 
 //import drug_request_frameworks_drivers.PanelGenerator;
 
