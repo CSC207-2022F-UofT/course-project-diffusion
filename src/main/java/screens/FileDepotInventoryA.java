@@ -89,7 +89,7 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
                     drugBin.setBottle(drugBin.getBottle() - plsfulfill.getBottle());
                 }
 
-                String line1 = "%s,%s,%s,%s,%s".formatted(drugBin.getName(), drugBin.getBottle(), drugBin.getCreationTime(), drugBin.getBatchNumber(), drugBin.getIDNumber());
+                String line1 = String.format(drugBin.getName(), drugBin.getBottle(), drugBin.getCreationTime(), drugBin.getBatchNumber(), drugBin.getIDNumber());
                 writer.write(line1);
                 writer.newLine();
             }
@@ -109,7 +109,7 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
 
             for (String DrugName : this.drugList) {
                 LocalDateTime ldt_now = LocalDateTime.now();
-                String line = "%s,%s,%s,%s,%s".formatted(DrugName, 20, ldt_now, "whatever", "IDtobeouted");
+                String line = String.format(DrugName, 20, ldt_now, "whatever", "IDtobeouted");
                 writer.write(line);
                 writer.newLine();
             }
