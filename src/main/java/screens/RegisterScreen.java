@@ -88,7 +88,7 @@ public class RegisterScreen extends JPanel implements ActionListener {
 
 
 
-            JOptionPane.showMessageDialog(this,  String.format(bottle.getText()) + String.format(drugName.getText()) + "is emergency " + isEmergency.isSelected());
+            JOptionPane.showMessageDialog(this,  String.format("%1$s", bottle.getText()) + String.format(drugName.getText()) + "is emergency " + isEmergency.isSelected());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "please put in a number for amount");
         }
