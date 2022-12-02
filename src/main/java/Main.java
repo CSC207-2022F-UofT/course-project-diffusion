@@ -1,4 +1,4 @@
-import frameworks_and_drivers.view.frames.user_registration.UserRegistrationFrame;
+import frameworks_and_drivers.view.screens.MainFrame;
 
 import javax.swing.*;
 
@@ -13,7 +13,8 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new UserRegistrationFrame();
+//                new MainFrame();
+                new MainFrame();
 //                new DrugRequestFrame();
             }
         });

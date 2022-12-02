@@ -48,7 +48,7 @@ public class CommonUserRegistration implements UserRegistration {
 
     @Override
     public String getUsername() {
-        return firstName;
+        return username;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package frameworks_and_drivers.view.screen;
+package frameworks_and_drivers.view.screens;
 
 //import drug_request_frameworks_drivers.PanelGenerator;
 
@@ -6,7 +6,6 @@ import frameworks_and_drivers.view.screens.panel_creator.PanelCreator;
 import interface_adapters.user_registration.UserPresenterOutputBoundary;
 import interface_adapters.user_registration.UserRegistrationController;
 import interface_adapters.user_registration.UserRegistrationViewmodel;
-import usecases.user_registration.output.UserRegistrationOutputBoundary;
 import usecases.user_registration.output.UserRegistrationOutputData;
 
 import javax.swing.*;
