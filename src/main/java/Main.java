@@ -1,4 +1,4 @@
-import frameworks_and_drivers.view.screens.MainFrame;
+import main_frame.MainFrame;
 
 import javax.swing.*;
 
