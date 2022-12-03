@@ -50,7 +50,7 @@ public class RegisterScreen extends JPanel implements ActionListener {
         isEmergency=new JCheckBox("Toggle if Emergency");
         isEmergency.setBounds(100,100,150,20);
 
-        JButton signUp = new JButton("Sign up");
+        JButton signUp = new JButton("Make Order");
         JButton cancel = new JButton("Cancel");
 
         JPanel buttons = new JPanel();
@@ -88,7 +88,7 @@ public class RegisterScreen extends JPanel implements ActionListener {
 
 
 
-            JOptionPane.showMessageDialog(this,  String.format("%1$s", bottle.getText()) + String.format(drugName.getText()) + "is emergency " + isEmergency.isSelected());
+            JOptionPane.showMessageDialog(this,  String.format("%1$s ", bottle.getText()) + String.format(drugName.getText()) + "is emergency " + isEmergency.isSelected());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "please put in a number for amount");
         }

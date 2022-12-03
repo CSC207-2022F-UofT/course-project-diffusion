@@ -15,16 +15,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public class FileDepotInventoryA implements DrugFulfillDsGateway {
     private final File csvFile;
-    private final Map<String, Integer> headers = new LinkedHashMap();
-    private final Map<String, DrugFulfillDsRequestModel> CurrentInventory = new HashMap();
-    private final Map<String, DrugFulfillDsRequestModel> MadeOrders = new HashMap();
+    private final Map<String, Integer> headers = new LinkedHashMap<>();
+    private final Map<String, DrugFulfillDsRequestModel> CurrentInventory = new HashMap<>();
+    private final Map<String, DrugFulfillDsRequestModel> MadeOrders = new HashMap<>();
     private final String[] drugList = new String[]{"DrugA", "DrugB", "DrugC"};
 
     public FileDepotInventoryA(String csvPath) throws IOException {
@@ -44,9 +43,9 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
             String row;
             while((row = reader.readLine()) != null) {
                 String[] col = row.split(",");
-                String drugName = String.valueOf(col[(Integer)this.headers.get("drugName")]);
-                int drugAmount = Integer.parseInt(col[(Integer)this.headers.get("drugAmount")]);
-                String creationTimeText = String.valueOf(col[(Integer)this.headers.get("creation_time")]);
+                String drugName = String.valueOf(col[this.headers.get("drugName")]);
+                int drugAmount = Integer.parseInt(col[this.headers.get("drugAmount")]);
+                String creationTimeText = String.valueOf(col[this.headers.get("creation_time")]);
                 LocalDateTime ldt = LocalDateTime.parse(creationTimeText);
                 DrugFulfillDsRequestModel saveReceipt = new DrugFulfillDsRequestModel(drugName, drugAmount, ldt, Boolean.FALSE);
                 this.CurrentInventory.put(String.valueOf(ldt), saveReceipt);
@@ -81,17 +80,20 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(this.csvFile));
             writer.write(String.join(",", this.headers.keySet()));
-            writer.newLine();
+//            writer.newLine();
             DrugFulfillDsRequestModel plsfulfill = this.MadeOrders.get(fake_id);
 
             for (DrugFulfillDsRequestModel drugBin : this.CurrentInventory.values()) {
                 if (Objects.equals(drugBin.getName(), plsfulfill.getName())) {
                     drugBin.setBottle(drugBin.getBottle() - plsfulfill.getBottle());
+//                    String line1 = String.format("%1$s,%2$s,%3$s", drugBin.getName(), drugBin.getBottle(), drugBin.getCreationTime());
+//                    writer.write(line1);
                 }
 
-                String line1 = String.format("%1$s, %2$s, %3$s, %4$s, %5$s", drugBin.getName(), drugBin.getBottle(), drugBin.getCreationTime(), drugBin.getBatchNumber(), drugBin.getIDNumber());
-                writer.write(line1);
                 writer.newLine();
+                String line1 = String.format("%1$s,%2$s,%3$s", drugBin.getName(), drugBin.getBottle(), drugBin.getCreationTime());
+                writer.write(line1);
+
             }
 
             writer.close();
@@ -109,7 +111,9 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
 
             for (String DrugName : this.drugList) {
                 LocalDateTime ldt_now = LocalDateTime.now();
-                String line = String.format("%1$s, %2$s, %3$s, %4$s, %5$s", DrugName, 20, ldt_now, "whatever", "IDtobeouted");
+                String line = String.format("%1$s,%2$s,%3$s", DrugName, "20", ldt_now);
+//                String line = String.format("%1$s, %2$s, %3$s, %4$s, %5$s", DrugName, 20, ldt_now, "whatever", "IDtobeouted");
+
                 writer.write(line);
                 writer.newLine();
             }
