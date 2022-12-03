@@ -1,6 +1,7 @@
 package drug_search_frameworks_drivers;
 
 import drug_search_interface_adapters.DrugSearchController;
+import drug_search_interface_adapters.DrugSearchViewModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,8 +10,9 @@ import java.time.LocalDateTime;
 
 public class DrugSearchScreen {
 
-    public DrugSearchScreen(DrugSearchController drugSearchController) {
+    public DrugSearchScreen(DrugSearchController drugSearchController, DrugSearchViewModel drugSearchViewModel) {
         this.drugSearchController = drugSearchController;
+        this.drugSearchViewModel = drugSearchViewModel;
 
         searchButton.addActionListener(new ActionListener() {
             @Override
@@ -49,7 +51,13 @@ public class DrugSearchScreen {
         drugSearchController.sendSearchRequest(accountId, requestId, siteId, drugName, quantity, dateSearch, date,
                 relativity);
 
-        // Temporary debug dialog
+        if (drugSearchViewModel.getMessage() == null)
+            new DrugSearchResultFrame(drugSearchViewModel.getEntryList());
+        else
+            JOptionPane.showMessageDialog(receiptSearch, drugSearchViewModel.getMessage());
+
+        // Temporary debug stuff
+        new DrugSearchResultFrame(drugSearchViewModel.getEntryList());
         String message = "Sent search request with parameters \n"
                 + "Account ID: " + accountId + "\n"
                 + "Request ID: " + requestId + "\n"
@@ -67,6 +75,7 @@ public class DrugSearchScreen {
     }
 
     private DrugSearchController drugSearchController;
+    private DrugSearchViewModel drugSearchViewModel;
     private JButton searchButton;
     private JComboBox monthComboBox;
     private JComboBox dayComboBox;

@@ -10,9 +10,9 @@ public class DrugList {
     /**
      * @return A list containing information about all available drugs.
      */
-    public static List<DrugInfo> getDrugList() {
+    public static List<DrugRequestDBEntry> getDrugList() {
         return drugList;
     }
 
-    private static ArrayList<DrugInfo> drugList;
+    private static ArrayList<DrugRequestDBEntry> drugList;
 }
