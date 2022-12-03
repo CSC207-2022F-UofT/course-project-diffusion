@@ -1,7 +1,6 @@
 package drug_search_use_case;
 
 import drug_search_entities.DrugRequestDBEntry;
-import drug_search_entities.DrugList;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
