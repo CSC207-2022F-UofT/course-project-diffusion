@@ -51,23 +51,23 @@ public class DrugSearchScreen {
         drugSearchController.sendSearchRequest(accountId, requestId, siteId, drugName, quantity, dateSearch, date,
                 relativity);
 
+        // Display relevant info from view model
         if (drugSearchViewModel.getMessage() == null)
             new DrugSearchResultFrame(drugSearchViewModel.getEntryList());
         else
             JOptionPane.showMessageDialog(receiptSearch, drugSearchViewModel.getMessage());
 
         // Temporary debug stuff
-        new DrugSearchResultFrame(drugSearchViewModel.getEntryList());
-        String message = "Sent search request with parameters \n"
-                + "Account ID: " + accountId + "\n"
-                + "Request ID: " + requestId + "\n"
-                + "Site ID: " + siteId + "\n"
-                + "Drug Name: " + drugName + "\n"
-                + "Quantity: " + quantity + "\n"
-                + "Date Search: " + dateSearch + "\n"
-                + "Date: " + day + "/" + month + "/" + year + "\n"
-                + "Relativity: " + relativity;
-        JOptionPane.showMessageDialog(receiptSearch, message);
+        // String message = "Sent search request with parameters \n"
+        //         + "Account ID: " + accountId + "\n"
+        //         + "Request ID: " + requestId + "\n"
+        //         + "Site ID: " + siteId + "\n"
+        //         + "Drug Name: " + drugName + "\n"
+        //         + "Quantity: " + quantity + "\n"
+        //         + "Date Search: " + dateSearch + "\n"
+        //         + "Date: " + day + "/" + month + "/" + year + "\n"
+        //         + "Relativity: " + relativity;
+        // JOptionPane.showMessageDialog(receiptSearch, message);
     }
 
     public JPanel getPanel() {
