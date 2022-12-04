@@ -29,7 +29,9 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
         headers.put("Last Name", 2);
         headers.put("Username", 3);
         headers.put("Password", 4);
-        headers.put("User Registration Date and Time", 5);
+        headers.put("User Role", 5);
+        headers.put("Location Name", 6);
+        headers.put("User Registration Date and Time", 7);
 
         //Check to see if file already exists, if it does not then add a header and the first drug request,
         // if it does then simply append the latest drug request to the bottom.
@@ -48,7 +50,7 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
     }
 
     @Override
-    public boolean userameExists(String identifier) {
+    public boolean usernameExists(String identifier) {
         return userRegistrationRequest.containsKey(identifier);
     }
 
@@ -79,9 +81,11 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
 
 //
             for (UserRegistrationDsInputData userRegistrationInput : userRegistrationRequest.values()) {
-                String line = String.format("%s, %s, %s, %s, %s, %s", 10001, userRegistrationInput.getFirstname(),
-                        userRegistrationInput.getLastname(), userRegistrationInput.getUsername(), userRegistrationInput.getPassword(),
-                        userRegistrationInput.getUserRegistrationTime());
+//                userRegistrationInput.setRole();
+                String line = String.format("%s, %s, %s, %s, %s, %s, %s, %s", 10001, userRegistrationInput.getFirstname(),
+                        userRegistrationInput.getLastname(), userRegistrationInput.getUsername(),
+                        userRegistrationInput.getPassword(), userRegistrationInput.getRole(),
+                        userRegistrationInput.getLocationName(), userRegistrationInput.getUserRegistrationTime());
                 userRegistrationWriter.write(line);
                 userRegistrationWriter.newLine();
             }

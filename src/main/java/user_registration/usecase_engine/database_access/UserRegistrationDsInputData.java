@@ -7,15 +7,35 @@ public class UserRegistrationDsInputData {
     private String lastname;
     private String username;
     private String password;
+    private Object locationName;
+    private String role;
     private final LocalDateTime userRegistrationTime;
 
     public UserRegistrationDsInputData(String firstname, String lastname, String username, String password,
-                                     LocalDateTime userRegistrationTime) {
+                                       Object locationName, String role, LocalDateTime userRegistrationTime) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.username = username;
         this.password = password;
+        this.locationName = locationName;
+        this.role = role;
         this.userRegistrationTime = userRegistrationTime;
+    }
+
+    public Object getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(Object locationName) {
+        this.locationName = locationName;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public LocalDateTime getUserRegistrationTime() {

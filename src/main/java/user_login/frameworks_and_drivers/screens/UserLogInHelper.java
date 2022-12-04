@@ -14,7 +14,7 @@ public class UserLogInHelper {
     public UserLoginScreen LogInScreenGenerator() {
         UserLoginDsGateway userLoginDsGateway;
         try{
-            userLoginDsGateway = new UserLoginRecorder("./LoginRequestLog");
+            userLoginDsGateway = new UserLoginRecorder("./UsersRegistered.csv");
         } catch (IOException e) {
             throw new RuntimeException("Cant generate LoginRequestLog");
         }

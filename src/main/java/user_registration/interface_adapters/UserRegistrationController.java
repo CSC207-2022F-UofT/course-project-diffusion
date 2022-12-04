@@ -12,8 +12,10 @@ public class UserRegistrationController {
         this.registrationInputBoundary = registrationInputData;
     }
 
-    public UserRegistrationOutputData createInputObject(String firstName, String lastName, String username, String password){
-        UserRegistrationInputData inputData = new UserRegistrationInputData(firstName, lastName, username, password);
+    public UserRegistrationOutputData createInputObject(String firstName, String lastName, String username,
+                                                        String password, Object locationName, String role){
+        UserRegistrationInputData inputData = new UserRegistrationInputData(firstName, lastName, username, password,
+                locationName, role);
         return registrationInputBoundary.createInputObject(inputData);
     }
 }

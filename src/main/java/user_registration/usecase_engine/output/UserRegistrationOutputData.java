@@ -6,6 +6,7 @@ public class UserRegistrationOutputData {
     String username;
 //    String password;
     String creationTime;
+    String locationName;
 
     public UserRegistrationOutputData(String firstName, String lastname, String username, String creationTime){
         this.firstName = firstName;
@@ -13,6 +14,7 @@ public class UserRegistrationOutputData {
         this.username = username;
         this.creationTime = creationTime;
     }
+
 
     public String getFirstName() {
         return firstName;

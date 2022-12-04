@@ -1,8 +1,10 @@
 package main_frame;
 
 import user_login.frameworks_and_drivers.screens.UserLogInHelper;
+import user_login.frameworks_and_drivers.screens.UserLoginScreen;
 import user_registration.frameworks_and_drivers.screens.HomeScreen;
 import user_registration.frameworks_and_drivers.screens.UserRegistrationHelper;
+import user_registration.frameworks_and_drivers.screens.UserRegistrationScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,104 +15,101 @@ public class MainFrame {
 //    static JFrame mainFrame = new JFrame("Card Layout Test");
 
 //    static Container contentPane = mainFrame.getContentPane();
+    JPanel contentPane;
     public MainFrame() {
 
         JFrame mainFrame = new JFrame("Welcome to Diffusion");
 
         //contentPane here is the base for the CardLayout, for which other JPanels will be added.
-        JPanel contentPane = new JPanel();
+        contentPane = new JPanel();
 //        Container contentPane = mainFrame.getContentPane();
-        contentPane.setLayout(new CardLayout(20, 30));
+        contentPane.setLayout(new CardLayout(200, 200));
+
 
         //Create an object of each of the various screens that will be added to the contentpane JPanel as
         //a new card.
         HomeScreen homeScreen = new HomeScreen();
 
+        UserLogInHelper userLogInHelper = new UserLogInHelper();
+        UserLoginScreen userLoginScreen = userLogInHelper.LogInScreenGenerator();
+
+        UserRegistrationHelper userRegistrationHelper = new UserRegistrationHelper();
+        UserRegistrationScreen userRegistrationScreen = userRegistrationHelper.GenerateRegistrationScreen();
+
         /*
-        Create a buttonPanel
+        Using a helper for the use case engine setup and creating the screens
          */
-        JPanel buttonPanel = new JPanel();
+
+
+        /*
+        Create a homeScreenButtonPanel
+         */
+        JPanel homeScreenButtonPanel = new JPanel();
+        JPanel registrationScreenButtonPanel = new JPanel();
+        JPanel logInScreenButtonPanel = new JPanel();
 
         /*
         Create buttons login and registration to add to buttonPanel.
          */
-        JButton login = new JButton("Login");
+        JButton login = new JButton("LogIn");
         JButton registration = new JButton("Registration");
+
+        JButton registrationLI = new JButton("Login");
+        JButton registrationHS = new JButton("Return Home");
+
+        JButton logInHS = new JButton("Return Home");
+        JButton logInR = new JButton("Registration");
 
 
         /*
         Add buttons login and registration to buttonPanel
          */
-        buttonPanel.add(login);
-        buttonPanel.add(registration);
+        homeScreenButtonPanel.add(login);
+        homeScreenButtonPanel.add(registration);
+
+        registrationScreenButtonPanel.add(registrationLI);
+        registrationScreenButtonPanel.add(registrationHS);
+
+        logInScreenButtonPanel.add(logInHS);
+        logInScreenButtonPanel.add(logInR);
+
+
+        homeScreen.add(homeScreenButtonPanel);
+        userRegistrationScreen.add(registrationScreenButtonPanel);
+        userLoginScreen.add(logInScreenButtonPanel);
 
         /*
         Note the Below will add the button panel to the HomeScreen panel directly. Look for Ref - 1 below where
         buttonPanel is added to the mainFrame contentPane instead.
          */
-        homeScreen.add(buttonPanel);
 
         /*
         Adds the homeScreen to the contentPane.
          */
-        contentPane.add(homeScreen, "Home Screen");
 
         /*
         The usecase engine construction has been outsourced to the UserRegistrationHelper to clean up the
         mainFrame.
          */
-//        /*
-//        Use Case engine below, setting up the database plugging in input object into the interactor and returning
-//        the output object to be injected into the view by the presenter.
-//         */
-//
-//        /*
-//        Database construction below
-//         */
-//        UserRegistrationDsGateway userRegistrationDsGateway;
-//        try{
-//            userRegistrationDsGateway = new UserRegistrationRecorder("./RegistrationList3.csv");
-//
-//        } catch (IOException e) {
-//            throw new RuntimeException("Can't create file.");
-//        }
-//
-//        UserRegistrationPresenter userRegistrationOutputBoundary = new UserRegistrationPresenter();
-//        UserRegistrationGenerator userRegistrationGenerator = new CommonUserRegistrationFactory();
-//
-//        /*
-//        Plugging parts into the interactor.
-//         */
-//        UserRegistrationInteractor userRegistrationInteractor = new UserRegistrationInteractor(userRegistrationDsGateway,
-//                userRegistrationOutputBoundary, userRegistrationGenerator);
-//
-//        /*
-//        Plugging the interactor into the Controller.
-//         */
-//        UserRegistrationController userRegistrationController = new UserRegistrationController(userRegistrationInteractor);
-//
-//        /*
-//        Creating the screen
-//         */
-//        UserRegistrationScreen userRegistrationScreen = new UserRegistrationScreen(userRegistrationController);
-//
-//        /*
-//        Injects the output data the presenter wants to present by injecting it into the GUI.
-//         */
-//        userRegistrationOutputBoundary.setView(userRegistrationScreen);
 
-        /*
-        Using a helper for the use case engine setup and creating the screens
-         */
-        UserRegistrationHelper userRegistrationHelper = new UserRegistrationHelper();
 
-        UserLogInHelper userLogInHelper = new UserLogInHelper();
+
         /*
         Adding the screen to the mainframe container, contentpane,  and naming it as well.
          */
 //        contentPane.add(userRegistrationScreen, "User Registration");
-        contentPane.add(userRegistrationHelper.GenerateRegistrationScreen(), "User Registration");
-        contentPane.add(userLogInHelper.LogInScreenGenerator(), "User LogIn");
+        contentPane.add(homeScreen, "Home Screen");
+        contentPane.add(userRegistrationScreen, "User Registration");
+        contentPane.add(userLoginScreen, "User LogIn");
+
+
+
+        /*
+        Create a RegistrationScreen Navigation Panel
+         */
+//        JPanel registrationScreenButtonPanel = new JPanel();
+//        registrationScreenButtonPanel.add(new JButton(login));
+//        userRegistrationHelper.GenerateRegistrationScreen().add(login);
 
         /*
         Was commented out since previously this had to be done after adding in the userRegistrationScreen to the
@@ -127,7 +126,7 @@ public class MainFrame {
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Clicked" + login.getText());
+                System.out.println("Clicked " + login.getText());
                 CardLayout cardLayout = (CardLayout) contentPane.getLayout();
                 cardLayout.show(contentPane, "User LogIn");
             }
@@ -139,6 +138,41 @@ public class MainFrame {
                 System.out.println("Clicked " + registration.getText());
                 CardLayout cardLayout = (CardLayout) contentPane.getLayout();
                 cardLayout.show(contentPane,"User Registration");
+            }
+        });
+        registrationLI.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Clicked " + registrationLI.getText());
+                CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+                cardLayout.show(contentPane,"User LogIn");
+            }
+        });
+        registrationHS.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Clicked " + registrationHS.getText());
+                CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+                cardLayout.show(contentPane, "Home Screen");
+
+            }
+        });
+        logInHS.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Clicked " + logInHS.getText());
+                CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+                cardLayout.show(contentPane, "Home Screen");
+            }
+        });
+
+        logInR.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Clicked " + logInR.getText());
+                CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+                cardLayout.show(contentPane, "User Registration");
+
             }
         });
 

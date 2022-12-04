@@ -23,19 +23,23 @@ public class UserLoginInteractor implements UserloginInputBoundary {
     }
 
     @Override
-    public UserloginOutputData createInputObject(UserLoginInputData userloginInputData) {
-        UserLogin userLoginRequest = userLoginFactory.createUser(userloginInputData.getUsername(),
-                userloginInputData.getPassword());
+    public UserloginOutputData createInputObject(UserLoginInputData userloginPOJO) {
+        UserLogin userLoginRequest = userLoginFactory.createUser(userloginPOJO.getUsername(),
+                userloginPOJO.getPassword());
         if (!userLoginRequest.usernameIsValid()) {
             return userLoginOutputBoundary.failView("Username is invalid");
         } else if (!userLoginRequest.passwordIsValid()) {
             return userLoginOutputBoundary.failView("Password is invalid");
+        } else if (!userLoginDsGateway.usernameExists(userloginPOJO.getUsername())){
+            return userLoginOutputBoundary.failView("Username is incorrect");
+        } else if (!userLoginDsGateway.passwordExists(userloginPOJO.getPassword())){
+            return userLoginOutputBoundary.failView("Password is incorrect");
         }
         LocalDateTime userLoginRequestTime = LocalDateTime.now();
 
         UserLoginDsInputData loginDsInputData = new UserLoginDsInputData(userLoginRequest.getUsername(),
                 userLoginRequest.getPassword(), userLoginRequestTime);
-        userLoginDsGateway.saveUserLogin(loginDsInputData);
+//        userLoginDsGateway.saveUserLogin(loginDsInputData);
 
         UserloginOutputData  userloginOutputData= new UserloginOutputData(userLoginRequest.getUsername(),
                 userLoginRequestTime.toString());

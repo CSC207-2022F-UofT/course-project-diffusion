@@ -3,13 +3,8 @@ package user_login.frameworks_and_drivers.database_access;
 import user_login.use_case.database_access.UserLoginDsGateway;
 import user_login.use_case.database_access.UserLoginDsInputData;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 
 public class UserLoginRecorder implements UserLoginDsGateway {
     private final File csvFile;
@@ -29,12 +24,13 @@ public class UserLoginRecorder implements UserLoginDsGateway {
 
     @Override
     public boolean usernameExists(String identifier) {
-        return false;
+        return Reader(identifier, 3);
+//        return userLoginRequest.containsKey(identifier);
     }
 
     @Override
     public boolean passwordExists(String identifier) {
-        return false;
+        return Reader(identifier, 4);
     }
 
     @Override
@@ -51,6 +47,29 @@ public class UserLoginRecorder implements UserLoginDsGateway {
             appendUserloginRequest();
 
         }
+    }
+    private boolean Reader(String reference, int column){
+        String delimiter = ",";
+        BufferedReader bufferedReader;
+        String currentline;
+        String[] data;
+//        ArrayList<String> collectedData = new ArrayList<String>();
+        try {
+            bufferedReader = new BufferedReader(new FileReader(csvFile));
+
+            while  ((currentline = bufferedReader.readLine())!= null){
+                data = currentline.split(delimiter);
+                System.out.println(data[column]);
+                System.out.println(reference);
+//                System.out.println(Arrays.toString(new String[]{data[column]}));
+                if (Objects.equals(data[column].trim(), reference)){
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } return false;
+
     }
 
     private void appendUserloginRequest(){

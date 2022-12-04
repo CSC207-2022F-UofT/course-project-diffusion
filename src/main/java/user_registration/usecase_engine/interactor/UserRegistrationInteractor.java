@@ -23,7 +23,6 @@ public class UserRegistrationInteractor implements UserRegistrationInputBoundary
         this.userRegistrationGenerator = userRegistrationGenerator;
     }
 
-    String x = "dddddd";
     @Override
     public UserRegistrationOutputData createInputObject(UserRegistrationInputData userPOJO) {
         UserRegistration userRequest = userRegistrationGenerator.createUser(userPOJO.getFirstName(),
@@ -36,14 +35,17 @@ public class UserRegistrationInteractor implements UserRegistrationInputBoundary
             return userRegistrationOutputBoundary.failureView("Username is invalid ");
         } else if (!userRequest.passwordIsValid()) {
             return userRegistrationOutputBoundary.failureView("Password is invalid ");
+        } else if (userRegistrationDsGateway.usernameExists(userPOJO.getUserame())){
+            return userRegistrationOutputBoundary.failureView("Username already exists");
         }
         LocalDateTime registrationDateTime = LocalDateTime.now();
 
         /**
          * Output for Database
          */
-        UserRegistrationDsInputData dsInputData = new UserRegistrationDsInputData(userRequest.getFirstName(),
-                userRequest.getLastName(), userRequest.getUsername(), userRequest.getPassword(), registrationDateTime);
+        UserRegistrationDsInputData dsInputData = new UserRegistrationDsInputData(userPOJO.getFirstName(),
+                userRequest.getLastName(), userRequest.getUsername(), userRequest.getPassword(), userPOJO.getLocationName(),
+                userPOJO.getRole(), registrationDateTime);
         userRegistrationDsGateway.saveUserRegistration(dsInputData);
 
         UserRegistrationOutputData registrationOutputData = new UserRegistrationOutputData(userRequest.getFirstName(),

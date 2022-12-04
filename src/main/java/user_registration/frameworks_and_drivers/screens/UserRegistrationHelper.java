@@ -22,7 +22,7 @@ public class UserRegistrationHelper {
          */
         UserRegistrationDsGateway userRegistrationDsGateway;
         try{
-            userRegistrationDsGateway = new UserRegistrationRecorder("./RegistrationList3.csv");
+            userRegistrationDsGateway = new UserRegistrationRecorder("./UsersRegistered.csv");
 
         } catch (IOException e) {
             throw new RuntimeException("Can't create file.");
