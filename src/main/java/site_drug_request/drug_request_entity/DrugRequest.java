@@ -1,4 +1,4 @@
-package drug_request_entity;
+package site_drug_request.drug_request_entity;
 
 public interface DrugRequest {
     boolean drugNameIsEmpty();

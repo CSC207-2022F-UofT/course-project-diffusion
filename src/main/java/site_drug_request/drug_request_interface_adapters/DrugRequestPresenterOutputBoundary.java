@@ -1,6 +1,6 @@
-package drug_request_interface_adapters;
+package site_drug_request.drug_request_interface_adapters;
 
-import drug_request_use_case.DrugRequestResponseModel;
+import site_drug_request.drug_request_use_case.DrugRequestResponseModel;
 
 public interface DrugRequestPresenterOutputBoundary {
     DrugRequestResponseModel viewPresenter (DrugRequestResponseModel drugRequestResponseModel);

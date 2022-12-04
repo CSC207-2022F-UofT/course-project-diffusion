@@ -1,9 +1,7 @@
-package drug_request_use_case;
+package site_drug_request.drug_request_use_case;
 
-import drug_request_entity.CommonDrugRequestGenerator;
-import drug_request_entity.DrugRequest;
-import drug_request_entity.DrugRequestGenerator;
-import drug_request_frameworks_drivers.DrugRequestScreen;
+import site_drug_request.drug_request_entity.DrugRequest;
+import site_drug_request.drug_request_entity.DrugRequestGenerator;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
-package drug_request_interface_adapters;
+package site_drug_request.drug_request_interface_adapters;
 
 
 public class DrugRequestViewModel {

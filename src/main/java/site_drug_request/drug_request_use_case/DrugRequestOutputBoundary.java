@@ -1,6 +1,4 @@
-package drug_request_use_case;
-
-import drug_request_interface_adapters.DrugRequestViewModel;
+package site_drug_request.drug_request_use_case;
 
 public interface DrugRequestOutputBoundary {
     DrugRequestResponseModel prepareSuccessView (DrugRequestResponseModel used);

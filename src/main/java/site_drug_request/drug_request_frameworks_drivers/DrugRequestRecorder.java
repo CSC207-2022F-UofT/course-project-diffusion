@@ -1,7 +1,7 @@
-package drug_request_frameworks_drivers;
+package site_drug_request.drug_request_frameworks_drivers;
 
-import drug_request_use_case.DrugRequestDsGateway;
-import drug_request_use_case.DrugRequestDsInvokeModel;
+import site_drug_request.drug_request_use_case.DrugRequestDsGateway;
+import site_drug_request.drug_request_use_case.DrugRequestDsInvokeModel;
 
 import java.io.*;
 import java.util.HashMap;

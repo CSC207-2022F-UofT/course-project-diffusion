@@ -1,13 +1,11 @@
-package drug_request_interface_adapters;
+package site_drug_request.drug_request_interface_adapters;
 
-import drug_request_frameworks_drivers.DrugRequestFailed;
-import drug_request_frameworks_drivers.DrugRequestScreen;
-import drug_request_use_case.DrugRequestOutputBoundary;
-import drug_request_use_case.DrugRequestResponseModel;
+import site_drug_request.drug_request_frameworks_drivers.DrugRequestFailed;
+import site_drug_request.drug_request_use_case.DrugRequestOutputBoundary;
+import site_drug_request.drug_request_use_case.DrugRequestResponseModel;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 
 public class DrugRequestPresenter implements DrugRequestOutputBoundary {
     DrugRequestPresenterOutputBoundary drugRequestPresenterOutputBoundary;

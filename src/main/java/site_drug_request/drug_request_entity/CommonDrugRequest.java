@@ -1,4 +1,4 @@
-package drug_request_entity;
+package site_drug_request.drug_request_entity;
 //consider removing public
 public class CommonDrugRequest implements DrugRequest{
     private final String drugName;

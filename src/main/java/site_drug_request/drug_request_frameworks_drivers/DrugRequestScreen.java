@@ -1,18 +1,16 @@
-package drug_request_frameworks_drivers;
+package site_drug_request.drug_request_frameworks_drivers;
 
 
-import drug_request_interface_adapters.DrugRequestController;
-import drug_request_interface_adapters.DrugRequestPresenter;
-import drug_request_interface_adapters.DrugRequestPresenterOutputBoundary;
-import drug_request_interface_adapters.DrugRequestViewModel;
-import drug_request_use_case.DrugRequestResponseModel;
+import site_drug_request.drug_request_interface_adapters.DrugRequestController;
+import site_drug_request.drug_request_interface_adapters.DrugRequestPresenter;
+import site_drug_request.drug_request_interface_adapters.DrugRequestPresenterOutputBoundary;
+import site_drug_request.drug_request_interface_adapters.DrugRequestViewModel;
+import site_drug_request.drug_request_use_case.DrugRequestResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class DrugRequestScreen extends JPanel implements ActionListener, DrugRequestPresenterOutputBoundary {
     JButton drugRequestButton, cancelRequestbutton;
