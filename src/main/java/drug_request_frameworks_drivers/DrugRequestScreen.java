@@ -2,7 +2,7 @@ package drug_request_frameworks_drivers;
 
 
 import drug_request_interface_adapters.DrugRequestController;
-import junit.framework.JUnit4TestAdapter;
+//import junit.framework.JUnit4TestAdapter;
 
 import javax.swing.*;
 import java.awt.*;
