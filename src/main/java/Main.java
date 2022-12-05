@@ -17,6 +17,13 @@ public class Main {
             }
         });
 
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new DrugSearchFrame();
+            }
+        });
+
 
 
 //        STARTING FROM THIS LINE, HIGHLIGHT EVERYTHING BELOW, AND UNCOMMENT ONLY ONCE TO SEE IT WORK IN MAIN
