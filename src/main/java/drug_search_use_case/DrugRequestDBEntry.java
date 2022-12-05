@@ -1,4 +1,4 @@
-package drug_search_entities;
+package drug_search_use_case;
 
 import java.time.LocalDateTime;
 import java.util.Date;

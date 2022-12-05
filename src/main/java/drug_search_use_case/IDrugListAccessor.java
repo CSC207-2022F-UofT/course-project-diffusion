@@ -1,9 +1,6 @@
 package drug_search_use_case;
 
-import drug_search_entities.DrugRequestDBEntry;
-
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 
 public interface IDrugListAccessor {

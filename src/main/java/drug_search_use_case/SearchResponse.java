@@ -1,7 +1,5 @@
 package drug_search_use_case;
 
-import drug_search_entities.DrugRequestDBEntry;
-
 import java.util.*;
 
 /**

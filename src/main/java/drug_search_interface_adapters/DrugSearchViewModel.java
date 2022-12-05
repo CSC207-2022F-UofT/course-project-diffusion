@@ -1,6 +1,6 @@
 package drug_search_interface_adapters;
 
-import drug_search_entities.DrugRequestDBEntry;
+import drug_search_use_case.DrugRequestDBEntry;
 
 import java.util.ArrayList;
 import java.util.List;

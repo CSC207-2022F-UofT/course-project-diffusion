@@ -1,6 +1,6 @@
 package drug_search_frameworks_drivers;
 
-import drug_search_entities.DrugRequestDBEntry;
+import drug_search_use_case.DrugRequestDBEntry;
 
 import javax.swing.*;
 import java.util.List;
