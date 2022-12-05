@@ -33,7 +33,7 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
 
         //Check to see if file already exists, if it does not then add a header and the first drug request,
         // if it does then simply append the latest drug request to the bottom.
-        generateDrugRequestHelper();
+//        generateDrugRequestHelper();
 
 
     }
@@ -55,7 +55,7 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
     @Override
     public void saveUserRegistration(UserRegistrationDsInputData registrationDsInputData) {
         userRegistrationRequest.put(registrationDsInputData.getUsername(),registrationDsInputData);
-        this.generateDrugRequestHelper();
+        this.generateDrugRequestHelper(registrationDsInputData.getUsername());
     }
 
     private boolean Reader(String reference, int column){
@@ -83,34 +83,31 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
     }
 
 
-    private void generateDrugRequestHelper() {
+    private void generateDrugRequestHelper(String username) {
 
         //Check to see if file already exists, if it does not then add a header and the first drug request,
         // if it does then simply append the latest drug request to the bottom.
         if (csvFile.length() == 0){
             generateHeader();
-            appendUserRegistrationRequest();
+            appendUserRegistrationRequest(username);
         }
         else{
-            appendUserRegistrationRequest();
+            appendUserRegistrationRequest(username);
         }
     }
 
-    private void appendUserRegistrationRequest(){
+    private void appendUserRegistrationRequest(String username){
         BufferedWriter userRegistrationWriter;
         try {
             userRegistrationWriter = new BufferedWriter(new FileWriter(csvFile, true));
-
-//
-            for (UserRegistrationDsInputData userRegistrationInput : userRegistrationRequest.values()) {
-//                userRegistrationInput.setRole();
-                String line = String.format("%s, %s, %s, %s, %s, %s, %s, %s", 10001, userRegistrationInput.getFirstname(),
-                        userRegistrationInput.getLastname(), userRegistrationInput.getUsername(),
-                        userRegistrationInput.getPassword(), userRegistrationInput.getRole(),
-                        userRegistrationInput.getLocationName(), userRegistrationInput.getUserRegistrationTime());
+                UserRegistrationDsInputData newentry = userRegistrationRequest.get(username);
+                String line = String.format("%s, %s, %s, %s, %s, %s, %s, %s", 10001, newentry.getFirstname(),
+                        newentry.getLastname(), newentry.getUsername(),
+                        newentry.getPassword(), newentry.getRole(),
+                        newentry.getLocationName(), newentry.getUserRegistrationTime());
                 userRegistrationWriter.write(line);
                 userRegistrationWriter.newLine();
-            }
+//            }
 
             userRegistrationWriter.close();
 

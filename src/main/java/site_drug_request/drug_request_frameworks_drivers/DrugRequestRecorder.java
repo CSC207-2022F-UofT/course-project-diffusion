@@ -30,13 +30,13 @@ public class DrugRequestRecorder implements DrugRequestDsGateway {
 
         //Check to see if file already exists, if it does not then add a header and the first drug request,
         // if it does then simply append the latest drug request to the bottom.
-        if (csvFile.length() == 0){
-            generateHeader();
-//            appendDrugRequest();
-        }
-        else{
-            appendDrugRequest();
-        }
+//        if (csvFile.length() == 0){
+//            generateHeader();
+////            appendDrugRequest();
+//        }
+//        else{
+//            appendDrugRequest(d);
+//        }
 
 //        generateDrugRequestHelper();
 
@@ -71,10 +71,10 @@ public class DrugRequestRecorder implements DrugRequestDsGateway {
     @Override
     public void generateDrugRequest(DrugRequestDsInvokeModel drugRequestDsInvokeModel) {
         drugRequests.put(drugRequestDsInvokeModel.getDrugName(), drugRequestDsInvokeModel);
-        this.generateDrugRequestHelper();
+        this.generateDrugRequestHelper(drugRequestDsInvokeModel.getDrugName());
     }
 
-    private void generateDrugRequestHelper() {
+    private void generateDrugRequestHelper(String drugNameRequested) {
 
         //Check to see if file already exists, if it does not then add a header and the first drug request,
         // if it does then simply append the latest drug request to the bottom.
@@ -83,7 +83,7 @@ public class DrugRequestRecorder implements DrugRequestDsGateway {
 //            appendDrugRequest();
         }
         else{
-            appendDrugRequest();
+            appendDrugRequest(drugNameRequested);
         }
 
 
@@ -111,19 +111,20 @@ public class DrugRequestRecorder implements DrugRequestDsGateway {
 //        }
     }
 
-    private void appendDrugRequest(){
+    private void appendDrugRequest(String drugNameRequested){
         BufferedWriter drugRequestWriter;
         try {
             drugRequestWriter = new BufferedWriter(new FileWriter(csvFile, true));
 //            drugRequestWriter.write(String.join(",", headers.keySet()));
 //            drugRequestWriter.newLine();
-//
-            for (DrugRequestDsInvokeModel userDrugRequest : drugRequests.values()) {
-                String line = String.format("%s, %s, %s, %s, %s, %s", 10001, 20001, 30001, userDrugRequest.getDrugName(),
-                        userDrugRequest.getDrugBottle(), userDrugRequest.getDrugRequestCreationTime());
+///
+//            for (DrugRequestDsInvokeModel userDrugRequest : drugRequests.values()) {
+                DrugRequestDsInvokeModel newentry = drugRequests.get(drugNameRequested);
+                String line = String.format("%s, %s, %s, %s, %s, %s", 10001, 20001, 30001, newentry.getDrugName(),
+                        newentry.getDrugBottle(), newentry.getDrugRequestCreationTime());
                 drugRequestWriter.write(line);
                 drugRequestWriter.newLine();
-            }
+//            }
 
             drugRequestWriter.close();
 
