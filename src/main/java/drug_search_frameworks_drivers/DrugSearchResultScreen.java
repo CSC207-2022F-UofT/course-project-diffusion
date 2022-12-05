@@ -69,5 +69,10 @@ public class DrugSearchResultScreen {
         public Object getValueAt(int row, int col) {
             return data[row][col];
         }
+
+        @Override
+        public String getColumnName(int column) {
+            return columnNames[column];
+        }
     }
 }

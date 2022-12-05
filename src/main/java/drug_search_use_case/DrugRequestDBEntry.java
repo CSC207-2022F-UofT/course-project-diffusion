@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class DrugRequestDBEntry {
     public DrugRequestDBEntry(String requestId, String siteId, String accountId, String drugName,
-                              String quantity, LocalDateTime date) {
+                              int quantity, LocalDateTime date) {
         this.requestId = requestId;
         this.siteId = siteId;
         this.accountId = accountId;
@@ -44,7 +44,7 @@ public class DrugRequestDBEntry {
     /**
      * Gets the quantity of the drugs requested.
      */
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
     /**
@@ -58,6 +58,6 @@ public class DrugRequestDBEntry {
     private final String siteId;
     private final String accountId;
     private final String drugName;
-    private final String quantity;
+    private final int quantity;
     private final LocalDateTime date;
 }

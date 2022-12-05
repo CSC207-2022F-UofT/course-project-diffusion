@@ -28,7 +28,19 @@ public class DrugSearchScreen {
         String requestId = drugRequestIDTextField.getText();
         String siteId = siteIDTextField.getText();
         String drugName = drugNameTextField.getText();
-        String quantity = quantityRequestedTextField.getText();
+        int quantity = -1;
+
+        // Try parse quantity requested
+        if (quantityRequestedTextField.getText() != null && !quantityRequestedTextField.getText().isBlank()) {
+            try {
+                quantity = Integer.parseInt(quantityRequestedTextField.getText());
+            }
+            catch (Exception e) {
+                JOptionPane.showMessageDialog(receiptSearch,
+                        "Quantity requested must be an integer, please try again.");
+                return;
+            }
+        }
 
         // Date-based search parameters
         boolean dateSearch = dateSearchCheckBox.isSelected();

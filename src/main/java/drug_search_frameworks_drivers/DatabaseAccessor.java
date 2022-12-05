@@ -25,12 +25,23 @@ public class DatabaseAccessor implements IDrugListAccessor {
 
         // Read database csv line-by-line & construct list
         while (scanner.hasNextLine()) {
+            // TODO remove debug console output
+
             String[] entries = scanner.nextLine().split(",");
+
+            // Trim trailing whitespace
+            int i = 0;
+            for (String entry : entries) {
+                entries[i] = entry.trim();
+                i++;
+            }
 
             // Skip entry if it doesn't match database format
             if (entries.length != 6) continue;
 
-            /* Try to deserialize date data, assumes drug request was created at the beginning of the neoproterozoic era
+            System.out.println("Found valid database entry");
+
+            /* Try to parse date data, assumes drug request was created at the beginning of the neoproterozoic era
             (ca. 1 Ga) if unsuccessful */
             LocalDateTime date;
 
@@ -42,7 +53,10 @@ public class DatabaseAccessor implements IDrugListAccessor {
             }
 
             // Create new entity based on database entry and add to list
-            list.add(new DrugRequestDBEntry(entries[0], entries[1], entries[2], entries[3], entries[4], date));
+            list.add(new DrugRequestDBEntry(entries[0], entries[1], entries[2], entries[3],
+                    Integer.parseInt(entries[4]), date));
+
+            System.out.println("Added entry to list");
         }
 
         scanner.close();

@@ -51,23 +51,32 @@ public class SearchUseCase implements ISearchRequestor {
      * Checks if a drug request database entry matches a given search request.
      */
     private boolean isMatch(DrugRequestDBEntry entry, SearchRequest request) {
-        if (!isNullOrBlank(request.getAccountId()) && !request.getAccountId().contains(entry.getAccountId()))
+        if (!isNullOrBlank(request.getAccountId()) && !entry.getAccountId().contains(request.getAccountId())) {
             return false;
-        if (!isNullOrBlank(request.getRequestId()) && !request.getRequestId().contains(entry.getRequestId()))
+        }
+        if (!isNullOrBlank(request.getRequestId()) && !entry.getRequestId().contains(request.getRequestId())) {
             return false;
-        if (!isNullOrBlank(request.getSiteId()) && !request.getSiteId().contains(entry.getSiteId()))
+        }
+        if (!isNullOrBlank(request.getSiteId()) && !entry.getSiteId().contains(request.getSiteId())) {
             return false;
-        if (!isNullOrBlank(request.getDrugName()) && !request.getDrugName().contains(entry.getDrugName()))
+        }
+        if (!isNullOrBlank(request.getDrugName()) && !entry.getDrugName().contains(request.getDrugName())) {
             return false;
-        if (!isNullOrBlank(request.getQuantity()) && !request.getQuantity().contains(entry.getQuantity()))
+        }
+        if (request.getQuantity() > 0 && entry.getQuantity() != request.getQuantity()) {
             return false;
+        }
         if (request.isDateSearch()) {
             int trueRelativity = compareDate(entry.getDate(), request.getDate());
 
+            System.out.println(trueRelativity);
+
             if (request.getRelativity() == 1 && trueRelativity <= 0) return false;
             if (request.getRelativity() == -1 && trueRelativity >= 0) return false;
-            return trueRelativity == 0;
+            if (request.getRelativity() == 0) return trueRelativity == 0;
         }
+
+        System.out.println("Found database entry matching search request");
 
         return true;
     }

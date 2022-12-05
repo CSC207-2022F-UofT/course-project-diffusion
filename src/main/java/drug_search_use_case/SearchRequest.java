@@ -7,7 +7,7 @@ import java.util.*;
  * Represents a user-generated search request.
  */
 public class SearchRequest {
-    public SearchRequest(String accountId, String requestId, String siteId, String drugName, String quantity,
+    public SearchRequest(String accountId, String requestId, String siteId, String drugName, int quantity,
                          boolean dateSearch, LocalDateTime date, int relativity) {
         this.accountId = accountId;
         this.requestId = requestId;
@@ -38,7 +38,7 @@ public class SearchRequest {
     /**
      * Gets the quantity requested to search for, if any.
      */
-    public String getQuantity() { return quantity; }
+    public int getQuantity() { return quantity; }
     /**
      * Gets whether the search request includes date information.
      */
@@ -57,7 +57,7 @@ public class SearchRequest {
     private final String requestId;
     private final String siteId;
     private final String drugName;
-    private final String quantity;
+    private final int quantity;
     private final boolean dateSearch;
     private final LocalDateTime date;
     private final int relativity;
