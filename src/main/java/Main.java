@@ -7,15 +7,14 @@ import drug_fulfill_entities.CommonDrugFulfillFactory;
 import drug_fulfill_entities.DrugFulfillFactory;
 import drug_fulfill_use_case.DrugFulfillInputBoundary;
 import drug_fulfill_use_case.DrugFulfillInteractor;
-import drug_fulfill_use_case.DrugRequestPresenter;
+import drug_fulfill_interface_adapters.DrugFulfillPresenter;
 import java.awt.CardLayout;
 import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import screens.DrugRequestController;
-import screens.DrugRequestResponseFormatter;
-import screens.FileDepotInventoryA;
-import screens.RegisterScreen;
+import drug_fulfill_interface_adapters.DrugFulfillController;
+import drug_fulfill_frameworks_drivers.DrugFulfillResponseFormatter;
+import drug_fulfill_frameworks_drivers.FileDepotInventoryA;
 
 public class Main {
     public Main() {
@@ -34,11 +33,11 @@ public class Main {
             throw new RuntimeException("Could not create file.");
         }
 
-        DrugRequestPresenter presenter = new DrugRequestResponseFormatter();
+        DrugFulfillPresenter presenter = new DrugFulfillResponseFormatter();
         DrugFulfillFactory orderFactory = new CommonDrugFulfillFactory();
         DrugFulfillInputBoundary interactor = new DrugFulfillInteractor(depot, presenter, orderFactory);
-        DrugRequestController drugRequestController = new DrugRequestController(interactor);
-        RegisterScreen registerScreen = new RegisterScreen(drugRequestController);
+        DrugFulfillController drugRequestController = new DrugFulfillController(interactor);
+        OrderScreen registerScreen = new OrderScreen(drugRequestController);
         screens.add(registerScreen, "welcome");
         cardLayout.show(screens, "register");
         application.pack();

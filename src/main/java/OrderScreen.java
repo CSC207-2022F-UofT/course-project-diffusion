@@ -1,4 +1,5 @@
-package screens;
+import drug_fulfill_interface_adapters.DrugFulfillController;
+import screens.LabelTextPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +8,7 @@ import java.awt.event.ActionListener;
 
 // Frameworks/Drivers layer
 
-public class RegisterScreen extends JPanel implements ActionListener {
+public class OrderScreen extends JPanel implements ActionListener {
     /**
      * The drugName chosen by the user
      */
@@ -29,12 +30,12 @@ public class RegisterScreen extends JPanel implements ActionListener {
     /**
      * The controller
      */
-    DrugRequestController userRegisterController;
+    DrugFulfillController userRegisterController;
 
     /**
      * A window with a title and a JButton.
      */
-    public RegisterScreen(DrugRequestController controller) {
+    public OrderScreen(DrugFulfillController controller) {
 
         this.userRegisterController = controller;
 

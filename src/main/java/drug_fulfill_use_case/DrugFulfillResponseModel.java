@@ -2,14 +2,14 @@ package drug_fulfill_use_case;
 
 // Use case layer
 
-public class EmergencyOrderResponseModel {
+public class DrugFulfillResponseModel {
 
     String drugName;
     String creationTime;
 
     Boolean isEmergency;
 
-    public EmergencyOrderResponseModel(String drugName, String creationTime, Boolean isEmergency) {
+    public DrugFulfillResponseModel(String drugName, String creationTime, Boolean isEmergency) {
         this.drugName = drugName;
         this.creationTime = creationTime;
         this.isEmergency = isEmergency;

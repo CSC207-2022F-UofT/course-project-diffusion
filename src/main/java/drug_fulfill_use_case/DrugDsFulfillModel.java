@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 // Use case layer
 
-public class DrugDsRequestModel {
+public class DrugDsFulfillModel {
 
     private final String name;
     private final LocalDateTime creationTime;
@@ -15,7 +15,7 @@ public class DrugDsRequestModel {
     private int drugBottle;
 
 
-    public DrugDsRequestModel(String name, int drugBottle, LocalDateTime creationTime, Boolean Emergency) {
+    public DrugDsFulfillModel(String name, int drugBottle, LocalDateTime creationTime, Boolean Emergency) {
         this.name = name;
         this.drugBottle = drugBottle;
         this.creationTime = creationTime;

@@ -2,25 +2,26 @@ package drug_fulfill_use_case;
 
 import drug_fulfill_entities.DrugFulfill;
 import drug_fulfill_entities.DrugFulfillFactory;
+import drug_fulfill_interface_adapters.DrugFulfillPresenter;
 
 import java.time.LocalDateTime;
 
 public class DrugFulfillInteractor implements DrugFulfillInputBoundary {
     final DrugFulfillDsGateway fulfillDsGateway;
     //final some_presenter presenter;
-    final DrugRequestPresenter orderPresenter;
+    final DrugFulfillPresenter orderPresenter;
     final DrugFulfillFactory fulfillFactory;
 
 
 
-    public DrugFulfillInteractor(DrugFulfillDsGateway fulfillDsGateway, DrugRequestPresenter drugPresenter, DrugFulfillFactory fulfillFactory) {
+    public DrugFulfillInteractor(DrugFulfillDsGateway fulfillDsGateway, DrugFulfillPresenter drugPresenter, DrugFulfillFactory fulfillFactory) {
         this.fulfillDsGateway = fulfillDsGateway;
         this.orderPresenter = drugPresenter;
         this.fulfillFactory = fulfillFactory;
     }
 
     @Override
-    public EmergencyOrderResponseModel create(DrugFulfillRequestModel requestModel) {
+    public DrugFulfillResponseModel create(DrugFulfillRequestModel requestModel) {
         //figure out from which depot we want based on position of site / site list?
         int depot_num = 5; //example
         if (!fulfillDsGateway.isInt(Integer.toString(requestModel.getDrugBottle()))){
@@ -39,7 +40,7 @@ public class DrugFulfillInteractor implements DrugFulfillInputBoundary {
 
         //return presenter change to ordered from depot #
 
-        EmergencyOrderResponseModel orderResponseModel = new EmergencyOrderResponseModel(order.getDrugName(), now.toString(), order.getIsEmergency());
+        DrugFulfillResponseModel orderResponseModel = new DrugFulfillResponseModel(order.getDrugName(), now.toString(), order.getIsEmergency());
         return orderPresenter.prepareSuccessView(orderResponseModel);
     }
 }

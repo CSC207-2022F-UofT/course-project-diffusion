@@ -3,7 +3,7 @@
 // (powered by FernFlower decompiler)
 //
 
-package screens;
+package drug_fulfill_frameworks_drivers;
 
 import drug_fulfill_use_case.DrugFulfillDsGateway;
 import drug_fulfill_use_case.DrugFulfillDsRequestModel;
