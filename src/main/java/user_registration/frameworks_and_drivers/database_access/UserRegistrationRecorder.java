@@ -3,13 +3,11 @@ package user_registration.frameworks_and_drivers.database_access;
 import user_registration.usecase_engine.database_access.UserRegistrationDsGateway;
 import user_registration.usecase_engine.database_access.UserRegistrationDsInputData;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class UserRegistrationRecorder implements UserRegistrationDsGateway {
 
@@ -51,13 +49,37 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
 
     @Override
     public boolean usernameExists(String identifier) {
-        return userRegistrationRequest.containsKey(identifier);
+        return Reader(identifier, 3);
     }
 
     @Override
     public void saveUserRegistration(UserRegistrationDsInputData registrationDsInputData) {
         userRegistrationRequest.put(registrationDsInputData.getUsername(),registrationDsInputData);
         this.generateDrugRequestHelper();
+    }
+
+    private boolean Reader(String reference, int column){
+        String delimiter = ",";
+        BufferedReader bufferedReader;
+        String currentline;
+        String[] data;
+//        ArrayList<String> collectedData = new ArrayList<String>();
+        try {
+            bufferedReader = new BufferedReader(new FileReader(csvFile));
+
+            while  ((currentline = bufferedReader.readLine())!= null){
+                data = currentline.split(delimiter);
+                System.out.println(data[column]);
+                System.out.println(reference);
+//                System.out.println(Arrays.toString(new String[]{data[column]}));
+                if (Objects.equals(data[column].trim(), reference)){
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } return false;
+
     }
 
 
