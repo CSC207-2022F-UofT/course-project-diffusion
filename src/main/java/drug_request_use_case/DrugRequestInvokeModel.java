@@ -1,4 +1,4 @@
-package site_drug_request.drug_request_use_case;
+package drug_request_use_case;
 
 public class DrugRequestInvokeModel {
     private String drugName;

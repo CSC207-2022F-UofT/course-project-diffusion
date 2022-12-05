@@ -1,4 +1,4 @@
-package site_drug_request.drug_request_entity;
+package drug_request_entity;
 
 public class CommonDrugRequestGenerator implements DrugRequestGenerator{
 
