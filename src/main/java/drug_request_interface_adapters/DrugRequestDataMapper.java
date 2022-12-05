@@ -1,4 +1,4 @@
-package site_drug_request.drug_request_interface_adapters;
+package drug_request_interface_adapters;
 
 import java.time.LocalDateTime;
 

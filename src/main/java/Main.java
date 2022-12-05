@@ -1,4 +1,5 @@
-import site_drug_request.DrugRequestFrame;
+import drug_search_frameworks_drivers.DrugSearchFrame;
+import drug_search_frameworks_drivers.DrugSearchScreen;
 
 import javax.swing.*;
 
@@ -9,7 +10,7 @@ public class Main {
 
 
         //Purpose of the below is to handle cases where it does not run, as well as cleaning up
-        //the main method by outsourcing the JFrame construction to site_drug_request.DrugRequestFrame.
+        //the main method by outsourcing the JFrame construction to DrugRequestFrame.
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
