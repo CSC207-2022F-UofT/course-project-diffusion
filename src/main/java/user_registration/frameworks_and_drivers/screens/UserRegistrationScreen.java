@@ -1,6 +1,6 @@
 package user_registration.frameworks_and_drivers.screens;
 
-//import drug_request_frameworks_drivers.PanelGenerator;
+//import site_drug_request.drug_request_frameworks_drivers.PanelGenerator;
 
 import user_registration.frameworks_and_drivers.screens.panel_creator.PanelCreator;
 import user_registration.interface_adapters.UserPresenterOutputBoundary;

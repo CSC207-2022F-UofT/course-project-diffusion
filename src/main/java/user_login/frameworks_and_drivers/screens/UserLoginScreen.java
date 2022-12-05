@@ -18,6 +18,7 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
     UserLoginController userLoginController;
     JButton submitUserLogin;
     JButton cancelUserLogin;
+    Boolean submitLoginStatus = false;
 
     public UserLoginScreen(UserLoginController userLoginController) {
         this.userLoginController = userLoginController;
@@ -32,7 +33,7 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
         PanelCreator passwordPanel = new PanelCreator(new JLabel("Enter password"), password);
         PanelCreator responsePanel = new PanelCreator(new JLabel("Login Status"), requestResponse);
 
-        submitUserLogin = new JButton("Submit User Login");
+        submitUserLogin = new JButton("Check User Login");
         cancelUserLogin = new JButton("Cancel User Login");
 
         JPanel userLoginButtons = new JPanel();
@@ -59,6 +60,7 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
             try {
                 userLoginController.createInputObject(username.getText(), password.getText());
                 JOptionPane.showMessageDialog(this, String.format("Login request recorded for %s", username.getText()));
+                setSubmitLoginStatus(true);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
@@ -74,5 +76,13 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
         requestResponse.setText(String.format("%s successfully logged in at %s", userLoginViewModel.getUsername(),
                 userLoginViewModel.getCreationTime()));
         return userloginOutputData;
+    }
+
+    public Boolean getSubmitLoginStatus() {
+        return submitLoginStatus;
+    }
+
+    public void setSubmitLoginStatus(Boolean submitLoginStatus) {
+        this.submitLoginStatus = submitLoginStatus;
     }
 }

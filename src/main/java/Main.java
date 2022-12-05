@@ -1,5 +1,4 @@
-import drug_search_frameworks_drivers.DrugSearchFrame;
-import drug_search_frameworks_drivers.DrugSearchScreen;
+import main_frame.MainFrame;
 
 import javax.swing.*;
 
@@ -14,16 +13,16 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new DrugRequestFrame();
+                new MainFrame();
             }
         });
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new DrugSearchFrame();
-            }
-        });
+//        SwingUtilities.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                new DrugSearchFrame();
+//            }
+//        });
 
 
 

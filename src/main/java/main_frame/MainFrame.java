@@ -1,5 +1,7 @@
 package main_frame;
 
+import site_drug_request.drug_request_frameworks_drivers.DrugRequestHelper;
+import site_drug_request.drug_request_frameworks_drivers.DrugRequestScreen;
 import user_login.frameworks_and_drivers.screens.UserLogInHelper;
 import user_login.frameworks_and_drivers.screens.UserLoginScreen;
 import user_registration.frameworks_and_drivers.screens.HomeScreen;
@@ -36,6 +38,9 @@ public class MainFrame {
         UserRegistrationHelper userRegistrationHelper = new UserRegistrationHelper();
         UserRegistrationScreen userRegistrationScreen = userRegistrationHelper.GenerateRegistrationScreen();
 
+        DrugRequestHelper drugRequestHelper = new DrugRequestHelper();
+        DrugRequestScreen drugRequestScreen = drugRequestHelper.DrugRequestGenerator();
+
         /*
         Using a helper for the use case engine setup and creating the screens
          */
@@ -47,6 +52,7 @@ public class MainFrame {
         JPanel homeScreenButtonPanel = new JPanel();
         JPanel registrationScreenButtonPanel = new JPanel();
         JPanel logInScreenButtonPanel = new JPanel();
+        JPanel submitLoginButtonPanel = new JPanel();
 
         /*
         Create buttons login and registration to add to buttonPanel.
@@ -59,6 +65,9 @@ public class MainFrame {
 
         JButton logInHS = new JButton("Return Home");
         JButton logInR = new JButton("Registration");
+
+        JButton submitLoginButton = new JButton("Submit Login");
+//        submitLoginButton.setEnabled(true);
 
 
         /*
@@ -73,10 +82,13 @@ public class MainFrame {
         logInScreenButtonPanel.add(logInHS);
         logInScreenButtonPanel.add(logInR);
 
+        submitLoginButtonPanel.add(submitLoginButton);
+
 
         homeScreen.add(homeScreenButtonPanel);
         userRegistrationScreen.add(registrationScreenButtonPanel);
         userLoginScreen.add(logInScreenButtonPanel);
+        userLoginScreen.add(submitLoginButtonPanel);
 
         /*
         Note the Below will add the button panel to the HomeScreen panel directly. Look for Ref - 1 below where
@@ -101,6 +113,7 @@ public class MainFrame {
         contentPane.add(homeScreen, "Home Screen");
         contentPane.add(userRegistrationScreen, "User Registration");
         contentPane.add(userLoginScreen, "User LogIn");
+        contentPane.add(drugRequestScreen, "Drug Request Screen");
 
 
 
@@ -173,6 +186,29 @@ public class MainFrame {
                 CardLayout cardLayout = (CardLayout) contentPane.getLayout();
                 cardLayout.show(contentPane, "User Registration");
 
+            }
+        });
+
+        submitLoginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Clicked " + submitLoginButton.getText());
+                if (userLoginScreen.getSubmitLoginStatus().equals(true)) {
+                    submitLoginButton.setEnabled(true);
+                    CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+                    cardLayout.show(contentPane, "Drug Request Screen");
+                } else{
+                    JOptionPane.showMessageDialog(userLoginScreen, "User Login Status Not Approved.");
+                }
+//                try{if (userLoginScreen.getSubmitLoginStatus().equals(true)){
+//                    submitLoginButton.setEnabled(true);
+//                    CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+//                    cardLayout.show(contentPane, "Drug Request Screen");
+//                }
+//
+//                }catch (Exception actionEvent){
+//                    JOptionPane.showMessageDialog(userLoginScreen, "User Login Status not Approved.");
+//                }
             }
         });
 

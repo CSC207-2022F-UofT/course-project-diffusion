@@ -1,4 +1,4 @@
-package drug_request_frameworks_drivers;
+package site_drug_request.drug_request_frameworks_drivers;
 
 import javax.swing.*;
 
