@@ -27,6 +27,10 @@ public class DrugFulfillInteractor implements DrugFulfillInputBoundary {
         if (!fulfillDsGateway.isInt(Integer.toString(requestModel.getDrugBottle()))){
             return orderPresenter.prepareFailView("Put in a number");
         }
+        else if (!fulfillDsGateway.depotIsInsufficient(requestModel.getDrugBottle(), requestModel.getDrugName())) {
+            System.out.println("you fucked up");
+            return orderPresenter.prepareFailView("Lacking Depot Inventory");
+        }
 
         DrugFulfill order = fulfillFactory.create(requestModel.getDrugName(), requestModel.getDrugBottle(), requestModel.getIsEmergency());
 

@@ -73,8 +73,22 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
     public void fulfillOrder(DrugFulfillDsRequestModel requestModel) {
         String fake_id = String.valueOf(requestModel.getCreationTime());
         this.MadeOrders.put(fake_id, requestModel);
+
         this.adjustInventory(fake_id);
     }
+
+    @Override
+    public boolean depotIsInsufficient(int orderAmount, String drugName) {
+        int currentAmount = 0;
+        for (DrugFulfillDsRequestModel drugBin1 : this.CurrentInventory.values()) {
+            if (Objects.equals(drugBin1.getName(), drugName)) {
+                currentAmount = drugBin1.getBottle();
+            }
+        }
+        //int currentAmount = 10;
+        return (currentAmount - orderAmount) <= 0;
+    }
+
 
     private void adjustInventory(String fake_id) {
         try {
