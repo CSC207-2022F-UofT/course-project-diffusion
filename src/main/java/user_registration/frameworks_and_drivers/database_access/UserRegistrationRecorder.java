@@ -1,7 +1,7 @@
 package user_registration.frameworks_and_drivers.database_access;
 
-import user_registration.usecase_engine.database_access.UserRegistrationDsGateway;
-import user_registration.usecase_engine.database_access.UserRegistrationDsInputData;
+import user_registration.use_case.database_access.UserRegistrationDsGateway;
+import user_registration.use_case.database_access.UserRegistrationDsInputData;
 
 import java.io.*;
 import java.util.HashMap;

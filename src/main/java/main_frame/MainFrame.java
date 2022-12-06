@@ -112,7 +112,9 @@ public class MainFrame {
 //        contentPane.add(userRegistrationScreen, "User Registration");
         contentPane.add(homeScreen, "Home Screen");
         contentPane.add(userRegistrationScreen, "User Registration");
-        contentPane.add(userLoginScreen, "User LogIn");
+//        contentPane.add(userLoginScreen, "User LogIn");
+//        contentPane.add(drugSearchScreen, "User LogIn");
+        contentPane.add(drugSearchScreen, "User LogIn");
         contentPane.add(drugRequestScreen, "Drug Request Screen");
 
 

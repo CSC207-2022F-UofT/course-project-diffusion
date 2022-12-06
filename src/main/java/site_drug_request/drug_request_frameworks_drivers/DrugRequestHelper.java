@@ -14,7 +14,7 @@ public class DrugRequestHelper {
     public DrugRequestScreen DrugRequestGenerator() {
         DrugRequestDsGateway drugRequestDsGateway;
         try{
-            drugRequestDsGateway = new DrugRequestRecorder("./Test16.csv");
+            drugRequestDsGateway = new DrugRequestRecorder("./Test18.csv");
 
         } catch (IOException e) {
             throw new RuntimeException("Can't create file.");

@@ -6,7 +6,7 @@ import user_registration.frameworks_and_drivers.screens.panel_creator.PanelCreat
 import user_registration.interface_adapters.UserPresenterOutputBoundary;
 import user_registration.interface_adapters.UserRegistrationController;
 import user_registration.interface_adapters.UserRegistrationViewmodel;
-import user_registration.usecase_engine.output.UserRegistrationOutputData;
+import user_registration.use_case.output.UserRegistrationOutputData;
 
 import javax.swing.*;
 import java.awt.*;

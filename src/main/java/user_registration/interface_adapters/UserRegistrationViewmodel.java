@@ -1,7 +1,5 @@
 package user_registration.interface_adapters;
 
-import user_registration.usecase_engine.output.UserRegistrationOutputData;
-
 public class UserRegistrationViewmodel {
     String firstName;
     String lastName;

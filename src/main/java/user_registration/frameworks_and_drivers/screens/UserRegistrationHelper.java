@@ -5,8 +5,8 @@ import user_registration.frameworks_and_drivers.database_access.UserRegistration
 import user_registration.interface_adapters.UserRegistrationController;
 import user_registration.interface_adapters.UserRegistrationPresenter;
 import user_registration.ports.UserRegistrationGenerator;
-import user_registration.usecase_engine.database_access.UserRegistrationDsGateway;
-import user_registration.usecase_engine.interactor.UserRegistrationInteractor;
+import user_registration.use_case.database_access.UserRegistrationDsGateway;
+import user_registration.use_case.interactor.UserRegistrationInteractor;
 
 import java.io.IOException;
 

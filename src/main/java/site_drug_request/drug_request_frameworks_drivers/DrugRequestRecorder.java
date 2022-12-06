@@ -30,36 +30,6 @@ public class DrugRequestRecorder implements DrugRequestDsGateway {
 
         //Check to see if file already exists, if it does not then add a header and the first drug request,
         // if it does then simply append the latest drug request to the bottom.
-//        if (csvFile.length() == 0){
-//            generateHeader();
-////            appendDrugRequest();
-//        }
-//        else{
-//            appendDrugRequest(d);
-//        }
-
-//        generateDrugRequestHelper();
-
-//        if (csvFile.length() == 0) {
-//            generateDrugRequest();
-//            System.out.println(csvFile.length());
-//        } else{
-//            BufferedWriter appendWriter;
-//            try {
-//                appendWriter = new BufferedWriter(new FileWriter(csvFile, true));
-//                for (DrugRequestDsInvokeModel userDrugRequest : drugRequests.values()){
-//                    String line = String.format("%s, %s, %s, %s, %s, %s",  10001, 20001, 30001, userDrugRequest.getDrugName(),
-//                            userDrugRequest.getDrugBottle(), userDrugRequest.getDrugRequestCreationTime() );
-////                    appendWriter.newLine();
-//                    appendWriter.write(line);
-//                    appendWriter.newLine();
-//                }
-//
-//                appendWriter.close();
-//            } catch (IOException e){
-//                throw new RuntimeException(e);
-//            }
-//        }
 
     }
 
@@ -75,41 +45,16 @@ public class DrugRequestRecorder implements DrugRequestDsGateway {
     }
 
     private void generateDrugRequestHelper(String drugNameRequested) {
-
         //Check to see if file already exists, if it does not then add a header and the first drug request,
         // if it does then simply append the latest drug request to the bottom.
-        if (csvFile.length() == 0){
+        if (csvFile.length() == 0) {
             generateHeader();
-//            appendDrugRequest();
-        }
-        else{
+            appendDrugRequest(drugNameRequested);
+        } else {
             appendDrugRequest(drugNameRequested);
         }
-
-
-
-//        generateHeader();
-//        appendDrugRequest();
-//        BufferedWriter drugRequestWriter;
-//        try {
-//            drugRequestWriter = new BufferedWriter(new FileWriter(csvFile, true));
-//            drugRequestWriter.write(String.join(",", headers.keySet()));
-//            drugRequestWriter.newLine();
-//
-//            for (DrugRequestDsInvokeModel userDrugRequest : drugRequests.values()) {
-//                String line = String.format("%s, %s, %s, %s, %s, %s", 10001, 20001, 30001, userDrugRequest.getDrugName(),
-//                        userDrugRequest.getDrugBottle(), userDrugRequest.getDrugRequestCreationTime());
-//                drugRequestWriter.write(line);
-//                drugRequestWriter.newLine();
-//            }
-//
-//            drugRequestWriter.close();
-//
-//
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
     }
+
 
     private void appendDrugRequest(String drugNameRequested){
         BufferedWriter drugRequestWriter;
@@ -119,9 +64,10 @@ public class DrugRequestRecorder implements DrugRequestDsGateway {
 //            drugRequestWriter.newLine();
 ///
 //            for (DrugRequestDsInvokeModel userDrugRequest : drugRequests.values()) {
-                DrugRequestDsInvokeModel newentry = drugRequests.get(drugNameRequested);
-                String line = String.format("%s, %s, %s, %s, %s, %s", 10001, 20001, 30001, newentry.getDrugName(),
-                        newentry.getDrugBottle(), newentry.getDrugRequestCreationTime());
+                DrugRequestDsInvokeModel newEntry = drugRequests.get(drugNameRequested);
+                int lastSiteID = Integer.parseInt(Reader(0)) + 1000;
+                String line = String.format("%s, %s, %s, %s, %s, %s", lastSiteID, 20001, 30001, newEntry.getDrugName(),
+                        newEntry.getDrugBottle(), newEntry.getDrugRequestCreationTime());
                 drugRequestWriter.write(line);
                 drugRequestWriter.newLine();
 //            }
@@ -148,4 +94,21 @@ public class DrugRequestRecorder implements DrugRequestDsGateway {
     }
 
 
-}
+    private String Reader(int column) throws IOException {
+        String delimiter = ",";
+        BufferedReader bufferedReader;
+        String currentline;
+        String[] data = new String[0];
+//        ArrayList<String> collectedData = new ArrayList<String>();
+//        try {
+            bufferedReader = new BufferedReader(new FileReader(csvFile));
+
+            while  ((currentline = bufferedReader.readLine())!= null) {
+                data = currentline.split(delimiter);
+                System.out.println(data[column]);
+            }
+            bufferedReader.close();
+            return data[column];
+    }
+
+    }
