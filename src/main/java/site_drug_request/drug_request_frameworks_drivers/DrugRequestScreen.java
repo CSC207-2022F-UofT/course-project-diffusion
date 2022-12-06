@@ -34,6 +34,7 @@ public class DrugRequestScreen extends JPanel implements ActionListener, DrugReq
      */
     DrugRequestController drugRequestController;
 
+
     //    public DrugRequestScreen(){
     public DrugRequestScreen(DrugRequestController drugRequestController) {
         this.drugRequestController = drugRequestController;

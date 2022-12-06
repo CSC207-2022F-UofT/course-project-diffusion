@@ -118,6 +118,10 @@ public class MainFrame {
         contentPane.add(drugRequestScreen, "Drug Request Screen");
 
 
+//        contentPane.add(orderScreen, "User LogIn");
+
+
+
 
         /*
         Create a RegistrationScreen Navigation Panel
