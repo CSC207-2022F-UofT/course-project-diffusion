@@ -12,7 +12,7 @@ public class DrugSearchScreenNew {
         this.drugSearchController = drugSearchController;
         this.drugSearchViewModel = drugSearchViewModel;
 
-        searchButton.addActionListener(e -> sendSearchRequest());
+//        searchButton.addActionListener(e -> sendSearchRequest());
     }
 
     private void sendSearchRequest() {

@@ -3,8 +3,7 @@ package main_frame;
 import drug_fulfill.drug_fulfill_depot_inventories.DrugFulfillHelper;
 import drug_fulfill.drug_fulfill_depot_inventories.OrderScreen;
 import drug_search.frameworks_drivers.DrugSearchHelper;
-import drug_search.frameworks_drivers.DrugSearchScreen;
-import drug_search.frameworks_drivers.DrugSearchScreenNew;
+import drug_search.frameworks_drivers.DrugSearchScreenNewer;
 import site_drug_request.drug_request_frameworks_drivers.DrugRequestHelper;
 import site_drug_request.drug_request_frameworks_drivers.DrugRequestScreen;
 import user_login.frameworks_and_drivers.screens.UserLogInHelper;
@@ -47,7 +46,7 @@ public class MainFrame {
         DrugRequestScreen drugRequestScreen = drugRequestHelper.DrugRequestGenerator();
 
         DrugSearchHelper drugSearchHelper = new DrugSearchHelper();
-        DrugSearchScreenNew drugSearchScreen = drugSearchHelper.generateDrugSearchScreen();
+        DrugSearchScreenNewer drugSearchScreenNewer = drugSearchHelper.generateDrugSearchScreen();
 
         DrugFulfillHelper drugFulfillHelper = new DrugFulfillHelper();
         OrderScreen orderScreen = drugFulfillHelper.DrugFulfillGenerator();
@@ -64,6 +63,9 @@ public class MainFrame {
         JPanel registrationScreenButtonPanel = new JPanel();
         JPanel logInScreenButtonPanel = new JPanel();
         JPanel submitLoginButtonPanel = new JPanel();
+        JPanel drugRequestButtonPanel = new JPanel();
+        JPanel drugOrderButtonPanel = new JPanel();
+        JPanel drugSearchButtonPanel = new JPanel();
 
         /*
         Create buttons login and registration to add to buttonPanel.
@@ -78,6 +80,8 @@ public class MainFrame {
         JButton logInR = new JButton("Registration");
 
         JButton submitLoginButton = new JButton("Submit Login");
+
+        JButton drugSearchButton = new JButton("Drug Search");
 //        submitLoginButton.setEnabled(true);
 
 
@@ -86,6 +90,7 @@ public class MainFrame {
          */
         homeScreenButtonPanel.add(login);
         homeScreenButtonPanel.add(registration);
+        homeScreenButtonPanel.add(drugSearchButton);
 
         registrationScreenButtonPanel.add(registrationLI);
         registrationScreenButtonPanel.add(registrationHS);
@@ -95,7 +100,13 @@ public class MainFrame {
 
         submitLoginButtonPanel.add(submitLoginButton);
 
+        drugRequestButtonPanel.add(homeScreen);
+        drugRequestButtonPanel.add(drugRequestScreen);
 
+
+        /*
+        Add the button panels to the Screens.
+         */
         homeScreen.add(homeScreenButtonPanel);
         userRegistrationScreen.add(registrationScreenButtonPanel);
         userLoginScreen.add(logInScreenButtonPanel);
@@ -118,18 +129,21 @@ public class MainFrame {
 
 
         /*
-        Adding the screen to the mainframe container, contentpane,  and naming it as well.
+        Adding the screen to the mainframe container, contentpane,
+         */
+        /**
+         * Import Note, the Text entered is a constraint which needs to match exactly with how it is written in the Action Listener.
          */
 //        contentPane.add(userRegistrationScreen, "User Registration");
         contentPane.add(homeScreen, "Home Screen");
         contentPane.add(userRegistrationScreen, "User Registration");
 //        contentPane.add(userLoginScreen, "User LogIn");
-//        contentPane.add(drugSearchScreen, "User LogIn");
-        contentPane.add(drugSearchScreen.getPanel(), "User LogIn");
-        contentPane.add(drugRequestScreen, "Drug Request Screen");
+        contentPane.add(drugSearchScreenNewer, "Drug Search");
+//        contentPane.add(drugSearchScreenNewer, "User LogIn");
+//        contentPane.add(drugRequestScreen, "Drug Request Screen");
 
 
-//        contentPane.add(orderScreen, "User LogIn");
+        contentPane.add(orderScreen, "User LogIn");
 
 
 
@@ -229,6 +243,16 @@ public class MainFrame {
             }
         });
 
+        drugSearchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Clicked " + drugSearchButton.getText());
+                CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+                cardLayout.show(contentPane, "Drug Search");
+
+            }
+        });
+
         // REF - 1) Add the contentPane (JPanel) and buttonPanel to the JFrame.
         mainFrame.add(contentPane, BorderLayout.CENTER);
 
@@ -300,6 +324,7 @@ public class MainFrame {
 //        mainFrame.pack();
 //
 //        mainFrame.setVisible(true);
+
 
     }
 }
