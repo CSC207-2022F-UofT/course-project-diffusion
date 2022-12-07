@@ -26,12 +26,13 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
 
     public FileDepotInventoryA(String csvPath) throws IOException {
         this.csvFile = new File(csvPath);
-        this.headers.put("drugName", 0);
-        this.headers.put("drugAmount", 1);
-        this.headers.put("creation_time", 2);
-        this.headers.put("batch Number", 3);
-        this.headers.put("id Number", 4);
-        this.headers.put("Depot Name", 5);
+
+        this.headers.put("Depot Name", 0);
+        this.headers.put("drugName", 1);
+        this.headers.put("drugAmount", 2);
+        this.headers.put("creation_time", 3);
+        this.headers.put("batch Number", 4);
+        this.headers.put("id Number", 5);
 
         if (this.csvFile.length() == 0L) {
             System.out.println("wtf empty csv inventory");
@@ -86,13 +87,14 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
 
             for (DrugFulfillDsRequestModel drugBin : this.CurrentInventory.values()) {
                 if (Objects.equals(drugBin.getName(), plsfulfill.getName())) {
+                    //if (Objects.equals(drugBin.get))
                     drugBin.setBottle(drugBin.getBottle() - plsfulfill.getBottle());
 //                    String line1 = String.format("%1$s,%2$s,%3$s", drugBin.getName(), drugBin.getBottle(), drugBin.getCreationTime());
 //                    writer.write(line1);
                 }
 
                 writer.newLine();
-                String line1 = String.format("%4$s, %1$s,%2$s,%3$s", drugBin.getName(), drugBin.getBottle(), drugBin.getCreationTime(), drugBin.getDepotName());
+                String line1 = String.format("%4$s,%1$s,%2$s,%3$s", drugBin.getName(), drugBin.getBottle(), drugBin.getCreationTime(), drugBin.getDepotName());
                 writer.write(line1);
 
             }

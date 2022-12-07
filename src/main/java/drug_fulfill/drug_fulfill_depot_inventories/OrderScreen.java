@@ -45,9 +45,12 @@ public class OrderScreen extends JPanel implements ActionListener {
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         LabelTextPanel drugNameInfo = new LabelTextPanel(
-                new JLabel("Choose drugName"), drugName);
+                new JLabel("Choose drugName (DrugA, DrugB, DrugC)"), drugName);
         LabelTextPanel passwordInfo = new LabelTextPanel(
                 new JLabel("Choose amount/bottle"), bottle);
+
+        LabelTextPanel depotInfo = new LabelTextPanel(
+                new JLabel("Choose depot to order from (1, 2, 3)"), depot);
 
 
         isEmergency=new JCheckBox("Toggle if Emergency");
@@ -68,6 +71,7 @@ public class OrderScreen extends JPanel implements ActionListener {
         this.add(title);
         this.add(drugNameInfo);
         this.add(passwordInfo);
+        this.add(depotInfo);
         this.add(isEmergency);
         this.add(buttons);
 
