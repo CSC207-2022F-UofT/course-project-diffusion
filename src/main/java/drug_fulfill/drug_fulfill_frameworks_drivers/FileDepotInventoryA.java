@@ -71,6 +71,20 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
             return false;
         }
     }
+    @Override
+    public boolean depotIsInsufficient(int orderAmount, String drugName, String depotName) {
+        System.out.println(CurrentInventory.values());
+        for (DrugFulfillDsRequestModel drugBin1 : this.CurrentInventory.values()) {
+            System.out.println(drugBin1.getName());
+            if (Objects.equals(drugBin1.getName(), drugName) && Objects.equals(drugBin1.getDepotName(),depotName) ) {
+//                System.out.println("matched");
+//                System.out.println((drugBin1.getBottle() - orderAmount) <= 0);
+                return ((drugBin1.getBottle() - orderAmount) < 0);
+            }
+        }
+        //int currentAmount = 10;
+        return false;
+    }
 
     public void fulfillOrder(DrugFulfillDsRequestModel requestModel) {
         String fake_id = String.valueOf(requestModel.getCreationTime());

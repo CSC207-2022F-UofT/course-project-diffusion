@@ -36,7 +36,13 @@ public class DrugFulfillInteractor implements DrugFulfillInputBoundary {
 
         LocalDateTime now = LocalDateTime.now();
         DrugFulfillDsRequestModel OrderDsModel = new DrugFulfillDsRequestModel(order.getDrugName(), order.getDrugBottle(), now, order.getIsEmergency(), order.getDepotName());
-        fulfillDsGateway.fulfillOrder(OrderDsModel);
+
+        if (!fulfillDsGateway.depotIsInsufficient(order.getDrugBottle(), order.getDrugName(), order.getDepotName())){
+            fulfillDsGateway.fulfillOrder(OrderDsModel);
+        } else {
+            System.out.println("Insufficient depot amount");
+        }
+
 
         //return presenter change to ordered from depot #
 
