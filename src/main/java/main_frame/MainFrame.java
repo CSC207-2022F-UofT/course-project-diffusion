@@ -46,8 +46,8 @@ public class MainFrame {
         DrugRequestHelper drugRequestHelper = new DrugRequestHelper();
         DrugRequestScreen drugRequestScreen = drugRequestHelper.DrugRequestGenerator();
 
-        DrugSearchHelper drugSearchHelper = new DrugSearchHelper();
-        DrugSearchScreenNew drugSearchScreen = drugSearchHelper.generateDrugSearchScreen();
+//        DrugSearchHelper drugSearchHelper = new DrugSearchHelper();
+//        DrugSearchScreenNew drugSearchScreen = drugSearchHelper.generateDrugSearchScreen();
 
         DrugFulfillHelper drugFulfillHelper = new DrugFulfillHelper();
         OrderScreen orderScreen = drugFulfillHelper.DrugFulfillGenerator();
@@ -125,11 +125,11 @@ public class MainFrame {
         contentPane.add(userRegistrationScreen, "User Registration");
 //        contentPane.add(userLoginScreen, "User LogIn");
 //        contentPane.add(drugSearchScreen, "User LogIn");
-        contentPane.add(drugSearchScreen.getPanel(), "User LogIn");
-        contentPane.add(drugRequestScreen, "Drug Request Screen");
+//        contentPane.add(drugSearchScreen.getPanel(), "User LogIn");
+//        contentPane.add(drugRequestScreen, "Drug Request Screen");
 
 
-//        contentPane.add(orderScreen, "User LogIn");
+        contentPane.add(orderScreen, "User LogIn");
 
 
 

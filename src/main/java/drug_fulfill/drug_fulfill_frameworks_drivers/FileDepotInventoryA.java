@@ -86,11 +86,14 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
             DrugFulfillDsRequestModel plsfulfill = this.MadeOrders.get(fake_id);
 
             for (DrugFulfillDsRequestModel drugBin : this.CurrentInventory.values()) {
-                if (Objects.equals(drugBin.getName(), plsfulfill.getName())) {
-                    //if (Objects.equals(drugBin.get))
-                    drugBin.setBottle(drugBin.getBottle() - plsfulfill.getBottle());
-//                    String line1 = String.format("%1$s,%2$s,%3$s", drugBin.getName(), drugBin.getBottle(), drugBin.getCreationTime());
-//                    writer.write(line1);
+
+                if (Objects.equals(drugBin.getDepotName(),plsfulfill.getDepotName())){
+                    if (Objects.equals(drugBin.getName(), plsfulfill.getName())) {
+                        //if (Objects.equals(drugBin.get))
+                        drugBin.setBottle(drugBin.getBottle() - plsfulfill.getBottle());
+    //                    String line1 = String.format("%1$s,%2$s,%3$s", drugBin.getName(), drugBin.getBottle(), drugBin.getCreationTime());
+    //                    writer.write(line1);
+                    }
                 }
 
                 writer.newLine();
@@ -114,7 +117,7 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
             for (String DepotName : this.depotList) {
                 for (String DrugName : this.drugList) {
                     LocalDateTime ldt_now = LocalDateTime.now();
-                    String line = String.format("%4$s, %1$s,%2$s,%3$s", DrugName, "20", ldt_now, DepotName);
+                    String line = String.format("%4$s,%1$s,%2$s,%3$s", DrugName, "20", ldt_now, DepotName);
                     //                String line = String.format("%1$s, %2$s, %3$s, %4$s, %5$s", DrugName, 20, ldt_now, "whatever", "IDtobeouted");
 
                     writer.write(line);

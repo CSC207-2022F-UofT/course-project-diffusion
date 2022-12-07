@@ -50,7 +50,7 @@ public class OrderScreen extends JPanel implements ActionListener {
                 new JLabel("Choose amount/bottle"), bottle);
 
         LabelTextPanel depotInfo = new LabelTextPanel(
-                new JLabel("Choose depot to order from (1, 2, 3)"), depot);
+                new JLabel("Choose depot to order from (Depot1, Depot2, Depot3)"), depot);
 
 
         isEmergency=new JCheckBox("Toggle if Emergency");

@@ -39,4 +39,7 @@ public class DrugFulfillRequestModel {
     public Boolean getIsEmergency() {
         return isEmergency;
     }
+    String getDepot(){
+        return depot;
+    }
 }

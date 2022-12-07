@@ -7,5 +7,6 @@ public interface DrugFulfill {
     int getDrugBottle();
 
     boolean getIsEmergency();
+    String getDepotName();
 
 }
