@@ -15,14 +15,16 @@ public class OrderScreen extends JPanel implements ActionListener {
      * The drugName chosen by the user
      */
     JTextField drugName = new JTextField(15);
-    /**
-     * The password
-     */
+
     JTextField bottle = new JTextField(15);
 
-    JTextField depot = new JTextField(15);
 
-    //JPasswordField repeatPassword = new JPasswordField(15);
+    JTextField depot = new JTextField(15);
+    JComboBox<String> selectDepot;
+    JComboBox<String> selectDrug;
+
+
+
 
     /**
      * The emergency toggle
@@ -41,16 +43,37 @@ public class OrderScreen extends JPanel implements ActionListener {
 
         this.userRegisterController = controller;
 
+
         JLabel title = new JLabel("Order Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        //String[] sites = {"Site1", "Site2", "Site3"};
+        String[] depots = {"Depot1", "Depot2", "Depot3"};
+        String[] drugs = {"DrugA", "DrugB", "DrugC"};
+
         LabelTextPanel drugNameInfo = new LabelTextPanel(
                 new JLabel("Choose drugName (DrugA, DrugB, DrugC)"), drugName);
-        LabelTextPanel passwordInfo = new LabelTextPanel(
+        selectDrug = new JComboBox<>(drugs);
+
+//        JPanel drugpanel = new JPanel();
+//        drugpanel.add(selectDrug);
+        LabelComboBox chooseDrug = new LabelComboBox(new JLabel("Choose drugName"), selectDrug);
+
+
+
+
+
+
+        LabelTextPanel bottleInfo = new LabelTextPanel(
                 new JLabel("Choose amount/bottle"), bottle);
 
         LabelTextPanel depotInfo = new LabelTextPanel(
                 new JLabel("Choose depot to order from (Depot1, Depot2, Depot3)"), depot);
+        selectDepot = new JComboBox<>(depots);
+
+//        JPanel depotpanel = new JPanel();
+//        depotpanel.add(selectDepot);
+        LabelComboBox chooseDepot = new LabelComboBox(new JLabel("Choose depot"), selectDepot);
 
 
         isEmergency=new JCheckBox("Toggle if Emergency");
@@ -69,9 +92,12 @@ public class OrderScreen extends JPanel implements ActionListener {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
-        this.add(drugNameInfo);
-        this.add(passwordInfo);
-        this.add(depotInfo);
+        //this.add(drugNameInfo);
+        this.add(chooseDrug);
+        this.add(chooseDepot);
+        this.add(bottleInfo);
+        //this.add(depotInfo);
+
         this.add(isEmergency);
         this.add(buttons);
 
@@ -81,21 +107,25 @@ public class OrderScreen extends JPanel implements ActionListener {
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
+
+        String print = (String) selectDrug.getSelectedItem();
+        System.out.println(print);
+
         System.out.println("Click " + evt.getActionCommand());
         Boolean ie = Boolean.FALSE;
         if(isEmergency.isSelected()){
             ie = Boolean.TRUE;
         }
         try {
-            userRegisterController.create(drugName.getText(),
+            userRegisterController.create((String) selectDrug.getSelectedItem(),
                     Integer.parseInt(bottle.getText()), //just some number for now
                     //String.valueOf(password.getPassword()),
                     //String.valueOf(repeatPassword.getPassword()),
-                    ie, depot.getText());
+                    ie, (String) selectDepot.getSelectedItem());
 
 
 
-            JOptionPane.showMessageDialog(this,  String.format("%1$s ", bottle.getText()) + String.format(drugName.getText()) + "is emergency " + isEmergency.isSelected());
+            //JOptionPane.showMessageDialog(this,  String.format("%1$s ", bottle.getText()) + String.format(drugName.getText()) + "is emergency " + isEmergency.isSelected());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "please put in a number for amount");
         }
