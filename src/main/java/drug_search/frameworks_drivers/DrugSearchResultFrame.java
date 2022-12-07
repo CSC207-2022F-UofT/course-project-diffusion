@@ -7,12 +7,12 @@ import java.util.List;
 
 public class DrugSearchResultFrame extends JFrame {
     public DrugSearchResultFrame(List<DrugRequestDBEntry> entries) {
-//        super("Search Results");
+        super("Search Results");
 
         // Initialize and set up GUI
-//        setContentPane(new DrugSearchResultScreen(entries).getPanel());
-//        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//        pack();
-//        setVisible(true);
+        setContentPane(new DrugSearchResultScreenNew(entries));
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        pack();
+        setVisible(true);
     }
 }
