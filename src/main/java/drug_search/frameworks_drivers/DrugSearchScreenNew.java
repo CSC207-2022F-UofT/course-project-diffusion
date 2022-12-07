@@ -6,9 +6,9 @@ import drug_search.interface_adapters.DrugSearchViewModel;
 import javax.swing.*;
 import java.time.LocalDateTime;
 
-public class DrugSearchScreen extends JPanel {
+public class DrugSearchScreenNew {
 
-    public DrugSearchScreen(DrugSearchController drugSearchController, DrugSearchViewModel drugSearchViewModel) {
+    public DrugSearchScreenNew(DrugSearchController drugSearchController, DrugSearchViewModel drugSearchViewModel) {
         this.drugSearchController = drugSearchController;
         this.drugSearchViewModel = drugSearchViewModel;
 
@@ -81,16 +81,21 @@ public class DrugSearchScreen extends JPanel {
 
     private DrugSearchController drugSearchController;
     private DrugSearchViewModel drugSearchViewModel;
-    private JButton searchButton;
-    private JComboBox monthComboBox;
-    private JComboBox dayComboBox;
-    private JComboBox yearComboBox;
-    private JComboBox relativityComboBox;
+    private JTextField textField1;
     private JPanel receiptSearch;
+    private JTextField textField2;
+    private JTextField textField3;
+    private JTextField textField4;
     private JCheckBox dateSearchCheckBox;
-    private JTextField accountIDTextField;
-    private JTextField drugRequestIDTextField;
-    private JTextField siteIDTextField;
-    private JTextField drugNameTextField;
-    private JTextField quantityRequestedTextField;
+    private JComboBox relativityComboBox;
+    private JComboBox monthComboBox;
+    private JComboBox yearComboBox;
+    private JComboBox dayComboBox;
+    private JTextField textField5;
+    private JButton searchButton;
+    private JLabel drugRequestIDTextField;
+    private JLabel siteIDTextField;
+    private JLabel accountIDTextField;
+    private JLabel drugNameTextField;
+    private JLabel quantityRequestedTextField;
 }

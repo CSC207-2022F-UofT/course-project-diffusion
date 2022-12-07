@@ -6,7 +6,7 @@ import drug_search.interface_adapters.DrugSearchViewModel;
 import drug_search.use_case.SearchUseCase;
 
 public class DrugSearchHelper {
-    public DrugSearchScreen generateDrugSearchScreen() {
+    public DrugSearchScreenNew generateDrugSearchScreen() {
         // Initialize interface adapters and requisite use case classes
         DrugSearchViewModel drugSearchViewModel = new DrugSearchViewModel();
         DrugSearchPresenter drugSearchPresenter = new DrugSearchPresenter(drugSearchViewModel);
@@ -14,6 +14,6 @@ public class DrugSearchHelper {
         SearchUseCase searchUseCase = new SearchUseCase(drugSearchPresenter, databaseAccessor);
         DrugSearchController drugSearchController = new DrugSearchController(searchUseCase);
 
-        return new DrugSearchScreen(drugSearchController, drugSearchViewModel);
+        return new DrugSearchScreenNew(drugSearchController, drugSearchViewModel);
     }
 }
