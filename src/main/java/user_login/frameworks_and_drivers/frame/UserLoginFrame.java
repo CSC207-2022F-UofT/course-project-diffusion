@@ -1,12 +1,12 @@
 //package user_login.frameworks_and_drivers.frame;
 //
-//import user_login.frameworks_and_drivers.database_access.UserLoginRecorder;
+//import user_login.frameworks_and_drivers.database_generator.UserLoginRecorder;
 //import user_login.frameworks_and_drivers.screens.UserLoginScreen;
 //import user_login.interface_adapters.UserLoginController;
 //import user_login.interface_adapters.UserLoginPresenter;
 //import user_login.interface_adapters.UserLoginPresenterOutputBoundary;
 //import user_login.ports.UserLoginFactory;
-//import user_login.use_case.database_access.UserLoginDsGateway;
+//import user_login.use_case.database_generator.UserLoginDsGateway;
 //import user_login.use_case.interactor.UserLoginInteractor;
 //import user_login.user_login_entities.CommonUserloginFactory;
 //

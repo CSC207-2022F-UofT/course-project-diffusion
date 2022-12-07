@@ -30,6 +30,9 @@ public class DrugRequestRecorder implements DrugRequestDsGateway {
 
         //Check to see if file already exists, if it does not then add a header and the first drug request,
         // if it does then simply append the latest drug request to the bottom.
+        if (csvPath.length() == 0){
+            generateHeader();
+        }
 
     }
 
@@ -65,7 +68,7 @@ public class DrugRequestRecorder implements DrugRequestDsGateway {
 ///
 //            for (DrugRequestDsInvokeModel userDrugRequest : drugRequests.values()) {
                 DrugRequestDsInvokeModel newEntry = drugRequests.get(drugNameRequested);
-                int lastSiteID = Integer.parseInt(Reader(0)) + 1000;
+                int lastSiteID = Reader(0) + 1000;
                 String line = String.format("%s, %s, %s, %s, %s, %s", lastSiteID, 20001, 30001, newEntry.getDrugName(),
                         newEntry.getDrugBottle(), newEntry.getDrugRequestCreationTime());
                 drugRequestWriter.write(line);
@@ -94,21 +97,27 @@ public class DrugRequestRecorder implements DrugRequestDsGateway {
     }
 
 
-    private String Reader(int column) throws IOException {
+    private int Reader(int column) throws IOException {
         String delimiter = ",";
         BufferedReader bufferedReader;
         String currentline;
-        String[] data = new String[0];
-//        ArrayList<String> collectedData = new ArrayList<String>();
+        int lastTargetID = 0;
+//        String[] data = new String[0];
+//        ArrayList<String> c
+//
+//        ollectedData = new ArrayList<String>();
 //        try {
             bufferedReader = new BufferedReader(new FileReader(csvFile));
 
             while  ((currentline = bufferedReader.readLine())!= null) {
+                String[] data = currentline.split(delimiter);
+                if (data[column].contains("u"))
                 data = currentline.split(delimiter);
                 System.out.println(data[column]);
             }
             bufferedReader.close();
-            return data[column];
+            return 3;
+            }
     }
 
-    }
+

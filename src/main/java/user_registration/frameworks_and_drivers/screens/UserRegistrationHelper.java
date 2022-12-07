@@ -1,7 +1,7 @@
 package user_registration.frameworks_and_drivers.screens;
 
 import user_registration.entity.CommonUserRegistrationFactory;
-import user_registration.frameworks_and_drivers.database_access.UserRegistrationRecorder;
+import user_registration.frameworks_and_drivers.database_generator.UserRegistrationRecorder;
 import user_registration.interface_adapters.UserRegistrationController;
 import user_registration.interface_adapters.UserRegistrationPresenter;
 import user_registration.ports.UserRegistrationGenerator;
@@ -21,10 +21,12 @@ public class UserRegistrationHelper {
         Database construction below
          */
         UserRegistrationDsGateway userRegistrationDsGateway;
+        System.out.println("construct the database");
         try{
-            userRegistrationDsGateway = new UserRegistrationRecorder("./UsersRegistered.csv");
+            userRegistrationDsGateway = new UserRegistrationRecorder("./UsersRegistered4.csv");
 
         } catch (IOException e) {
+            e.printStackTrace();
             throw new RuntimeException("Can't create file.");
         }
 

@@ -22,8 +22,8 @@ public class UserRegistrationDsInputData {
         this.userRegistrationTime = userRegistrationTime;
     }
 
-    public Object getLocationName() {
-        return locationName;
+    public String getLocationName() {
+        return locationName.toString();
     }
 
     public void setLocationName(Object locationName) {

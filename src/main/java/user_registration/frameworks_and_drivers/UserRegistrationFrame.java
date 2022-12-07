@@ -2,12 +2,12 @@
 //
 //
 ////import user_registration.entity.CommonUserRegistrationFactory;
-////import user_registration.frameworks_and_drivers.database_access.UserRegistrationRecorder;
+////import user_registration.frameworks_and_drivers.database_generator.UserRegistrationRecorder;
 ////import user_registration.frameworks_and_drivers.screens.UserRegistrationScreen;
 ////import user_registration.interface_adapters.UserRegistrationController;
 ////import user_registration.interface_adapters.UserRegistrationPresenter;
 ////import user_registration.ports.UserRegistrationGenerator;
-////import user_registration.usecase_engine.database_access.UserRegistrationDsGateway;
+////import user_registration.usecase_engine.database_generator.UserRegistrationDsGateway;
 ////import user_registration.usecase_engine.interactor.UserRegistrationInteractor;
 //
 //import javax.swing.*;
