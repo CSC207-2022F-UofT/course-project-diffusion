@@ -7,11 +7,14 @@ public class CommonDrugFulfill implements DrugFulfill {
     private final int drugBottle;
 
     private final Boolean isEmergency;
+    private final String depotName;
 
-    CommonDrugFulfill(String drugName, int drugBottle, Boolean isEmergency){
+    CommonDrugFulfill(String drugName, int drugBottle, Boolean isEmergency, String depotName){
         this.drugName = drugName;
         this.drugBottle = drugBottle;
         this.isEmergency = isEmergency;
+        this.depotName = depotName;
+
     }
     @Override
     public boolean drugBottleIsValid() {
@@ -36,4 +39,9 @@ public class CommonDrugFulfill implements DrugFulfill {
 
     @Override
     public boolean getIsEmergency(){return isEmergency;}
+
+    @Override
+    public String getDepotName() {
+        return depotName;
+    }
 }

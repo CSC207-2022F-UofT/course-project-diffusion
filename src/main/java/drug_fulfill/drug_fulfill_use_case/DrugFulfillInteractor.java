@@ -28,15 +28,21 @@ public class DrugFulfillInteractor implements DrugFulfillInputBoundary {
             return orderPresenter.prepareFailView("Put in a number");
         }
 
-        DrugFulfill order = fulfillFactory.create(requestModel.getDrugName(), requestModel.getDrugBottle(), requestModel.getIsEmergency());
+        DrugFulfill order = fulfillFactory.create(requestModel.getDrugName(), requestModel.getDrugBottle(), requestModel.getIsEmergency(), requestModel.getDepot());
 
         if (!order.drugNameIsValid(requestModel.getDrugName())) {
             return orderPresenter.prepareFailView("WTF IS GOING ONNNN XD");
         }
 
         LocalDateTime now = LocalDateTime.now();
-        DrugFulfillDsRequestModel OrderDsModel = new DrugFulfillDsRequestModel(order.getDrugName(), order.getDrugBottle(), now, order.getIsEmergency(), "order.get");
-        fulfillDsGateway.fulfillOrder(OrderDsModel);
+        DrugFulfillDsRequestModel OrderDsModel = new DrugFulfillDsRequestModel(order.getDrugName(), order.getDrugBottle(), now, order.getIsEmergency(), order.getDepotName());
+
+        if (!fulfillDsGateway.depotIsInsufficient(order.getDrugBottle(), order.getDrugName(), order.getDepotName())){
+            fulfillDsGateway.fulfillOrder(OrderDsModel);
+        } else {
+            System.out.println("Insufficient depot amount");
+        }
+
 
         //return presenter change to ordered from depot #
 

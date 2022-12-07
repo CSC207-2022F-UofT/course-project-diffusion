@@ -71,6 +71,20 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
             return false;
         }
     }
+    @Override
+    public boolean depotIsInsufficient(int orderAmount, String drugName, String depotName) {
+        System.out.println(CurrentInventory.values());
+        for (DrugFulfillDsRequestModel drugBin1 : this.CurrentInventory.values()) {
+            System.out.println(drugBin1.getName());
+            if (Objects.equals(drugBin1.getName(), drugName) && Objects.equals(drugBin1.getDepotName(),depotName) ) {
+//                System.out.println("matched");
+//                System.out.println((drugBin1.getBottle() - orderAmount) <= 0);
+                return ((drugBin1.getBottle() - orderAmount) < 0);
+            }
+        }
+        //int currentAmount = 10;
+        return false;
+    }
 
     public void fulfillOrder(DrugFulfillDsRequestModel requestModel) {
         String fake_id = String.valueOf(requestModel.getCreationTime());
@@ -86,11 +100,14 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
             DrugFulfillDsRequestModel plsfulfill = this.MadeOrders.get(fake_id);
 
             for (DrugFulfillDsRequestModel drugBin : this.CurrentInventory.values()) {
-                if (Objects.equals(drugBin.getName(), plsfulfill.getName())) {
-                    //if (Objects.equals(drugBin.get))
-                    drugBin.setBottle(drugBin.getBottle() - plsfulfill.getBottle());
-//                    String line1 = String.format("%1$s,%2$s,%3$s", drugBin.getName(), drugBin.getBottle(), drugBin.getCreationTime());
-//                    writer.write(line1);
+
+                if (Objects.equals(drugBin.getDepotName(),plsfulfill.getDepotName())){
+                    if (Objects.equals(drugBin.getName(), plsfulfill.getName())) {
+                        //if (Objects.equals(drugBin.get))
+                        drugBin.setBottle(drugBin.getBottle() - plsfulfill.getBottle());
+    //                    String line1 = String.format("%1$s,%2$s,%3$s", drugBin.getName(), drugBin.getBottle(), drugBin.getCreationTime());
+    //                    writer.write(line1);
+                    }
                 }
 
                 writer.newLine();
@@ -114,7 +131,7 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
             for (String DepotName : this.depotList) {
                 for (String DrugName : this.drugList) {
                     LocalDateTime ldt_now = LocalDateTime.now();
-                    String line = String.format("%4$s, %1$s,%2$s,%3$s", DrugName, "20", ldt_now, DepotName);
+                    String line = String.format("%4$s,%1$s,%2$s,%3$s", DrugName, "20", ldt_now, DepotName);
                     //                String line = String.format("%1$s, %2$s, %3$s, %4$s, %5$s", DrugName, 20, ldt_now, "whatever", "IDtobeouted");
 
                     writer.write(line);
