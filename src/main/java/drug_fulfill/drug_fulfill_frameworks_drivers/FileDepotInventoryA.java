@@ -92,6 +92,17 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
         this.MadeOrders.put(time_id, requestModel);
         this.adjustInventory(time_id);
     }
+
+    @Override
+    public Map<String, DrugFulfillDsRequestModel> getCurrentInventory() {
+        return this.CurrentInventory;
+    }
+
+    @Override
+    public Map<String, DrugFulfillDsRequestModel> getMadeOrders() {
+        return this.MadeOrders;
+    }
+
     /**
      * Allows for depot database to adjust based on an order made.
      * @param time_id ID value used as key in our Hashmap. Used to pull a specific order made.

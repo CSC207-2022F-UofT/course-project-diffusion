@@ -24,10 +24,13 @@ class DrugFulfillInteractorTest {
         }
         DrugFulfillResponseFormatter presenter = new DrugFulfillResponseFormatter(){
             public DrugFulfillResponseModel successView(DrugFulfillResponseModel orderResponse){
+                assertTrue(depotTestDatabase.depotIsInsufficient(30,"DrugA","Depot1"));
                 assertEquals("DrugA", orderResponse.getDrugName());
                 assertNotNull(orderResponse.getCreationTime());
                 assertEquals("Depot1", orderResponse.getDepotName());
                 assertEquals("Site1", orderResponse.getSiteName());
+                assertTrue(siteTestDatabase.getMadeOrders().containsKey(orderResponse.getCreationTime()));
+                
                 //assertTrue(depotTestDatabase.depotIsInsufficient(orderResponse.getDrugBottle(), orderResponse.getDrugName(), orderResponse.getDepotName()));
 
                 return null;

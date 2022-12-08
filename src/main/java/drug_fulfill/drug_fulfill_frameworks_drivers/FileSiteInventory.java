@@ -67,21 +67,10 @@ public class FileSiteInventory implements SiteDrugFulfillDsGateway {
     /**
      * Allows for an order to be checked against the depot inventory. Returns True if there is not enough drugs to
      * fulfill the order.
-     * @param orderAmount The amount ordered by a user.
-     * @param depotName The depot ordered from by a user.
-     * @param drugName The name of drug ordered by a user.
      */
-//    @Override
-//    public boolean depotIsInsufficient(int orderAmount, String drugName, String depotName) {
-//        System.out.println(CurrentInventory.values());
-//        for (DrugFulfillDsRequestModel drugBin1 : this.CurrentInventory.values()) {
-//            System.out.println(drugBin1.getName());
-//            if (Objects.equals(drugBin1.getName(), drugName) && Objects.equals(drugBin1.getDepotName(),depotName) ) {
-//                return ((drugBin1.getBottle() - orderAmount) < 0);
-//            }
-//        }
-//        return false;
-//    }
+
+
+
 
     /**
      * Allows for an order made by a user to be saved in our Hashmap database of fulfilled orders.
@@ -92,6 +81,17 @@ public class FileSiteInventory implements SiteDrugFulfillDsGateway {
         this.MadeOrders.put(fake_id, requestModel);
         this.adjustInventory(fake_id);
     }
+
+    @Override
+    public Map<String, SiteDrugFulfillDsRequestModel> getCurrentInventory() {
+        return this.CurrentInventory;
+    }
+
+    @Override
+    public Map<String, SiteDrugFulfillDsRequestModel> getMadeOrders() {
+        return this.MadeOrders;
+    }
+
     /**
      * Allows for depot database to adjust based on an order made.
      * @param fake_id ID value used as key in our Hashmap. Used to pull a specific order made.
@@ -162,5 +162,6 @@ public class FileSiteInventory implements SiteDrugFulfillDsGateway {
         } catch (IOException var7) {
             throw new RuntimeException(var7);
         }
+
     }
 }
