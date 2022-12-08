@@ -1,5 +1,9 @@
 package receive_request.receive_request_entity;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class CommonValidRequest implements ValidRequest{
     final private String drugName;
     final private String drugBottle;
@@ -10,19 +14,31 @@ public class CommonValidRequest implements ValidRequest{
     }
 
     @Override
-    public boolean nameValid() {
-        return true;
-    }
+    public boolean checkInventory() throws FileNotFoundException {
+        ArrayList<String[]> list = new ArrayList<>();
 
-    @Override
-    public boolean bottleValid() {
-        return true;
-    }
+        Scanner scanner = new Scanner(new File("./depotAInventory.csv"));
+        scanner.nextLine();
 
-    @Override
-    public boolean checkInventory() {
-        // to be fixed when inventory system implemented
-        return this.nameValid() && this.bottleValid();
+        while (scanner.hasNextLine()) {
+            String[] line = scanner.nextLine().split(",");
+            int i = 0;
+            for (String entry : line) {
+                line[i] = entry.trim();
+                i++;
+            }
+            list.add(line);
+        }
+
+        for (String[] line : list) {
+            if (line[2].equals(drugName)) {
+                if (Integer.parseInt(line[3]) > Integer.parseInt(drugBottle)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     @Override
