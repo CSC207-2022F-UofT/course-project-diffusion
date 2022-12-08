@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ReceiveRequestControllerTest {
     ReceiveRequestOutputBoundary outputBoundary = new ReceiveRequestPresenter();
-    ReceiveRequestDatabaseAccessorI databaseAccessor = new ReceiveRequestDatabaseAccessor();
+    ReceiveRequestDatabaseAccessorInterface databaseAccessor = new ReceiveRequestDatabaseAccessor();
     ReceiveRequestInputBoundary inputBoundary = new ReceiveRequestInteractor(outputBoundary, databaseAccessor);
     ReceiveRequestController controller = new ReceiveRequestController(inputBoundary);
 

@@ -9,8 +9,8 @@ public class ReceiveRequestInteractor implements ReceiveRequestInputBoundary{
     // Initialise the Output Boundary
     final ReceiveRequestOutputBoundary receiveRequestOutputBoundary;
     // Initialise the Database Accessor
-    final ReceiveRequestDatabaseAccessorI databaseAccessor;
-    public ReceiveRequestInteractor(ReceiveRequestOutputBoundary receiveRequestOutputBoundary, ReceiveRequestDatabaseAccessorI databaseAccessor) {
+    final ReceiveRequestDatabaseAccessorInterface databaseAccessor;
+    public ReceiveRequestInteractor(ReceiveRequestOutputBoundary receiveRequestOutputBoundary, ReceiveRequestDatabaseAccessorInterface databaseAccessor) {
         this.receiveRequestOutputBoundary = receiveRequestOutputBoundary;
         this.databaseAccessor = databaseAccessor;
     }

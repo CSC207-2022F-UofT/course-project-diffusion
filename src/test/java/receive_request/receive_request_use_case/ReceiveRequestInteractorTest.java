@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ReceiveRequestInteractorTest {
     ReceiveRequestOutputBoundary outputBoundary = new ReceiveRequestPresenter();
-    ReceiveRequestDatabaseAccessorI databaseAccessor = new ReceiveRequestDatabaseAccessor();
+    ReceiveRequestDatabaseAccessorInterface databaseAccessor = new ReceiveRequestDatabaseAccessor();
     ReceiveRequestInputBoundary interactor = new ReceiveRequestInteractor(outputBoundary, databaseAccessor);
 
     @Test

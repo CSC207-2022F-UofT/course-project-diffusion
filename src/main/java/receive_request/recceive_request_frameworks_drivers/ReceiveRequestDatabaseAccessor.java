@@ -1,13 +1,13 @@
 package receive_request.recceive_request_frameworks_drivers;
 
-import receive_request.receive_request_use_case.ReceiveRequestDatabaseAccessorI;
+import receive_request.receive_request_use_case.ReceiveRequestDatabaseAccessorInterface;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ReceiveRequestDatabaseAccessor implements ReceiveRequestDatabaseAccessorI {
+public class ReceiveRequestDatabaseAccessor implements ReceiveRequestDatabaseAccessorInterface {
 
     /**
      * {@inheritDoc}
