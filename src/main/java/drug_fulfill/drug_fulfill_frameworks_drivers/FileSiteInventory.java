@@ -1,12 +1,8 @@
+//package drug_fulfill.drug_fulfill_frameworks_drivers;
 //
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
-package drug_fulfill.drug_fulfill_frameworks_drivers;
-
 //import drug_fulfill.drug_fulfill_use_case.DrugFulfillDsGateway;
 //import drug_fulfill.drug_fulfill_use_case.DrugFulfillDsRequestModel;
+//import drug_fulfill.drug_fulfill_use_case.SiteFulfillDsGateway;
 //
 //import java.io.BufferedWriter;
 //import java.io.File;
@@ -17,7 +13,7 @@ package drug_fulfill.drug_fulfill_frameworks_drivers;
 //import java.util.Map;
 //import java.util.Objects;
 //
-//public class FileSiteInventory implements DrugFulfillDsGateway {
+//public class FileSiteInventory implements SiteFulfillDsGateway {
 //    private final File csvFile;
 //    private final Map<String, Integer> headers = new LinkedHashMap<>();
 //    private final Map<String, String[]> initialInventory = new HashMap<>();
