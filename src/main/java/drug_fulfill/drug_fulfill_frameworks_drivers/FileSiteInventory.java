@@ -7,6 +7,7 @@ package drug_fulfill.drug_fulfill_frameworks_drivers;
 
 import drug_fulfill.drug_fulfill_use_case.SiteDrugFulfillDsGateway;
 import drug_fulfill.drug_fulfill_use_case.SiteDrugFulfillDsRequestModel;
+import helper_methods.DrugListGenerator;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -20,8 +21,11 @@ public class FileSiteInventory implements SiteDrugFulfillDsGateway {
     private final Map<String, Integer> headers = new LinkedHashMap<>();
     private final Map<String, SiteDrugFulfillDsRequestModel> CurrentInventory = new HashMap<>();
     private final Map<String, SiteDrugFulfillDsRequestModel> MadeOrders = new HashMap<>();
-    private final String[] drugList = new String[]{"DrugA", "DrugB", "DrugC"};
+//    private final String[] drugList = new String[]{"DrugA", "DrugB", "DrugC"};
+    private final String[] drugList = new DrugListGenerator().GenerateDrugList();
+
     private final String[] siteList = new String[]{"Site1", "Site2", "Site3"};
+
 
     /**
      * Allows for storing data in memory, and writing corresponding CSV files.

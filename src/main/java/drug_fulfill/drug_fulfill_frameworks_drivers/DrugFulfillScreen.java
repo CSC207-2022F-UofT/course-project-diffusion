@@ -14,13 +14,10 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
     /**
      * The drugName chosen by the user
      */
-    JTextField drugName = new JTextField(15);
 
     JTextField bottle = new JTextField(15);
 
-
-    JTextField depot = new JTextField(15);
-    JComboBox<String> selectDepot;
+    JComboBox<String> selectSite;
     JComboBox<String> selectDrug;
 
 
@@ -46,22 +43,17 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
         JLabel title = new JLabel("Order Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        String[] depots = {"Depot1", "Depot2", "Depot3"};
-        String[] drugs = {"DrugA", "DrugB", "DrugC"};
+        String[] sites = {"Site1", "Site2", "Site3"};
+        String[] drugs = new DrugListGenerator().GenerateDrugList();
 
-        LabelTextPanel drugNameInfo = new LabelTextPanel(
-                new JLabel("Choose drugName (DrugA, DrugB, DrugC)"), drugName);
         selectDrug = new JComboBox<>(drugs);
         LabelComboBox chooseDrug = new LabelComboBox(new JLabel("Choose drugName"), selectDrug);
 
         LabelTextPanel bottleInfo = new LabelTextPanel(
                 new JLabel("Choose amount/bottle"), bottle);
 
-        LabelTextPanel depotInfo = new LabelTextPanel(
-                new JLabel("Choose depot to order from (Depot1, Depot2, Depot3)"), depot);
-        selectDepot = new JComboBox<>(depots);
-
-        LabelComboBox chooseDepot = new LabelComboBox(new JLabel("Choose depot"), selectDepot);
+        selectSite = new JComboBox<>(sites);
+        LabelComboBox chooseSite = new LabelComboBox(new JLabel("Choose depot"), selectSite);
 
 
         isEmergency=new JCheckBox("Toggle if Emergency");
@@ -74,7 +66,7 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
         buttons.add(signUp);
         buttons.add(cancel);
 
-        cancel.setActionCommand("Canel");
+        cancel.setActionCommand("Cancel");
 
         signUp.addActionListener(this);
         cancel.addActionListener(this);
@@ -83,7 +75,7 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
 
         this.add(title);
         this.add(chooseDrug);
-        this.add(chooseDepot);
+        this.add(chooseSite);
         this.add(bottleInfo);
 
         this.add(isEmergency);

@@ -24,6 +24,7 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
 //    private final String[] drugList = new String[]{"DrugA", "DrugB", "DrugC"};
     private final String[] drugList = new DrugListGenerator().GenerateDrugList();
     private final String[] depotList = new String[]{"Depot1", "Depot2", "Depot3"};
+    private final String[] depotIDList = new String[]{"1", "2", "3"};
 
     /**
      * Allows for storing data in memory, and writing corresponding CSV files.
@@ -37,6 +38,7 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
         this.headers.put("creation_time", 3);
         this.headers.put("batch Number", 4);
         this.headers.put("id Number", 5);
+//        this.headers.put("Depot ID", 6);
 
         if (this.csvFile.length() == 0L) {
             System.out.println("No Corresponding CSV file. Creating default depot Inventory.");
@@ -86,20 +88,20 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
      * @param requestModel The order made by a user.
      */
     public void fulfillOrder(DrugFulfillDsRequestModel requestModel) {
-        String fake_id = String.valueOf(requestModel.getCreationTime());
-        this.MadeOrders.put(fake_id, requestModel);
-        this.adjustInventory(fake_id);
+        String time_id = String.valueOf(requestModel.getCreationTime());
+        this.MadeOrders.put(time_id, requestModel);
+        this.adjustInventory(time_id);
     }
     /**
      * Allows for depot database to adjust based on an order made.
-     * @param fake_id ID value used as key in our Hashmap. Used to pull a specific order made.
+     * @param time_id ID value used as key in our Hashmap. Used to pull a specific order made.
      */
 
-    private void adjustInventory(String fake_id) {
+    private void adjustInventory(String time_id) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(this.csvFile));
             writer.write(String.join(",", this.headers.keySet()));
-            DrugFulfillDsRequestModel plsfulfill = this.MadeOrders.get(fake_id);
+            DrugFulfillDsRequestModel plsfulfill = this.MadeOrders.get(time_id);
 
             for (DrugFulfillDsRequestModel drugBin : this.CurrentInventory.values()) {
 
@@ -128,11 +130,13 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
             BufferedWriter writer = new BufferedWriter(new FileWriter(this.csvFile));
             writer.write(String.join(",", this.headers.keySet()));
             writer.newLine();
+            int initial_amount = 20;
+//            initial_amount = randomnum
 
             for (String DepotName : this.depotList) {
                 for (String DrugName : this.drugList) {
                     LocalDateTime ldt_now = LocalDateTime.now();
-                    String line = String.format("%4$s,%1$s,%2$s,%3$s", DrugName, "20", ldt_now, DepotName);
+                    String line = String.format("%4$s,%1$s,%2$s,%3$s", DrugName, initial_amount, ldt_now, DepotName);
 
                     writer.write(line);
                     writer.newLine();

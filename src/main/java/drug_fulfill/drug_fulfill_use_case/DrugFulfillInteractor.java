@@ -50,7 +50,7 @@ public class DrugFulfillInteractor implements DrugFulfillInputBoundary {
 
         }
 
-        DrugFulfillResponseModel orderResponseModel = new DrugFulfillResponseModel(order.getDrugName(), now.toString(), order.getIsEmergency());
+        DrugFulfillResponseModel orderResponseModel = new DrugFulfillResponseModel(order.getDrugName(), now.toString(), order.getIsEmergency(), 1, order.getDepotName(), order.getSiteName()); //arbitrary placeholders
         return orderPresenter.prepareSuccessView(orderResponseModel);
 
     }

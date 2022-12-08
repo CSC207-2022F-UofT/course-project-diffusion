@@ -10,15 +10,17 @@ public class DrugFulfillResponseModel {
     private final Boolean isEmergency;
     private final int IDNumber;
     private final String depotName;
+    private final String siteName;
 
 
 
-    public DrugFulfillResponseModel(String drugName, String creationTime, Boolean isEmergency, int ID, String depot) {
+    public DrugFulfillResponseModel(String drugName, String creationTime, Boolean isEmergency, int ID, String depot, String site) {
         this.drugName = drugName;
         this.creationTime = creationTime;
         this.isEmergency = isEmergency;
         this.IDNumber = ID;
         this.depotName = depot;
+        this.siteName = site;
     }
 
     public String getDrugName() {
@@ -45,4 +47,5 @@ public class DrugFulfillResponseModel {
     public void setCreationTime(String creationTime){
         this.creationTime = creationTime;
     }
+    public String getSiteName(){return siteName;}
 }
