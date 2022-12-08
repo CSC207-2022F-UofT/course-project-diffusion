@@ -1,4 +1,4 @@
-package drug_fulfill.drug_fulfill_depot_inventories;
+package drug_fulfill.drug_fulfill_frameworks_drivers;
 
 import javax.swing.*;
 

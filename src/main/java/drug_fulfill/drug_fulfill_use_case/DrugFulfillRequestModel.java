@@ -8,12 +8,14 @@ public class DrugFulfillRequestModel {
     private int drugBottle;
     private Boolean isEmergency;
     private String depot;
+    private String site;
 
-    public DrugFulfillRequestModel(String name, int drugBottle, Boolean isEmergency, String depot) {
+    public DrugFulfillRequestModel(String name, int drugBottle, Boolean isEmergency, String depot, String site) {
         this.drugName = name;
         this.drugBottle = drugBottle;
         this.isEmergency = isEmergency;
         this.depot = depot;
+        this.site = site;
     }
 
     String getDrugName() {
@@ -42,4 +44,5 @@ public class DrugFulfillRequestModel {
     String getDepot(){
         return depot;
     }
+    String getSite(){return site;}
 }

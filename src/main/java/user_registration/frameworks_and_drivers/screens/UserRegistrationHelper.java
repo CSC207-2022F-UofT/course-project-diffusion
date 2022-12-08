@@ -10,6 +10,9 @@ import user_registration.use_case.interactor.UserRegistrationInteractor;
 
 import java.io.IOException;
 
+/**
+ *
+ */
 public class UserRegistrationHelper {
     public UserRegistrationScreen GenerateRegistrationScreen() {
          /*
@@ -23,7 +26,7 @@ public class UserRegistrationHelper {
         UserRegistrationDsGateway userRegistrationDsGateway;
         System.out.println("construct the database");
         try{
-            userRegistrationDsGateway = new UserRegistrationRecorder("./UsersRegistered4.csv");
+            userRegistrationDsGateway = new UserRegistrationRecorder("./UsersRegistered5.csv");
 
         } catch (IOException e) {
             e.printStackTrace();

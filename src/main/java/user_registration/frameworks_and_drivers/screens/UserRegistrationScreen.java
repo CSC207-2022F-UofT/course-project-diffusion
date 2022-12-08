@@ -1,8 +1,6 @@
 package user_registration.frameworks_and_drivers.screens;
 
-//import site_drug_request.drug_request_frameworks_drivers.PanelGenerator;
-
-import user_registration.frameworks_and_drivers.screens.panel_creator.PanelCreator;
+import helper_methods.PanelCreator;
 import user_registration.interface_adapters.UserPresenterOutputBoundary;
 import user_registration.interface_adapters.UserRegistrationController;
 import user_registration.interface_adapters.UserRegistrationViewmodel;
@@ -33,7 +31,8 @@ public class UserRegistrationScreen extends JPanel implements ActionListener, Us
     /**
      * The password of the person
      */
-    JTextField password = new JTextField(15);
+    JPasswordField password = new JPasswordField(15);
+//    JTextField password = new JTextField(15);
 
 
     JTextField requestResponse = new JTextField(45);
@@ -213,8 +212,8 @@ public class UserRegistrationScreen extends JPanel implements ActionListener, Us
         if (actionEvent.getSource() == submitUserRegistration) {
             System.out.println("Clicked " + actionEvent.getActionCommand());
             try {
-                userRegistrationController.createInputObject(firstName.getText(), lastName.getText(), username.getText(),
-                        password.getText(), defaultBox.getSelectedItem(), role);
+                userRegistrationController.createInputObject(firstName.getText(), lastName.getText(),
+                        username.getText(), password.getText(), defaultBox.getSelectedItem(), role);
                 JOptionPane.showMessageDialog(this, String.format("User Registration Request recorded for " +
                         "%s", username.getText()));
             } catch (Exception e) {

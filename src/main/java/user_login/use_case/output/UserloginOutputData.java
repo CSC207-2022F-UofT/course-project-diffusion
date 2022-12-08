@@ -5,12 +5,14 @@ public class UserloginOutputData {
     String creationTime;
     String role;
     String locationName;
+    String accountID;
 
-    public UserloginOutputData(String username, String creationTime, String role, String locationName) {
+    public UserloginOutputData(String username, String creationTime, String role, String locationName, String accountID) {
         this.username = username;
         this.creationTime = creationTime;
         this.role = role;
         this.locationName = locationName;
+        this.accountID = accountID;
     }
 
     public String getCreationTime() {
@@ -41,7 +43,16 @@ public class UserloginOutputData {
         return locationName;
     }
 
+    public String getAccountID() {
+        return accountID;
+    }
+
+    public void setAccountID(String accountID) {
+        this.accountID = accountID;
+    }
+
     public void setLocationName(String locationName) {
         this.locationName = locationName;
+
     }
 }

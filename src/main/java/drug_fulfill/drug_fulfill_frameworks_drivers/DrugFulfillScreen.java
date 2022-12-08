@@ -1,6 +1,7 @@
-package drug_fulfill.drug_fulfill_depot_inventories;
+package drug_fulfill.drug_fulfill_frameworks_drivers;
 
 import drug_fulfill.drug_fulfill_interface_adapters.DrugFulfillController;
+import helper_methods.DrugListGenerator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,16 +14,11 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
     /**
      * The drugName chosen by the user
      */
-    JTextField drugName = new JTextField(15);
 
     JTextField bottle = new JTextField(15);
 
-
-    JTextField depot = new JTextField(15);
-    JComboBox<String> selectDepot;
+    JComboBox<String> selectSite;
     JComboBox<String> selectDrug;
-
-
 
 
     /**
@@ -38,9 +34,7 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
     /**
      * A window with a title and a JButton.
      */
-
-    String locationRole = "Null";
-    String locationID = "0";
+    String locationID;
     public DrugFulfillScreen(DrugFulfillController controller) {
 
         this.userRegisterController = controller;
@@ -49,33 +43,17 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
         JLabel title = new JLabel("Order Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        //String[] sites = {"Site1", "Site2", "Site3"};
-        String[] depots = {"Depot1", "Depot2", "Depot3"};
-        String[] drugs = {"DrugA", "DrugB", "DrugC"};
+        String[] sites = {"Site1", "Site2", "Site3"};
+        String[] drugs = new DrugListGenerator().GenerateDrugList();
 
-        LabelTextPanel drugNameInfo = new LabelTextPanel(
-                new JLabel("Choose drugName (DrugA, DrugB, DrugC)"), drugName);
         selectDrug = new JComboBox<>(drugs);
-
-//        JPanel drugpanel = new JPanel();
-//        drugpanel.add(selectDrug);
         LabelComboBox chooseDrug = new LabelComboBox(new JLabel("Choose drugName"), selectDrug);
-
-
-
-
-
 
         LabelTextPanel bottleInfo = new LabelTextPanel(
                 new JLabel("Choose amount/bottle"), bottle);
 
-        LabelTextPanel depotInfo = new LabelTextPanel(
-                new JLabel("Choose depot to order from (Depot1, Depot2, Depot3)"), depot);
-        selectDepot = new JComboBox<>(depots);
-
-//        JPanel depotpanel = new JPanel();
-//        depotpanel.add(selectDepot);
-        LabelComboBox chooseDepot = new LabelComboBox(new JLabel("Choose depot"), selectDepot);
+        selectSite = new JComboBox<>(sites);
+        LabelComboBox chooseSite = new LabelComboBox(new JLabel("Choose depot"), selectSite);
 
 
         isEmergency=new JCheckBox("Toggle if Emergency");
@@ -88,7 +66,7 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
         buttons.add(signUp);
         buttons.add(cancel);
 
-        cancel.setActionCommand("Canel");
+        cancel.setActionCommand("Cancel");
 
         signUp.addActionListener(this);
         cancel.addActionListener(this);
@@ -96,11 +74,9 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
-        //this.add(drugNameInfo);
         this.add(chooseDrug);
-        this.add(chooseDepot);
+        this.add(chooseSite);
         this.add(bottleInfo);
-        //this.add(depotInfo);
 
         this.add(isEmergency);
         this.add(buttons);
@@ -121,31 +97,18 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
             ie = Boolean.TRUE;
         } else if (evt.getActionCommand().equals("Cancel")){
             System.exit(0);
-        };
+        }
         try {
             userRegisterController.create((String) selectDrug.getSelectedItem(),
-                    Integer.parseInt(bottle.getText()), //just some number for now
-                    //String.valueOf(password.getPassword()),
-                    //String.valueOf(repeatPassword.getPassword()),
-                    ie, (String) selectDepot.getSelectedItem());
+                    Integer.parseInt(bottle.getText()),
+                    ie, getLocationID(), (String) selectSite.getSelectedItem()); //placeholder, site goes here
 
 
-
-            //JOptionPane.showMessageDialog(this,  String.format("%1$s ", bottle.getText()) + String.format(drugName.getText()) + "is emergency " + isEmergency.isSelected());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "please put in a number for amount");
         }
 
     }
-
-    public String getLocationRole() {
-        return locationRole;
-    }
-
-    public void setLocationRole(String locationRole) {
-        this.locationRole = locationRole;
-    }
-
     public String getLocationID() {
         return locationID;
     }
