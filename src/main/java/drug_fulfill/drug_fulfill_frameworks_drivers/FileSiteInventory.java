@@ -79,11 +79,17 @@ public class FileSiteInventory implements SiteDrugFulfillDsGateway {
         this.adjustInventory(fake_id);
     }
 
+    /**
+     * @return LinkedHashMap for ease of access to information on Current Inventory
+     */
     @Override
     public Map<String, SiteDrugFulfillDsRequestModel> getCurrentInventory() {
         return this.CurrentInventory;
     }
 
+    /**
+     * @return LinkedHashMap for ease of access to information on made orders
+     */
     @Override
     public Map<String, SiteDrugFulfillDsRequestModel> getMadeOrders() {
         return this.MadeOrders;
@@ -120,7 +126,7 @@ public class FileSiteInventory implements SiteDrugFulfillDsGateway {
         }
     }
     /**
-     * Allows a simple Depot database to be created with 20 of each drug in each depot.
+     * Allows a simple Site database to be created with 0 of each drug in each depot.
      */
     private void createSite() {
         try {

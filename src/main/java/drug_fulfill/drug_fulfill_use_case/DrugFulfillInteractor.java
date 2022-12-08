@@ -38,7 +38,8 @@ public class DrugFulfillInteractor implements DrugFulfillInputBoundary {
         SiteDrugFulfillDsRequestModel OrderDsModelSite = new SiteDrugFulfillDsRequestModel(order.getDrugName(), order.getDrugBottle(), now, order.getIsEmergency(), order.getSiteName());
         /**
          * Check if depot the order is going to have sufficient inventory.
-         * If yes, execute method fulfillOrder to adjust hashmap and CSV database.
+         * If yes, execute method fulfillOrder to adjust hashmap and CSV database for both Site and Depot.
+         * Else, will notify depot user of insufficient drug amount.
          */
         if (!fulfillDsGateway.depotIsInsufficient(order.getDrugBottle(), order.getDrugName(), order.getDepotName())){
             fulfillDsGateway.fulfillOrder(OrderDsModel);

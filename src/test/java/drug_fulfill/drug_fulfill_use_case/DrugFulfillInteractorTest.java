@@ -2,7 +2,7 @@ package drug_fulfill.drug_fulfill_use_case;
 
 import drug_fulfill.drug_fulfill_entities.CommonDrugFulfillFactory;
 import drug_fulfill.drug_fulfill_interface_adapters.DrugFulfillResponseFormatter;
-import drug_fulfill.drug_fulfill_frameworks_drivers.FileDepotInventoryA;
+import drug_fulfill.drug_fulfill_frameworks_drivers.FileDepotInventory;
 import drug_fulfill.drug_fulfill_frameworks_drivers.FileSiteInventory;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ class DrugFulfillInteractorTest {
         DrugFulfillDsGateway depotTestDatabase;
         SiteDrugFulfillDsGateway siteTestDatabase;
         try {
-            depotTestDatabase = new FileDepotInventoryA("./depotAInventoryTestCases.csv");
+            depotTestDatabase = new FileDepotInventory("./depotAInventoryTestCases.csv");
             siteTestDatabase = new FileSiteInventory("./SiteInventoryTestCases.csv");
         } catch (IOException var11) {
             throw new RuntimeException("Could not create files.");

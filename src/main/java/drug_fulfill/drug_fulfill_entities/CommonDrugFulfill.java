@@ -12,7 +12,8 @@ public class CommonDrugFulfill implements DrugFulfill {
      * @param drugName of drug being ordered
      * @param drugBottle amount of drug being ordered
      * @param isEmergency boolean of whether the order is an emergency
-     * @param depotName name of depot the order will be sent to
+     * @param depotName name of depot the order is sent from
+     * @param siteName name of site the order will be sent to
      */
 
      CommonDrugFulfill(String drugName, int drugBottle, Boolean isEmergency, String depotName, String siteName){
