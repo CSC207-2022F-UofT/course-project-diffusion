@@ -42,9 +42,7 @@ public class DrugRequestInteractor implements DrugRequestInputBoundary {
 
         } else if (!drugRequest.drugBottleIsValid()) {
             return drugRequestOutputBoundary.prepareFailView("Drug Bottles ordered must be between 1 and 100 (inclusive)");
-        } else if (!nameExist) {
-            return drugRequestOutputBoundary.prepareFailView("Drug not found");
-        } else if (!sufficientInventory) {
+        } else if (nameExist && !sufficientInventory) {
             return drugRequestOutputBoundary.prepareFailView("Insufficient inventory");
         }
 
