@@ -156,7 +156,8 @@ public class DrugRequestScreen extends JPanel implements ActionListener, DrugReq
                 //Is it ok to call this???
                 drugRequestController.create(drugName.getText(), drugBottle.getText(), getSiteName(), getAccountID());
                 System.out.println("SCREEN PASSED");
-                JOptionPane.showMessageDialog(drugRequestButton, String.format("Drug Order Request sent for %s bottles of %s.", drugBottle.getText(), drugName.getText()));
+                JOptionPane.showMessageDialog(drugRequestButton, String.format(
+                        "Drug Order Request sent for %s bottles of %s.", drugBottle.getText(), drugName.getText()));
             } catch (Exception ee) {
                 JOptionPane.showMessageDialog(cancelRequestbutton, ee.getMessage());
             }

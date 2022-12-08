@@ -27,7 +27,8 @@ public class DrugRequestHelper {
 
         ReceiveRequestDatabaseAccessor receiveDatabaseAccessor = new ReceiveRequestDatabaseAccessor();
         ReceiveRequestPresenter receiveOutputBoundary = new ReceiveRequestPresenter();
-        ReceiveRequestInputBoundary receiveInteractor = new ReceiveRequestInteractor(receiveOutputBoundary, receiveDatabaseAccessor);
+        ReceiveRequestInputBoundary receiveInteractor = new ReceiveRequestInteractor(receiveOutputBoundary,
+                receiveDatabaseAccessor);
         ReceiveRequestController receiveController = new ReceiveRequestController(receiveInteractor);
 
         DrugRequestPresenter outputBoundary = new DrugRequestPresenter();
