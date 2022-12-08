@@ -1,13 +1,21 @@
 package user_registration.use_case.output;
 
+/**
+ *
+ */
 public class UserRegistrationOutputData {
-    String firstName;
-    String lastname;
-    String username;
-    //    String password;
-    String creationTime;
-    String locationName;
+     private final String firstName;
+    private final String lastname;
+    private final String username;
+    private  String creationTime;
 
+    /**
+     *
+     * @param firstName users firstname
+     * @param lastname users lastname
+     * @param username users username
+     * @param creationTime users creationtime
+     */
     public UserRegistrationOutputData(String firstName, String lastname, String username, String creationTime){
         this.firstName = firstName;
         this.lastname = lastname;
@@ -20,24 +28,13 @@ public class UserRegistrationOutputData {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
 
     public String getLastname() {
         return lastname;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
     public String getUsername() {
         return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getCreationTime() {

@@ -18,7 +18,7 @@ public class DatabaseAccessor implements IDrugListAccessor {
     public List<DrugRequestDBEntry> getDrugRequestList() throws FileNotFoundException {
         ArrayList<DrugRequestDBEntry> list = new ArrayList<>();
 
-        Scanner scanner = new Scanner(new File("./Test16.csv"));
+        Scanner scanner = new Scanner(new File("./DrugRequestslog.csv"));
 
         // Skip header
         scanner.nextLine();

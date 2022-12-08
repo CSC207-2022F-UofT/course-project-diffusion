@@ -3,10 +3,14 @@ package site_drug_request.drug_request_entity;
 public class CommonDrugRequest implements DrugRequest{
     private final String drugName;
     private final String drugBottle;
+    private final String siteName;
+    private final String accountID;
 
-    CommonDrugRequest(String drugName, String drugBottle){
+    CommonDrugRequest(String drugName, String drugBottle, String siteName, String accountID){
         this.drugName = drugName;
         this.drugBottle = drugBottle;
+        this.siteName = siteName;
+        this.accountID = accountID;
     }
 
 
@@ -50,4 +54,15 @@ public class CommonDrugRequest implements DrugRequest{
     public String getDrugBottle() {
         return drugBottle;
     }
+
+    @Override
+    public String getSiteName() {
+        return siteName;
+    }
+
+    @Override
+    public String getaccountID() {
+        return accountID;
+    }
+
 }

@@ -242,10 +242,11 @@ public class MainFrame {
             System.out.println("Clicked " + submitLoginButton.getText());
             if (userLoginScreen.getSubmitLoginStatus()) {
                 CardLayout cardLayout = (CardLayout) contentPane.getLayout();
-                System.out.println(Objects.equals(userLoginScreen.getUserRole(), siteRole));
                 if (Objects.equals(userLoginScreen.getUserRole(), siteRole)) {
-                    drugFulfillScreen.setLocationRole(siteRole);
-                    drugFulfillScreen.setLocationID(userLoginScreen.getLocationID());
+                    drugRequestScreen.setAccountID(userLoginScreen.getAccountID());
+                    drugRequestScreen.setSiteName(userLoginScreen.getLocationName());
+//                    drugFulfillScreen.setLocationRole(siteRole);
+//                    drugFulfillScreen.setLocationID(userLoginScreen.getAccountID());
                     cardLayout.show(contentPane, "Drug Request Screen");
                 } else if (Objects.equals(userLoginScreen.getUserRole(), depotRole)) {
                 cardLayout.show(contentPane, "Drug Order Screen");
