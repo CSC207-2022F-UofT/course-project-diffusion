@@ -45,12 +45,13 @@ public class UserLoginInteractor implements UserloginInputBoundary {
         Retrieve the role of the user from the database.
          */
         String role = userLoginDsGateway.userRole(userloginPOJO.getUsername());
+        String locationName = userLoginDsGateway.locationName(userloginPOJO.getUsername());
 
         /*
         Create the return object
          */
         UserloginOutputData  userloginOutputData = new UserloginOutputData(userloginPOJO.getUsername(),
-                userLoginRequestTime.toString(), role);
+                userLoginRequestTime.toString(), role, locationName);
 
         /*
         Return out if successful

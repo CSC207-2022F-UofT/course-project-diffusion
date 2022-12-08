@@ -20,7 +20,8 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
     JButton cancelUserLogin;
     Boolean submitLoginStatus = false;
 
-    String loginStatusType;
+    String userRole;
+    String locationID;
 
     public UserLoginScreen(UserLoginController userLoginController) {
         this.userLoginController = userLoginController;
@@ -74,8 +75,9 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
     @Override
     public UserloginOutputData presenterOutput(UserloginOutputData userloginOutputData) {
         UserLoginViewModel userLoginViewModel = new UserLoginViewModel(userloginOutputData.getUsername(),
-                userloginOutputData.getCreationTime(), userloginOutputData.getRole());
-        setLoginStatusType(userLoginViewModel.getRole());
+                userloginOutputData.getCreationTime(), userloginOutputData.getRole(), userloginOutputData.getLocationName());
+        setUserRole(userLoginViewModel.getRole());
+        setLocationID(userLoginViewModel.getLocationName());
         requestResponse.setText(String.format("Approved! %s successfully logged in at %s as a %s",
                 userLoginViewModel.getUsername(), userLoginViewModel.getCreationTime(), userLoginViewModel.getRole()));
         return userloginOutputData;
@@ -89,11 +91,19 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
         this.submitLoginStatus = submitLoginStatus;
     }
 
-    public String getLoginStatusType() {
-        return loginStatusType;
+    public String getUserRole() {
+        return userRole;
     }
 
-    public void setLoginStatusType(String loginStatusType) {
-        this.loginStatusType = loginStatusType;
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
+
+    public String getLocationID() {
+        return locationID;
+    }
+
+    public void setLocationID(String locationID) {
+        this.locationID = locationID;
     }
 }

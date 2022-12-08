@@ -1,8 +1,9 @@
 package user_registration.use_case.database_access;
 
+/**
+ * Interface to access the database.
+ */
 public interface UserRegistrationDsGateway {
-//    boolean firstNameExists(String identifier);
-//    boolean lastNameExists(String identifier);
     boolean usernameExists(String identifier);
     void saveUserRegistration(UserRegistrationDsInputData registrationDsInputData);
 }

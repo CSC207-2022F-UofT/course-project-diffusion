@@ -1,8 +1,10 @@
 package site_drug_request.drug_request_use_case;
 
+import receive_request.receive_request_interface_adapters.ReceiveRequestController;
 import site_drug_request.drug_request_entity.DrugRequest;
 import site_drug_request.drug_request_entity.DrugRequestGenerator;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 
 public class DrugRequestInteractor implements DrugRequestInputBoundary {
@@ -10,16 +12,18 @@ public class DrugRequestInteractor implements DrugRequestInputBoundary {
     final DrugRequestDsGateway drugRequestDsGateway;
     final DrugRequestOutputBoundary drugRequestOutputBoundary;
     final DrugRequestGenerator drugRequestGenerator;
+    final ReceiveRequestController receiveRequestController;
 
     public DrugRequestInteractor(DrugRequestDsGateway drugRequestDsGateway, DrugRequestOutputBoundary drugRequestOutputBoundary,
-                                 DrugRequestGenerator drugRequestGenerator) {
+                                 DrugRequestGenerator drugRequestGenerator, ReceiveRequestController receiveRequestController) {
         this.drugRequestDsGateway = drugRequestDsGateway;
         this.drugRequestOutputBoundary = drugRequestOutputBoundary;
         this.drugRequestGenerator = drugRequestGenerator;
+        this.receiveRequestController = receiveRequestController;
     }
 
     @Override
-    public DrugRequestResponseModel create(DrugRequestInvokeModel drugRequestInvokeModel) {
+    public DrugRequestResponseModel create(DrugRequestInvokeModel drugRequestInvokeModel) throws FileNotFoundException {
 //        if (drugRequestInvokeModel.getDrugBottle() > 99){
 //            return drugRequestPresenter.prepareFailView("Order Failed. Bottle quantity exceeds maximum of 99");
 //        }
@@ -37,10 +41,11 @@ public class DrugRequestInteractor implements DrugRequestInputBoundary {
 
         } else if (!drugRequest.drugBottleIsValid()) {
             return drugRequestOutputBoundary.prepareFailView("Drug Bottles ordered must be between 1 and 100 (inclusive)");
-        } else if (drugRequestDsGateway.drugNameExists(drugRequest.getDrugName())) {
-            return drugRequestOutputBoundary.prepareFailView("Drug name already exists");
+//        else if (drugRequestDsGateway.drugNameExists(drugRequest.getDrugName())) {
+//            return drugRequestOutputBoundary.prepareFailView("Drug name already exists");
+        } else if (!receiveRequestController.checkInventory(drugRequest.getDrugName(), drugRequest.getDrugBottle()).getValidState()){
+            return drugRequestOutputBoundary.prepareFailView("Insufficient inventory");
         }
-
 
         LocalDateTime drugRequestDate = LocalDateTime.now();
 

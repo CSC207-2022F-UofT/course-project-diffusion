@@ -6,16 +6,31 @@ import user_registration.use_case.database_access.UserRegistrationDsInputData;
 import java.io.*;
 import java.util.*;
 
+/**
+ * Handles all User Registration CSV database populating and reading.
+ */
 public class UserRegistrationRecorder implements UserRegistrationDsGateway {
 
-    //Below allows for the File to be created
+    /**
+     * The csvFile to be created
+     */
     private final File csvFile;
 
-    //below allows us to map Header names using integers
+     /**
+      * map Header names using integers
+     */
     private final Map<String, Integer> headers = new LinkedHashMap<>();
 
-    //Confirm what below does, but fairly sure it allows mapping of the actual drug request contents with a key.
+    /**
+     * Maps the drug request contents with a key.
+     */
     private final Map<String, UserRegistrationDsInputData> userRegistrationRequest = new HashMap<>();
+
+    /**
+     *
+     * @param csvPath the UserRegistration file path.
+     * @throws IOException if there is an handling error
+     */
 
     public UserRegistrationRecorder(String csvPath) throws IOException {
         csvFile = new File(csvPath);
@@ -47,31 +62,39 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
 //        return userRegistrationRequest.containsKey(identifier);
 //    }
 
+    /**
+     * Checks if the username exists
+     * @param identifier the username
+     * @return boolean expression
+     */
     @Override
     public boolean usernameExists(String identifier) {
-        return Reader(identifier, 3);
+        return Reader(identifier);
     }
 
+    /**
+     * Saves the user registration request into the CSV file.
+     * @param registrationDsInputData the input object from the interactor to be saved.
+     */
     @Override
     public void saveUserRegistration(UserRegistrationDsInputData registrationDsInputData) {
         userRegistrationRequest.put(registrationDsInputData.getUsername(),registrationDsInputData);
         this.appendUserRegistrationRequest(registrationDsInputData.getUsername());
-//        this.generateUserRegistrationHelper(registrationDsInputData.getUsername());
     }
 
     /**
-     *
+     *Adds the UserRegistration request to the end of the CSV file.
      * @param username key to access the hashmap and retrieve the UserRegistrationDsInputData.
      */
     private void appendUserRegistrationRequest(String username){
         BufferedWriter userRegistrationWriter;
         try {
             userRegistrationWriter = new BufferedWriter(new FileWriter(csvFile, true));
-                UserRegistrationDsInputData latestEntry = userRegistrationRequest.get(username);
+            UserRegistrationDsInputData latestEntry = userRegistrationRequest.get(username);
 
-                int lastRegistrationRequestID = LastIDRetriever(0, 2000);
-                int series = lastNumber(latestEntry.getRole());
-                int siteOrDepotID = UserlocationDetailsReader(latestEntry.getRole());
+            int lastRegistrationRequestID = LastIDRetriever();
+//            int series = lastNumber(latestEntry.getRole());
+            int siteOrDepotID = UserlocationDetailsReader(latestEntry.getRole());
 
             System.out.println(latestEntry.getRole());
             String line = String.format("%s, %s, %s, %s, %s, %s, %s, %s, %s", lastRegistrationRequestID, latestEntry.getFirstname(),
@@ -87,16 +110,13 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
     }
 
     /**
-     *
-     * @param column the column of the userRegistration csv file to check
-     * @param series the number series associated with that column
      * @return the targetID + the lastID
-     * @throws IOException
+     * @throws IOException if there is an input output exception.
      */
-    private int LastIDRetriever(int column, int series) throws IOException {
+    private int LastIDRetriever() throws IOException {
         String delimiter = ",";
         String currentLine;
-        int targetID = series;
+        int targetID = 2000;
 
         BufferedReader bufferedReader = new BufferedReader(new FileReader(csvFile));
          currentLine = bufferedReader.readLine();
@@ -104,28 +124,19 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
         while ((currentLine = bufferedReader.readLine()) != null) {
             String[] data = currentLine.split(delimiter);
             System.out.println(data[0]);
-            //consider changing below to value of
-            targetID =  Integer.parseInt(data[column]) + 1;
+            targetID =  Integer.parseInt(data[0]) + 1;
         }
         bufferedReader.close();
         System.out.println(targetID);
         return targetID;
     }
 
-    private int lastNumber(String role) {
-        int locationID = 0;
-        if (role.equals("Site User")) {
-            locationID = 3000;
-        } else if (role.equals("Depot User")) {
-            locationID = 4000;
-        }return locationID;
-    }
-
     /**
-     *
-     * @param role
-     * @return
-     * @throws IOException
+     * Checks to see what the ID number of the last user registered was. Generate the new location ID based on
+     * the specified role and last user ID registered.
+     * @param role the role the user selected.
+     * @return the ID number of the location
+     * @throws IOException if there is an input output exception.
      */
     private int UserlocationDetailsReader(String role) throws IOException {
         String delimiter = ",";
@@ -133,29 +144,33 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
         int locationID = 0;
         String[] data;
 
+        /*
+        check the role and set the locationID accordings.
+         */
+
         if (role.equals("Site User")){
              locationID = 3000;
         } else if (role.equals("Depot User")){
             locationID = 4000;
         }
-//        System.out.println(locationID);
 
+        /*
+        Read the lines and update location ID to the latest ID of the relevant role.
+         */
         BufferedReader bufferedReader = new BufferedReader(new FileReader(csvFile));
-        currentLine = bufferedReader.readLine();
-//        System.out.println(locationID);
-
         while ((currentLine = bufferedReader.readLine()) != null) {
-
             data = currentLine.split(delimiter);
             if (Objects.equals(data[5].trim(), role)) {
-                locationID = Integer.valueOf(data[7].trim()) + 1;
+                locationID = Integer.parseInt(data[7].trim()) + 1;
             }
         }
         bufferedReader.close();
         return locationID;
     }
 
-
+    /**
+     * Generate the header of the CSV File
+     */
     private void generateHeader(){
         BufferedWriter userRegistrationWriter;
         try{
@@ -167,21 +182,24 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
             throw new RuntimeException(e);
         }
     }
-    private boolean Reader(String reference, int column){
+
+    /**
+     * @param reference the user role
+     * @return boolean expression
+     */
+    private boolean Reader(String reference){
         String delimiter = ",";
         BufferedReader bufferedReader;
         String currentline;
         String[] data;
-//        ArrayList<String> collectedData = new ArrayList<String>();
         try {
             bufferedReader = new BufferedReader(new FileReader(csvFile));
 
             while  ((currentline = bufferedReader.readLine())!= null){
                 data = currentline.split(delimiter);
-                System.out.println(data[column]);
+                System.out.println(data[3]);
                 System.out.println(reference);
-//                System.out.println(Arrays.toString(new String[]{data[column]}));
-                if (Objects.equals(data[column].trim(), reference)){
+                if (Objects.equals(data[3].trim(), reference)){
                     return true;
                 }
             }
@@ -191,7 +209,5 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
         } return false;
 
     }
-
-
 
 }

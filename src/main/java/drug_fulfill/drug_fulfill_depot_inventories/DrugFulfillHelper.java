@@ -17,7 +17,7 @@ import java.io.IOException;
 
 
 public class DrugFulfillHelper {
-    public OrderScreen DrugFulfillGenerator() {
+    public DrugFulfillScreen DrugFulfillGenerator() {
         DrugFulfillDsGateway drugFulfillDsGateway;
 
 
@@ -36,7 +36,7 @@ public class DrugFulfillHelper {
         DrugFulfillFactory orderFactory = new CommonDrugFulfillFactory();
         DrugFulfillInputBoundary interactor = new DrugFulfillInteractor(depot, presenter, orderFactory);
         DrugFulfillController drugRequestController = new DrugFulfillController(interactor);
-        OrderScreen registerScreen = new OrderScreen(drugRequestController);
+        DrugFulfillScreen registerScreen = new DrugFulfillScreen(drugRequestController);
 //        screens.add(registerScreensterScreen, "welcome");
 //        cardLayout.show(screens, "register");
 //        application.pack();

@@ -3,13 +3,14 @@ package user_login.use_case.output;
 public class UserloginOutputData {
     String username;
     String creationTime;
-
     String role;
+    String locationName;
 
-    public UserloginOutputData(String username, String creationTime, String role) {
+    public UserloginOutputData(String username, String creationTime, String role, String locationName) {
         this.username = username;
         this.creationTime = creationTime;
         this.role = role;
+        this.locationName = locationName;
     }
 
     public String getCreationTime() {
@@ -34,5 +35,13 @@ public class UserloginOutputData {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
 }
