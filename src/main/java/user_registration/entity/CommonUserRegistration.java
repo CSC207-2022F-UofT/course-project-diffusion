@@ -25,8 +25,8 @@ public class CommonUserRegistration implements UserRegistration {
     }
 
     /**
-     *
-     * @return boolean expression of firstname is only an alphabetic character.
+     *Checks if the first name is only alphabetic characters.
+     * @return boolean answer
      */
     @Override
     public boolean firstNameIsValid() {
@@ -34,19 +34,27 @@ public class CommonUserRegistration implements UserRegistration {
     }
 
     /**
-     *
-     * @return boolean expression if the last name is a alphabetic character
+     *checks if the last name is only alphabetic characters
+     * @return boolean answer
      */
     @Override
     public boolean lastNameIsValid() {
         return lastName.matches("[a-zA-Z]+");
     }
 
+    /**
+     * Checks if the username is only alphabetic characters
+     * @return boolean answer
+     */
     @Override
-    public boolean userNameisValid() {
+    public boolean userNameIsValid() {
         return username.matches("[a-zA-Z]+");
     }
 
+    /**
+     * Check if the password meets the length requirements
+     * @return boolean answer
+     */
     @Override
     public boolean passwordIsValid() {
         return password != null && password.length() > 5;
@@ -56,6 +64,7 @@ public class CommonUserRegistration implements UserRegistration {
     public String getFirstName() {
         return firstName;
     }
+
 
     @Override
     public String getLastName() {

@@ -6,21 +6,25 @@ import user_registration.use_case.database_access.UserRegistrationDsInputData;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Implements UserRegistrationDsGateway, allows for storing data in memory, useful for the tests.
+ */
+
 public class UserRegistrationInMemory implements UserRegistrationDsGateway {
     final private Map<String, UserRegistrationDsInputData> users = new HashMap<>();
 
     /**
      *
-     * @param identifier the user's username
+     * @param username the user's username
      * @return whether the user exists.
      */
     @Override
-    public boolean usernameExists(String identifier) {
-        return users.containsKey(identifier);
+    public boolean usernameExists(String username) {
+        return users.containsKey(username);
     }
 
     /**
-     *
+     * Allows us to save the data in memory, useful for the testing.
      * @param registrationDsInputData the data we will save
      */
     @Override

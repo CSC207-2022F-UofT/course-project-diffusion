@@ -1,7 +1,6 @@
 package drug_fulfill.drug_fulfill_depot_inventories;
 
 import drug_fulfill.drug_fulfill_interface_adapters.DrugFulfillController;
-//import screens.LabelTextPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +9,7 @@ import java.awt.event.ActionListener;
 
 // Frameworks/Drivers layer
 
-public class OrderScreen extends JPanel implements ActionListener {
+public class DrugFulfillScreen extends JPanel implements ActionListener {
     /**
      * The drugName chosen by the user
      */
@@ -39,7 +38,7 @@ public class OrderScreen extends JPanel implements ActionListener {
     /**
      * A window with a title and a JButton.
      */
-    public OrderScreen(DrugFulfillController controller) {
+    public DrugFulfillScreen(DrugFulfillController controller) {
 
         this.userRegisterController = controller;
 
@@ -86,6 +85,8 @@ public class OrderScreen extends JPanel implements ActionListener {
         buttons.add(signUp);
         buttons.add(cancel);
 
+        cancel.setActionCommand("Canel");
+
         signUp.addActionListener(this);
         cancel.addActionListener(this);
 
@@ -115,7 +116,9 @@ public class OrderScreen extends JPanel implements ActionListener {
         Boolean ie = Boolean.FALSE;
         if(isEmergency.isSelected()){
             ie = Boolean.TRUE;
-        }
+        } else if (evt.getActionCommand().equals("Cancel")){
+            System.exit(0);
+        };
         try {
             userRegisterController.create((String) selectDrug.getSelectedItem(),
                     Integer.parseInt(bottle.getText()), //just some number for now

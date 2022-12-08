@@ -6,14 +6,24 @@ import user_registration.use_case.database_access.UserRegistrationDsInputData;
 import java.io.*;
 import java.util.*;
 
+/**
+ * Handles all User Registration CSV database populating and reading.
+ */
 public class UserRegistrationRecorder implements UserRegistrationDsGateway {
 
-    //Below allows for the File to be created
+    /**
+     * The csvFile to be created
+     */
     private final File csvFile;
 
-    //below allows us to map Header names using integers
+     /**
+      * map Header names using integers
+     */
     private final Map<String, Integer> headers = new LinkedHashMap<>();
 
+    /**
+     * Maps the drug request contents with a key.
+     */
     //Confirm what below does, but fairly sure it allows mapping of the actual drug request contents with a key.
     private final Map<String, UserRegistrationDsInputData> userRegistrationRequest = new HashMap<>();
 

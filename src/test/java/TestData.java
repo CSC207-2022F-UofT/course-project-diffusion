@@ -1,6 +1,4 @@
-import user_registration.ports.UserRegistration;
 import user_registration.use_case.input.UserRegistrationInputData;
-import user_registration.use_case.output.UserRegistrationOutputData;
 
 public class TestData {
     public UserRegistrationInputData TestData() {
@@ -11,7 +9,8 @@ public class TestData {
         return inputData;
     }
 
-    public UserRegistrationOutputData createInputObject ()
-    UserRegistration userRequest = userRegistrationGenerator.createUser(userPOJO.getFirstName(),
-            userPOJO.getLastName(), userPOJO.getUserame(), userPOJO.getPassword());
+//    public UserRegistrationOutputData createInputObject() {
+//        UserRegistration userRequest = userRegistrationGenerator.createUser(userPOJO.getFirstName(),
+//                userPOJO.getLastName(), userPOJO.getUserame(), userPOJO.getPassword());
+//    }
 }

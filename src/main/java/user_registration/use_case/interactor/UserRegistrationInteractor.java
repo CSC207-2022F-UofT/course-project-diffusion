@@ -31,7 +31,7 @@ public class UserRegistrationInteractor implements UserRegistrationInputBoundary
             return userRegistrationOutputBoundary.failureView("Firstname is invalid ");
         } else if (!userRequest.lastNameIsValid()) {
             return userRegistrationOutputBoundary.failureView("Lastname is invalid ");
-        } else if (!userRequest.userNameisValid()) {
+        } else if (!userRequest.userNameIsValid()) {
             return userRegistrationOutputBoundary.failureView("Username is invalid ");
         } else if (!userRequest.passwordIsValid()) {
             return userRegistrationOutputBoundary.failureView("Password is invalid ");
