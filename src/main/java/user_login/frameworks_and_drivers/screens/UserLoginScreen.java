@@ -21,7 +21,8 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
     Boolean submitLoginStatus = false;
 
     String userRole;
-    String locationID;
+    String locationName;
+    String accountID;
 
     public UserLoginScreen(UserLoginController userLoginController) {
         this.userLoginController = userLoginController;
@@ -75,11 +76,14 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
     @Override
     public UserloginOutputData presenterOutput(UserloginOutputData userloginOutputData) {
         UserLoginViewModel userLoginViewModel = new UserLoginViewModel(userloginOutputData.getUsername(),
-                userloginOutputData.getCreationTime(), userloginOutputData.getRole(), userloginOutputData.getLocationName());
+                userloginOutputData.getCreationTime(), userloginOutputData.getRole(),
+                userloginOutputData.getLocationName(), userloginOutputData.getAccountID());
         setUserRole(userLoginViewModel.getRole());
-        setLocationID(userLoginViewModel.getLocationName());
-        requestResponse.setText(String.format("Approved! %s successfully logged in at %s as a %s",
-                userLoginViewModel.getUsername(), userLoginViewModel.getCreationTime(), userLoginViewModel.getRole()));
+        setAccountID(userLoginViewModel.getAccountID());
+        setLocationName(userLoginViewModel.getLocationName());
+        requestResponse.setText(String.format("Approved! %s has successful login status at %s as a %s at %s",
+                userLoginViewModel.getUsername(), userLoginViewModel.getLocationName(), userLoginViewModel.getRole(),
+                userLoginViewModel.getCreationTime()));
         return userloginOutputData;
     }
 
@@ -99,11 +103,19 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
         this.userRole = userRole;
     }
 
-    public String getLocationID() {
-        return locationID;
+    public String getAccountID() {
+        return accountID;
     }
 
-    public void setLocationID(String locationID) {
-        this.locationID = locationID;
+    public void setAccountID(String accountID) {
+        this.accountID = accountID;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
 }

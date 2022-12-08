@@ -1,10 +1,15 @@
 package user_registration.frameworks_and_drivers.database_generator;
 
+import helper_methods.HelperMethods;
+import site_drug_request.drug_request_frameworks_drivers.DrugRequestRecorder;
 import user_registration.use_case.database_access.UserRegistrationDsGateway;
 import user_registration.use_case.database_access.UserRegistrationDsInputData;
 
 import java.io.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Handles all User Registration CSV database populating and reading.
@@ -92,8 +97,7 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
             userRegistrationWriter = new BufferedWriter(new FileWriter(csvFile, true));
             UserRegistrationDsInputData latestEntry = userRegistrationRequest.get(username);
 
-            int lastRegistrationRequestID = LastIDRetriever();
-//            int series = lastNumber(latestEntry.getRole());
+            int lastRegistrationRequestID = new HelperMethods().LastIDRetriever(2000, csvFile);
             int siteOrDepotID = UserlocationDetailsReader(latestEntry.getRole());
 
             System.out.println(latestEntry.getRole());
@@ -109,27 +113,27 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
         }
     }
 
-    /**
-     * @return the targetID + the lastID
-     * @throws IOException if there is an input output exception.
-     */
-    private int LastIDRetriever() throws IOException {
-        String delimiter = ",";
-        String currentLine;
-        int targetID = 2000;
-
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(csvFile));
-         currentLine = bufferedReader.readLine();
-
-        while ((currentLine = bufferedReader.readLine()) != null) {
-            String[] data = currentLine.split(delimiter);
-            System.out.println(data[0]);
-            targetID =  Integer.parseInt(data[0]) + 1;
-        }
-        bufferedReader.close();
-        System.out.println(targetID);
-        return targetID;
-    }
+//    /**
+//     * @return the targetID + the lastID
+//     * @throws IOException if there is an input output exception.
+//     */
+//    private int LastIDRetriever() throws IOException {
+//        String delimiter = ",";
+//        String currentLine;
+//        int targetID = 2000;
+//
+//        BufferedReader bufferedReader = new BufferedReader(new FileReader(csvFile));
+//         currentLine = bufferedReader.readLine();
+//
+//        while ((currentLine = bufferedReader.readLine()) != null) {
+//            String[] data = currentLine.split(delimiter);
+//            System.out.println(data[0]);
+//            targetID =  Integer.parseInt(data[0]) + 1;
+//        }
+//        bufferedReader.close();
+//        System.out.println(targetID);
+//        return targetID;
+//    }
 
     /**
      * Checks to see what the ID number of the last user registered was. Generate the new location ID based on
@@ -172,15 +176,7 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
      * Generate the header of the CSV File
      */
     private void generateHeader(){
-        BufferedWriter userRegistrationWriter;
-        try{
-            userRegistrationWriter = new BufferedWriter(new FileWriter(csvFile));
-            userRegistrationWriter.write(String.join(",", headers.keySet()));
-            userRegistrationWriter.newLine();
-            userRegistrationWriter.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        DrugRequestRecorder.TableGeneratorHelper(csvFile, headers);
     }
 
     /**

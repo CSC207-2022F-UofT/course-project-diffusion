@@ -33,6 +33,16 @@ public class DrugRequestScreen extends JPanel implements ActionListener, DrugReq
      * the controller
      */
     DrugRequestController drugRequestController;
+    /**
+     * The name of the site
+     */
+    String siteName;
+    /**
+     * The Account ID of the user
+     */
+    String accountID;
+
+
 
 
     //    public DrugRequestScreen(){
@@ -117,7 +127,7 @@ public class DrugRequestScreen extends JPanel implements ActionListener, DrugReq
             try {
 
                 //Is it ok to call this???
-                drugRequestController.create(drugName.getText(), drugBottle.getText());
+                drugRequestController.create(drugName.getText(), drugBottle.getText(), getSiteName(), getAccountID());
                 System.out.println("SCREEN PASSED");
                 JOptionPane.showMessageDialog(drugRequestButton, String.format("Drug Order Request sent for %s bottles of %s.", drugBottle.getText(), drugName.getText()));
             } catch (Exception ee) {
@@ -144,5 +154,19 @@ public class DrugRequestScreen extends JPanel implements ActionListener, DrugReq
         return null;
     }
 
+    public String getSiteName() {
+        return siteName;
+    }
 
+    public void setSiteName(String siteName) {
+        this.siteName = siteName;
+    }
+
+    public String getAccountID() {
+        return accountID;
+    }
+
+    public void setAccountID(String accountID) {
+        this.accountID = accountID;
+    }
 }

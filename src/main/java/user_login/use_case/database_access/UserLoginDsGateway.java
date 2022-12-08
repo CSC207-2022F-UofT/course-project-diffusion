@@ -6,4 +6,5 @@ public interface UserLoginDsGateway {
     void saveUserLogin(UserLoginDsInputData userLoginDsInputData);
     String userRole(String role);
     String locationName(String locationName);
+    String accountID(String accountID);
 }

@@ -8,4 +8,6 @@ public interface DrugRequest {
     boolean drugNameIsValid();
     String getDrugName();
     String getDrugBottle();
+    String getSiteName();
+    String getaccountID();
 }

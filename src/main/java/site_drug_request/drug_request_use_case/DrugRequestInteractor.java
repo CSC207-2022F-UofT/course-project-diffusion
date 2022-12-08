@@ -24,12 +24,10 @@ public class DrugRequestInteractor implements DrugRequestInputBoundary {
 
     @Override
     public DrugRequestResponseModel create(DrugRequestInvokeModel drugRequestInvokeModel) throws FileNotFoundException {
-//        if (drugRequestInvokeModel.getDrugBottle() > 99){
-//            return drugRequestPresenter.prepareFailView("Order Failed. Bottle quantity exceeds maximum of 99");
-//        }
 
         DrugRequest drugRequest = drugRequestGenerator.create(drugRequestInvokeModel.getDrugName(),
-                drugRequestInvokeModel.getDrugBottle());
+                drugRequestInvokeModel.getDrugBottle(),drugRequestInvokeModel.getSiteName(),
+                drugRequestInvokeModel.getAccountID());
         if (drugRequest.drugNameIsEmpty()) {
             return drugRequestOutputBoundary.prepareFailView("Drug Name not entered.");
         } else if (!drugRequest.drugNameIsValid()) {
@@ -41,8 +39,6 @@ public class DrugRequestInteractor implements DrugRequestInputBoundary {
 
         } else if (!drugRequest.drugBottleIsValid()) {
             return drugRequestOutputBoundary.prepareFailView("Drug Bottles ordered must be between 1 and 100 (inclusive)");
-//        else if (drugRequestDsGateway.drugNameExists(drugRequest.getDrugName())) {
-//            return drugRequestOutputBoundary.prepareFailView("Drug name already exists");
         } else if (!receiveRequestController.checkInventory(drugRequest.getDrugName(), drugRequest.getDrugBottle()).getValidState()){
             return drugRequestOutputBoundary.prepareFailView("Insufficient inventory");
         }
@@ -50,8 +46,9 @@ public class DrugRequestInteractor implements DrugRequestInputBoundary {
         LocalDateTime drugRequestDate = LocalDateTime.now();
 
         DrugRequestDsInvokeModel drugRequestDsModel = new DrugRequestDsInvokeModel(drugRequest.getDrugName(),
-                drugRequest.getDrugBottle(), drugRequestDate);
+                drugRequest.getDrugBottle(), drugRequestDate, drugRequest.getSiteName(), drugRequest.getaccountID());
         drugRequestDsGateway.generateDrugRequest(drugRequestDsModel);
+
         /*
         Implement the saving feature below
          drugRequestDsGateway.saveDrugRequest(drugRequestDsModel);
