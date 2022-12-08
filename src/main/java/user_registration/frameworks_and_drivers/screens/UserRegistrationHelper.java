@@ -10,6 +10,9 @@ import user_registration.use_case.interactor.UserRegistrationInteractor;
 
 import java.io.IOException;
 
+/**
+ *
+ */
 public class UserRegistrationHelper {
     public UserRegistrationScreen GenerateRegistrationScreen() {
          /*
