@@ -43,7 +43,8 @@ public class DrugRequestInteractor implements DrugRequestInputBoundary {
             return drugRequestOutputBoundary.prepareFailView("Drug Bottles must be numeric characters only");
 
         } else if (!drugRequest.drugBottleIsValid()) {
-            return drugRequestOutputBoundary.prepareFailView("Drug Bottles ordered must be between 1 and 100 (inclusive)");
+            return drugRequestOutputBoundary.prepareFailView("Drug Bottles ordered must be between 1 and 100 " +
+                    "(inclusive)");
         } else if (nameExist && !sufficientInventory) {
             return drugRequestOutputBoundary.prepareFailView("Insufficient inventory");
         }

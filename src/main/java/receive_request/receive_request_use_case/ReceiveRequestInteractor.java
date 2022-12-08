@@ -10,7 +10,8 @@ public class ReceiveRequestInteractor implements ReceiveRequestInputBoundary{
     final ReceiveRequestOutputBoundary receiveRequestOutputBoundary;
     // Initialise the Database Accessor
     final ReceiveRequestDatabaseAccessorInterface databaseAccessor;
-    public ReceiveRequestInteractor(ReceiveRequestOutputBoundary receiveRequestOutputBoundary, ReceiveRequestDatabaseAccessorInterface databaseAccessor) {
+    public ReceiveRequestInteractor(ReceiveRequestOutputBoundary receiveRequestOutputBoundary,
+                                    ReceiveRequestDatabaseAccessorInterface databaseAccessor) {
         this.receiveRequestOutputBoundary = receiveRequestOutputBoundary;
         this.databaseAccessor = databaseAccessor;
     }
@@ -21,8 +22,10 @@ public class ReceiveRequestInteractor implements ReceiveRequestInputBoundary{
      *
      * @param receiveRequestInputModel
      */
-    public ReceiveRequestOutputModel checkInventory(ReceiveRequestInputModel receiveRequestInputModel) throws FileNotFoundException {
-        ValidRequest validRequest = ValidRequestGenerator.createValidRequest(receiveRequestInputModel.getName(), receiveRequestInputModel.getBottle());
+    public ReceiveRequestOutputModel checkInventory(ReceiveRequestInputModel receiveRequestInputModel)
+            throws FileNotFoundException {
+        ValidRequest validRequest = ValidRequestGenerator.createValidRequest(receiveRequestInputModel.getName(),
+                receiveRequestInputModel.getBottle());
         ReceiveRequestOutputModel receiveRequestOutputModel = new ReceiveRequestOutputModel();
         String checker = databaseAccessor.checkInventory(validRequest.getName(), validRequest.getBottle());
         if (checker.equals("Insufficient Inventory")) {
