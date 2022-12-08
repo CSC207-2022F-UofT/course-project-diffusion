@@ -9,5 +9,5 @@ public interface ReceiveRequestDatabaseAccessorInterface {
      * @param drugName is the name of the drug
      * @param drugBottle is the quantity
      */
-    boolean checkInventory(String drugName, String drugBottle) throws FileNotFoundException;
+    String checkInventory(String drugName, String drugBottle) throws FileNotFoundException;
 }
