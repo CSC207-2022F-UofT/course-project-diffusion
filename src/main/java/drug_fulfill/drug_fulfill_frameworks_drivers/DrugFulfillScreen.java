@@ -47,19 +47,19 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
         String[] drugs = new DrugListGenerator().GenerateDrugList();
 
         selectDrug = new JComboBox<>(drugs);
-        LabelComboBox chooseDrug = new LabelComboBox(new JLabel("Choose drugName"), selectDrug);
+        LabelComboBox chooseDrug = new LabelComboBox(new JLabel("Select Drug"), selectDrug);
 
         LabelTextPanel bottleInfo = new LabelTextPanel(
-                new JLabel("Choose amount/bottle"), bottle);
+                new JLabel("Enter number of Bottles"), bottle);
 
         selectSite = new JComboBox<>(sites);
-        LabelComboBox chooseSite = new LabelComboBox(new JLabel("Choose depot"), selectSite);
+        LabelComboBox chooseSite = new LabelComboBox(new JLabel("Select Recipient Site"), selectSite);
 
 
-        isEmergency=new JCheckBox("Toggle if Emergency");
+        isEmergency=new JCheckBox("Select Box Once Complete");
         isEmergency.setBounds(100,100,150,20);
 
-        JButton signUp = new JButton("Make Order");
+        JButton signUp = new JButton("Send Order");
         JButton cancel = new JButton("Cancel");
 
         JPanel buttons = new JPanel();
