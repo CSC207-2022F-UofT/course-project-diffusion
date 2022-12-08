@@ -1,11 +1,14 @@
 package user_login.frameworks_and_drivers.database_access;
 
-import site_drug_request.drug_request_frameworks_drivers.DrugRequestRecorder;
+import helper_methods.TableHeader;
 import user_login.use_case.database_access.UserLoginDsGateway;
 import user_login.use_case.database_access.UserLoginDsInputData;
 
 import java.io.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class UserLoginRecorder implements UserLoginDsGateway {
     private final File csvFile;
@@ -157,6 +160,6 @@ public class UserLoginRecorder implements UserLoginDsGateway {
         }
     }
     private void generateHeader(){
-        DrugRequestRecorder.TableGeneratorHelper(csvFile, headers);
+        TableHeader.TableGeneratorHelper(csvFile, headers);
     }
 }

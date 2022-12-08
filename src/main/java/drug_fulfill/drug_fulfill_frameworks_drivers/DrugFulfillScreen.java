@@ -1,8 +1,7 @@
-package drug_fulfill.drug_fulfill_depot_inventories;
+package drug_fulfill.drug_fulfill_frameworks_drivers;
 
-import drug_fulfill.drug_fulfill_frameworks_drivers.LabelComboBox;
-import drug_fulfill.drug_fulfill_frameworks_drivers.LabelTextPanel;
 import drug_fulfill.drug_fulfill_interface_adapters.DrugFulfillController;
+import helper_methods.DrugListGenerator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -110,7 +109,7 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
         try {
             userRegisterController.create((String) selectDrug.getSelectedItem(),
                     Integer.parseInt(bottle.getText()),
-                    ie, (String) selectDepot.getSelectedItem(), "Site1"); //placeholder, site goes here
+                    ie, getLocationID(), (String) selectSite.getSelectedItem()); //placeholder, site goes here
 
 
         } catch (Exception e) {

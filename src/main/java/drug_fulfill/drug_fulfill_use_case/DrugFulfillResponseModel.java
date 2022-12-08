@@ -2,8 +2,6 @@ package drug_fulfill.drug_fulfill_use_case;
 
 // Use case layer
 
-import java.time.LocalDateTime;
-
 public class DrugFulfillResponseModel {
 
     private final String drugName;
