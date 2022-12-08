@@ -57,16 +57,6 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
         }
     }
 
-//    @Override
-//    public boolean firstNameExists(String identifier) {
-//        return userRegistrationRequest.containsKey(identifier);
-//    }
-
-//    @Override
-//    public boolean lastNameExists(String identifier) {
-//        return userRegistrationRequest.containsKey(identifier);
-//    }
-
     /**
      * Checks if the username exists
      * @param identifier the username
@@ -112,28 +102,6 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
             throw new RuntimeException(e);
         }
     }
-
-//    /**
-//     * @return the targetID + the lastID
-//     * @throws IOException if there is an input output exception.
-//     */
-//    private int LastIDRetriever() throws IOException {
-//        String delimiter = ",";
-//        String currentLine;
-//        int targetID = 2000;
-//
-//        BufferedReader bufferedReader = new BufferedReader(new FileReader(csvFile));
-//         currentLine = bufferedReader.readLine();
-//
-//        while ((currentLine = bufferedReader.readLine()) != null) {
-//            String[] data = currentLine.split(delimiter);
-//            System.out.println(data[0]);
-//            targetID =  Integer.parseInt(data[0]) + 1;
-//        }
-//        bufferedReader.close();
-//        System.out.println(targetID);
-//        return targetID;
-//    }
 
     /**
      * Checks to see what the ID number of the last user registered was. Generate the new location ID based on

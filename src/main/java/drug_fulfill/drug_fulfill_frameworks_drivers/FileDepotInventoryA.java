@@ -131,8 +131,6 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
             writer.write(String.join(",", this.headers.keySet()));
             writer.newLine();
             int initial_amount = 20;
-//            initial_amount = randomnum
-
             for (String DepotName : this.depotList) {
                 for (String DrugName : this.drugList) {
                     LocalDateTime ldt_now = LocalDateTime.now();
