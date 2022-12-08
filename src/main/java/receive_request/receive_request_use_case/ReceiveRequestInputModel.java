@@ -1,9 +1,12 @@
 package receive_request.receive_request_use_case;
 
 public class ReceiveRequestInputModel {
-    private String drugName;
-    private String drugBottle;
+    final private String drugName;
+    final private String drugBottle;
 
+    /**
+     * Input of the form drugName and drugBottle is converted to Input Model
+     */
     public ReceiveRequestInputModel(String drugName, String drugBottle) {
         this.drugName = drugName;
         this.drugBottle = drugBottle;
@@ -15,13 +18,5 @@ public class ReceiveRequestInputModel {
 
     public String getBottle() {
         return drugBottle;
-    }
-
-    public void setName(String drugName) {
-        this.drugName = drugName;
-    }
-
-    public void setBottle(String drugBottle) {
-        this.drugBottle = drugBottle;
     }
 }

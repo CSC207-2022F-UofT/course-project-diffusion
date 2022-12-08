@@ -12,7 +12,7 @@ public class DrugRequestInteractor implements DrugRequestInputBoundary {
     final DrugRequestDsGateway drugRequestDsGateway;
     final DrugRequestOutputBoundary drugRequestOutputBoundary;
     final DrugRequestGenerator drugRequestGenerator;
-    final ReceiveRequestController receiveRequestController;
+    final ReceiveRequestControllerI receiveRequestController;
 
     public DrugRequestInteractor(DrugRequestDsGateway drugRequestDsGateway, DrugRequestOutputBoundary drugRequestOutputBoundary,
                                  DrugRequestGenerator drugRequestGenerator, ReceiveRequestController receiveRequestController) {

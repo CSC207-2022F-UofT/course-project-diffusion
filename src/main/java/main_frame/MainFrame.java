@@ -42,15 +42,40 @@ public class MainFrame {
      */
     UserLogInHelper userLogInHelper;
     /**
+     * The userLoginScreen panel
      */
     UserLoginScreen userLoginScreen;
+    /**
+     * Helps initialise the userRegistrationScreen
+     */
     UserRegistrationHelper userRegistrationHelper;
+    /**
+     * The userRegistrationScreen panel
+     */
     UserRegistrationScreen userRegistrationScreen;
+    /**
+     * Helps initialise the drugRequestScreen
+     */
     DrugRequestHelper drugRequestHelper;
+    /**
+     * The drugRequestScreen panel
+     */
     DrugRequestScreen drugRequestScreen;
+    /**
+     * Helps initialise the drugScreenScreenNewer
+     */
     DrugSearchHelper drugSearchHelper;
+    /**
+     * The drugSearchScreenNewer panel
+     */
     DrugSearchScreenNewer drugSearchScreenNewer;
+    /**
+     * Helps initialise the drugFulfillScreen
+     */
     DrugFulfillHelper drugFulfillHelper;
+    /**
+     * The drugFullfillScreen panel
+     */
     DrugFulfillScreen drugFulfillScreen;
 
     /**

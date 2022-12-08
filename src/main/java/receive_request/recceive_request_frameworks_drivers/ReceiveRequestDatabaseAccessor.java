@@ -1,5 +1,6 @@
 package receive_request.recceive_request_frameworks_drivers;
 
+import drug_search.use_case.DrugRequestDBEntry;
 import receive_request.receive_request_use_case.ReceiveRequestDatabaseAccessorInterface;
 
 import java.io.File;
@@ -9,6 +10,9 @@ import java.util.Scanner;
 
 public class ReceiveRequestDatabaseAccessor implements ReceiveRequestDatabaseAccessorInterface {
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean checkInventory(String drugName, String drugBottle) throws FileNotFoundException {
         ArrayList<String[]> list = new ArrayList<>();
 
