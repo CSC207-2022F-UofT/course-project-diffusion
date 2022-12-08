@@ -1,8 +1,10 @@
-package user_registration.entity;
+package drug_fulfill.entity;
 
 import org.junit.jupiter.api.Test;
 
-class CommonUserRegistrationTest {
+import static org.junit.jupiter.api.Assertions.*;
+
+class CommonDrugFulfillTest {
 
     @Test
     void firstNameIsValid() {

@@ -19,14 +19,11 @@ public class DrugRequestHelper {
     public DrugRequestScreen DrugRequestGenerator() {
         DrugRequestDsGateway drugRequestDsGateway;
         try{
-            drugRequestDsGateway = new DrugRequestRecorder("./Test19.csv");
+            drugRequestDsGateway = new DrugRequestRecorder("./DrugRequestsLog.csv");
 
         } catch (IOException e) {
             throw new RuntimeException("Can't create file.");
         }
-
-//        DrugRequestPresenterOutputBoundary drugRequestPresenterOutputBoundary = new DrugRequestViewmodel();
-////        DrugRequestScreen drugRequestScreen = new DrugRequestScreen(drugRequestPresenterOutputBoundary);
 
         ReceiveRequestDatabaseAccessor receiveDatabaseAccessor = new ReceiveRequestDatabaseAccessor();
         ReceiveRequestPresenter receiveOutputBoundary = new ReceiveRequestPresenter();

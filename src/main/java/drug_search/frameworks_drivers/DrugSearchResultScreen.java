@@ -7,13 +7,12 @@ import javax.swing.table.AbstractTableModel;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class DrugSearchResultScreen {
+public class DrugSearchResultScreen extends JPanel {
     public DrugSearchResultScreen(List<DrugRequestDBEntry> entries) {
-        drugSearchResultTable.setModel(new DrugSearchResultTableModel(entries));
-    }
+        drugSearchResultTable = new JTable(new DrugSearchResultTableModel(entries));
+        JScrollPane scroller = new JScrollPane(drugSearchResultTable);
 
-    public JPanel getPanel() {
-        return drugSearchResultPanel;
+        add(scroller);
     }
 
     private String prettyPrintLocalDateTime(LocalDateTime dateTime) {
@@ -26,7 +25,6 @@ public class DrugSearchResultScreen {
                 dateTime.getSecond());
     }
 
-    private JPanel drugSearchResultPanel;
     private JTable drugSearchResultTable;
     private JScrollPane scroller;
 

@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 /**
  * Generates DsRequestModel, an order, using input data.
  */
-public class DrugFulfillDsRequestModel {
+public class SiteDrugFulfillDsRequestModel {
 
     private final String name;
     private int drugBottle;
@@ -15,7 +15,7 @@ public class DrugFulfillDsRequestModel {
     private final Boolean isEmergency;
     private final String BatchNumber;
     private final int IDNumber;
-    private final String depotName;
+    private final String siteName;
 
 
     /**
@@ -23,16 +23,16 @@ public class DrugFulfillDsRequestModel {
      * @param drugBottle amount of drug
      * @param creationTime the time this order was created
      * @param Emergency Boolean, true if this order is an emergency
-     * @param depot the depot this order is being sent to.
+     * @param site the depot this order is being sent to.
      */
-    public DrugFulfillDsRequestModel(String name, int drugBottle, LocalDateTime creationTime, Boolean Emergency, String depot) {
+    public SiteDrugFulfillDsRequestModel(String name, int drugBottle, LocalDateTime creationTime, Boolean Emergency, String site) {
         this.name = name;
         this.drugBottle = drugBottle;
         this.creationTime = creationTime;
         this.isEmergency = Emergency;
         this.BatchNumber = "XXX";
         this.IDNumber = 80085;
-        this.depotName = depot;
+        this.siteName = site;
 
     }
 
@@ -57,8 +57,8 @@ public class DrugFulfillDsRequestModel {
     public String getBatchNumber(){ return BatchNumber;}
     public int getIDNumber(){return IDNumber;}
 
-    public String getDepotName(){
-        return depotName;
+    public String getSiteName(){
+        return siteName;
     }
 
 

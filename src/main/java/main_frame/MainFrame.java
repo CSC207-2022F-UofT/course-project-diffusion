@@ -1,9 +1,9 @@
 package main_frame;
 
 import drug_fulfill.drug_fulfill_depot_inventories.DrugFulfillHelper;
-import drug_fulfill.drug_fulfill_depot_inventories.DrugFulfillScreen;
+import drug_fulfill.drug_fulfill_frameworks_drivers.DrugFulfillScreen;
 import drug_search.frameworks_drivers.DrugSearchHelper;
-import drug_search.frameworks_drivers.DrugSearchScreenNewer;
+import drug_search.frameworks_drivers.DrugSearchScreen;
 import site_drug_request.drug_request_frameworks_drivers.DrugRequestHelper;
 import site_drug_request.drug_request_frameworks_drivers.DrugRequestScreen;
 import user_login.frameworks_and_drivers.screens.UserLogInHelper;
@@ -68,7 +68,7 @@ public class MainFrame {
     /**
      * The drugSearchScreenNewer panel
      */
-    DrugSearchScreenNewer drugSearchScreenNewer;
+    DrugSearchScreen drugSearchScreenNewer;
     /**
      * Helps initialise the drugFulfillScreen
      */
@@ -77,6 +77,8 @@ public class MainFrame {
      * The drugFullfillScreen panel
      */
     DrugFulfillScreen drugFulfillScreen;
+
+    String previousScreen = "Home Screen";
 
     /**
      * Responsible for adding the various Screens into the contentPanel container of the MainFrame.
@@ -88,7 +90,7 @@ public class MainFrame {
         mainFrame = new JFrame("Welcome to Diffusion");
         contentPane = mainFrame.getContentPane();
         contentPane = new JPanel();
-        contentPane.setLayout(new CardLayout(200, 200));
+        contentPane.setLayout(new CardLayout());
         mainFrame.add(contentPane, BorderLayout.CENTER);
 
 
@@ -121,7 +123,7 @@ public class MainFrame {
         JPanel submitLoginButtonPanel = new JPanel();
         JPanel drugRequestButtonPanel = new JPanel();
         JPanel drugOrderButtonPanel = new JPanel();
-        JPanel drugSearchButtonPanel = new JPanel();
+        JPanel drugSearchButtonPanel = drugSearchScreenNewer.getSearchButtonPanel();
 
         /*
         Create buttons for each screen  to add to eachScreens button panel.
@@ -133,16 +135,15 @@ public class MainFrame {
         JButton registrationScreenHomeScreenButton = new JButton("Return Home");
 
         JButton logInScreenHomeScreenButton = new JButton("Return Home");
-        JButton logInScreenRegistrationButton = new JButton("Registration");
+        JButton logInScreenRegistrationButton = new JButton("Go To Registration");
 
         JButton submitLoginButton = new JButton("Click Here if login Status is Approved");
 
-//        JButton drugRequestButton = new JButton("Drug Request");
         JButton drugRequestScreenHomeButton = new JButton("Return Home");
         JButton drugRequestScreensSearchButton = new JButton("Drug Search");
 
         JButton drugSearchButton = new JButton("Drug Search");
-        JButton homeScreenButtonDrugSearchScreen = new JButton("HomeScreen");
+        JButton goBackButtonDrugSearchScreen = new JButton("Go Back");
 
 
         JButton drugOrderButton = new JButton("Drug Order");
@@ -165,7 +166,7 @@ public class MainFrame {
         drugRequestButtonPanel.add(drugRequestScreenHomeButton);
         drugRequestButtonPanel.add(drugRequestScreensSearchButton);
 
-        drugSearchButtonPanel.add(homeScreenButtonDrugSearchScreen);
+        drugSearchButtonPanel.add(goBackButtonDrugSearchScreen);
 
         drugOrderButtonPanel.add(drugSearchButtonDrugOrderScreen);
 
@@ -176,11 +177,10 @@ public class MainFrame {
         homeScreen.add(homeScreenButtonPanel);
         homeScreen.add(homeScreenButtonPanel2);
         userRegistrationScreen.add(registrationScreenButtonPanel);
-        userLoginScreen.add(logInScreenButtonPanel);
         userLoginScreen.add(submitLoginButtonPanel);
+        userLoginScreen.add(logInScreenButtonPanel);
         drugRequestScreen.add(drugRequestButtonPanel);
         drugFulfillScreen.add(drugOrderButtonPanel);
-//        drugSearchScreenNewer.add(drugSearchButtonPanel);
 
 
         /*
@@ -241,12 +241,14 @@ public class MainFrame {
             System.out.println("Clicked " + submitLoginButton.getText());
             if (userLoginScreen.getSubmitLoginStatus()) {
                 CardLayout cardLayout = (CardLayout) contentPane.getLayout();
-                System.out.println(Objects.equals(userLoginScreen.getUserRole(), siteRole));
                 if (Objects.equals(userLoginScreen.getUserRole(), siteRole)) {
-                    drugFulfillScreen.setLocationRole(siteRole);
-                    drugFulfillScreen.setLocationID(userLoginScreen.getLocationID());
+                    drugRequestScreen.setAccountID(userLoginScreen.getAccountID());
+                    drugRequestScreen.setSiteName(userLoginScreen.getLocationName());
+//                    drugFulfillScreen.setLocationRole(siteRole);
+//                    drugFulfillScreen.setLocationID(userLoginScreen.getAccountID());
                     cardLayout.show(contentPane, "Drug Request Screen");
                 } else if (Objects.equals(userLoginScreen.getUserRole(), depotRole)) {
+                    drugFulfillScreen.setLocationID(userLoginScreen.getLocationName());
                 cardLayout.show(contentPane, "Drug Order Screen");
                 }
             } else{
@@ -279,13 +281,13 @@ public class MainFrame {
             System.out.println("Clicked " + drugRequestScreensSearchButton.getText());
             CardLayout cardLayout = (CardLayout) contentPane.getLayout();
             cardLayout.show(contentPane, "Drug Search");
-
+            previousScreen = "Drug Request Screen";
         });
 
-        homeScreenButtonDrugSearchScreen.addActionListener(e -> {
-            System.out.println("Clicked " + homeScreenButtonDrugSearchScreen.getText());
+        goBackButtonDrugSearchScreen.addActionListener(e -> {
+            System.out.println("Clicked " + goBackButtonDrugSearchScreen.getText());
             CardLayout cardLayout = (CardLayout) contentPane.getLayout();
-            cardLayout.show(contentPane, "Home Screen");
+            cardLayout.show(contentPane, previousScreen);
 
         });
 
@@ -293,7 +295,7 @@ public class MainFrame {
             System.out.println("Clicked " + drugSearchButtonDrugOrderScreen.getText());
             CardLayout cardLayout = (CardLayout) contentPane.getLayout();
             cardLayout.show(contentPane, "Drug Search");
-
+            previousScreen = "Drug Order Screen";
         });
 
 

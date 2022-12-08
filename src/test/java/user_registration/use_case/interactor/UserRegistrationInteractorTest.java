@@ -29,7 +29,6 @@ class UserRegistrationInteractorTest {
                 assertTrue(userRegistrationRepository.usernameExists("Karamazov"));
                 return null;
             }
-
             public UserRegistrationOutputData prepareFailView(String error){
                 fail("User Registration User Case has failed");
                 return null;

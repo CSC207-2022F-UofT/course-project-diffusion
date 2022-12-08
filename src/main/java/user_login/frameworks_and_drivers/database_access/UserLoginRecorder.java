@@ -1,10 +1,14 @@
 package user_login.frameworks_and_drivers.database_access;
 
+import helper_methods.TableHeader;
 import user_login.use_case.database_access.UserLoginDsGateway;
 import user_login.use_case.database_access.UserLoginDsInputData;
 
 import java.io.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class UserLoginRecorder implements UserLoginDsGateway {
     private final File csvFile;
@@ -60,7 +64,7 @@ public class UserLoginRecorder implements UserLoginDsGateway {
      */
     @Override
     public String userRole(String username) {
-        return RoleChecker(username, 3);
+        return RoleChecker(username, 5);
     }
 
     /**
@@ -71,6 +75,11 @@ public class UserLoginRecorder implements UserLoginDsGateway {
     @Override
     public String locationName(String username) {
         return RoleChecker(username, 6);
+    }
+
+    @Override
+    public String accountID(String username) {
+        return RoleChecker(username, 0);
     }
 
     //    private void generateUserLoginRequestHelper(){
@@ -108,7 +117,7 @@ public class UserLoginRecorder implements UserLoginDsGateway {
         } return false;
 
     }
-    private String RoleChecker(String reference, int column){
+    private String RoleChecker(String username, int column){
         String delimiter = ",";
         BufferedReader bufferedReader;
         String currentline;
@@ -120,12 +129,10 @@ public class UserLoginRecorder implements UserLoginDsGateway {
             while  ((currentline = bufferedReader.readLine())!= null){
                 data = currentline.split(delimiter);
                 System.out.println(data[column].trim());
-//                System.out.println(reference);
-//                System.out.println(Arrays.toString(new String[]{data[column]}));
-                if (Objects.equals(data[column].trim(), reference)){
+                if (Objects.equals(data[3].trim(), username)){
 
-                    System.out.println(data[5].trim());
-                    return data[5].trim();
+                    System.out.println(data[3].trim());
+                    return data[column].trim();
 
                 }
             }
@@ -153,14 +160,6 @@ public class UserLoginRecorder implements UserLoginDsGateway {
         }
     }
     private void generateHeader(){
-        BufferedWriter userRegistrationWriter;
-        try{
-            userRegistrationWriter = new BufferedWriter(new FileWriter(csvFile));
-            userRegistrationWriter.write(String.join(",", headers.keySet()));
-            userRegistrationWriter.newLine();
-            userRegistrationWriter.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        TableHeader.TableGeneratorHelper(csvFile, headers);
     }
 }

@@ -4,5 +4,5 @@ package site_drug_request.drug_request_entity;
 // are maximally stable should be maximally abstract).
 //This also allows us to isolate user creation.
 public interface DrugRequestGenerator {
-    DrugRequest create(String DrugName, String DrugBottle);
+    DrugRequest create(String DrugName, String DrugBottle, String siteName, String accountID);
 }

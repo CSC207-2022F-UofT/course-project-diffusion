@@ -1,5 +1,8 @@
 package user_registration.use_case.input;
 
+/**
+ * Packages the input data as a plain old java object, does not know about the other classes therefore is not bound.
+ */
 public class UserRegistrationInputData {
     private String firstName;
     private String lastName;
@@ -7,6 +10,16 @@ public class UserRegistrationInputData {
     private String password;
     private Object locationName;
     private String role;
+
+    /**
+     *
+     * @param firstName the first name of the user
+     * @param lastName the last name of the user
+     * @param username the username of the user
+     * @param password the password of the user
+     * @param locationName the name of the location the user is assigned to
+     * @param role the role the user has
+     */
 
     public UserRegistrationInputData(String firstName, String lastName, String username, String password,
                                      Object locationName, String role){
@@ -22,20 +35,20 @@ public class UserRegistrationInputData {
         return locationName;
     }
 
-    public void setLocationName(Object locationName) {
-        this.locationName = locationName;
-    }
-
     public String getRole() {
         return role;
     }
 
-    public void setRole(int role) {
-        if (role == 1){
-            this.role = "Site";
-        } else if (role == 2){
-            this.role = "Depot";
-        }
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getFirstName() {
@@ -56,10 +69,6 @@ public class UserRegistrationInputData {
 
     public String getUserame() {
         return username;
-    }
-
-    public void setuserame(String userame) {
-        this.username = userame;
     }
 
     public String getPassword() {

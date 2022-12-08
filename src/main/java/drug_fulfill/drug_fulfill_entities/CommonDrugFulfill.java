@@ -1,31 +1,28 @@
 package drug_fulfill.drug_fulfill_entities;
 
-import java.util.Objects;
-
 public class CommonDrugFulfill implements DrugFulfill {
     private final String drugName;
     private final int drugBottle;
 
     private final Boolean isEmergency;
     private final String depotName;
+    private final String siteName;
+    /**
+     *
+     * @param drugName of drug being ordered
+     * @param drugBottle amount of drug being ordered
+     * @param isEmergency boolean of whether the order is an emergency
+     * @param depotName name of depot the order will be sent to
+     */
 
-    CommonDrugFulfill(String drugName, int drugBottle, Boolean isEmergency, String depotName){
+     CommonDrugFulfill(String drugName, int drugBottle, Boolean isEmergency, String depotName, String siteName){
         this.drugName = drugName;
         this.drugBottle = drugBottle;
         this.isEmergency = isEmergency;
         this.depotName = depotName;
+        this.siteName = siteName;
 
     }
-    @Override
-    public boolean drugBottleIsValid() {
-        return 1 < drugBottle && drugBottle < 100;
-    }
-
-    @Override
-    public boolean drugNameIsValid(String drugName) {
-        return !Objects.equals(drugName, "fuck"); //no bad words pls
-    }
-    //Looks like drugNameIsValid needs to be checked in the interactor by referencing the database. Not sure
 
     @Override
     public String getDrugName() {
@@ -44,4 +41,10 @@ public class CommonDrugFulfill implements DrugFulfill {
     public String getDepotName() {
         return depotName;
     }
+
+    @Override
+    public String getSiteName() {
+        return siteName;
+    }
+
 }

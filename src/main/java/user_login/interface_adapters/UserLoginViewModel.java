@@ -5,11 +5,13 @@ public class UserLoginViewModel {
     String creationTime;
     String role;
     String locationName;
-    public UserLoginViewModel(String username, String creationTime, String role, String locationName) {
+    String accountID;
+    public UserLoginViewModel(String username, String creationTime, String role, String locationName, String accountID) {
         this.username = username;
         this.creationTime = creationTime;
         this.role = role;
         this.locationName = locationName;
+        this.accountID = accountID;
     }
 
     public String getUsername() {
@@ -42,5 +44,13 @@ public class UserLoginViewModel {
 
     public void setLocationName(String locationName) {
         this.locationName = locationName;
+    }
+
+    public String getAccountID() {
+        return accountID;
+    }
+
+    public void setAccountID(String accountID) {
+        this.accountID = accountID;
     }
 }
