@@ -60,16 +60,16 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
         isEmergency.setBounds(100,100,150,20);
 
         JButton signUp = new JButton("Send Order");
-        JButton cancel = new JButton("Cancel");
+        JButton Exit = new JButton("Exit");
 
         JPanel buttons = new JPanel();
         buttons.add(signUp);
-        buttons.add(cancel);
+        buttons.add(Exit);
 
-        cancel.setActionCommand("Cancel");
+        Exit.setActionCommand("Exit");
 
         signUp.addActionListener(this);
-        cancel.addActionListener(this);
+        Exit.addActionListener(this);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -77,8 +77,6 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
         this.add(chooseDrug);
         this.add(chooseSite);
         this.add(bottleInfo);
-
-        this.add(isEmergency);
         this.add(buttons);
 
     }
@@ -88,20 +86,18 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
      */
     public void actionPerformed(ActionEvent evt) {
 
-        Boolean ie = Boolean.FALSE;
-        if(isEmergency.isSelected()){
-            ie = Boolean.TRUE;
-        } else if (evt.getActionCommand().equals("Cancel")){
+        if (evt.getActionCommand().equals("Exit")){
             System.exit(0);
         }
         try {
             userRegisterController.create((String) selectDrug.getSelectedItem(),
                     Integer.parseInt(bottle.getText()),
-                    false, getLocationID(), (String) selectSite.getSelectedItem()); //placeholder, site goes here
+                    false, getLocationID(), (String) selectSite.getSelectedItem());
+            JOptionPane.showMessageDialog(this, "Order made");
 
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error In order");
+            JOptionPane.showMessageDialog(this, "Insufficient Inventory");
         }
 
     }

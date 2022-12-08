@@ -36,8 +36,6 @@ public class FileSiteInventory implements SiteDrugFulfillDsGateway {
         this.headers.put("drugName", 1);
         this.headers.put("drugAmount", 2);
         this.headers.put("creation_time", 3);
-        this.headers.put("batch Number", 4);
-        this.headers.put("id Number", 5);
 
         if (this.csvFile.length() == 0L) {
             System.out.println("No Corresponding CSV file. Creating default site Inventory.");
@@ -129,11 +127,12 @@ public class FileSiteInventory implements SiteDrugFulfillDsGateway {
             BufferedWriter writer = new BufferedWriter(new FileWriter(this.csvFile));
             writer.write(String.join(",", this.headers.keySet()));
             writer.newLine();
+            int initial_amount = 0;
 
             for (String SiteName : this.siteList) {
                 for (String DrugName : this.drugList) {
                     LocalDateTime ldt_now = LocalDateTime.now();
-                    String line = String.format("%4$s,%1$s,%2$s,%3$s", DrugName, "20", ldt_now, SiteName);
+                    String line = String.format("%4$s,%1$s,%2$s,%3$s", DrugName, initial_amount, ldt_now, SiteName);
 
                     writer.write(line);
                     writer.newLine();
