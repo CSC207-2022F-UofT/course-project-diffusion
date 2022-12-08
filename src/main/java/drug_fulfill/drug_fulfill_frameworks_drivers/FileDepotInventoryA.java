@@ -49,9 +49,9 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
             while((row = reader.readLine()) != null) {
                 String[] col = row.split(",");
                 String drugName = String.valueOf(col[this.headers.get("drugName")]);
-                int drugAmount = Integer.parseInt(col[this.headers.get("drugAmount")]);
+                int drugAmount = Integer.parseInt(col[this.headers.get("drugAmount")].trim());
                 String creationTimeText = String.valueOf(col[this.headers.get("creation_time")]);
-                LocalDateTime ldt = LocalDateTime.parse(creationTimeText);
+                LocalDateTime ldt = LocalDateTime.parse(creationTimeText.trim());
                 String depotName = String.valueOf(col[this.headers.get("Depot Name")]);
                 DrugFulfillDsRequestModel saveReceipt = new DrugFulfillDsRequestModel(drugName, drugAmount, ldt, Boolean.FALSE, depotName);
                 this.CurrentInventory.put(String.valueOf(ldt), saveReceipt);
