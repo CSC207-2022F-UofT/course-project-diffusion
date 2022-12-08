@@ -22,7 +22,7 @@ public class UserLogInHelper {
     public UserLoginScreen LogInScreenGenerator() {
         UserLoginDsGateway userLoginDsGateway;
         try{
-            userLoginDsGateway = new UserLoginRecorder("./UsersRegistered5.csv");
+            userLoginDsGateway = new UserLoginRecorder("./UserRegistrationLog.csv");
         } catch (IOException e) {
             throw new RuntimeException("Cant generate LoginRequestLog");
         }
