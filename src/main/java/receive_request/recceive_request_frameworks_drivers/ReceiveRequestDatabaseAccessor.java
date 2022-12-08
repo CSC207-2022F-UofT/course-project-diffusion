@@ -26,8 +26,8 @@ public class ReceiveRequestDatabaseAccessor implements ReceiveRequestDatabaseAcc
         }
 
         for (String[] line : list) {
-            if (line[2].equals(drugName)) {
-                if (Integer.parseInt(line[3]) > Integer.parseInt(drugBottle)) {
+            if (line[1].equals(drugName)) {
+                if (Integer.parseInt(line[2]) >= Integer.parseInt(drugBottle)) {
                     return true;
                 }
             }
