@@ -22,7 +22,7 @@ public class DrugFulfillRequestModel {
         return drugName;
     }
 
-    void setDrugNameName(String name) {
+    void setDrugName(String name) {
         this.drugName = name;
     }
 

@@ -3,7 +3,7 @@
 //import drug_fulfill.drug_fulfill_entities.CommonDrugFulfillFactory;
 //import drug_fulfill.drug_fulfill_entities.DrugFulfill;
 //import drug_fulfill.drug_fulfill_entities.DrugFulfillFactory;
-//import drug_fulfill.drug_fulfill_frameworks_drivers.DrugFulfillResponseFormatter;
+//import drug_fulfill.drug_fulfill_interface_adapters.DrugFulfillResponseFormatter;
 //import drug_fulfill.drug_fulfill_frameworks_drivers.FileDepotInventoryA;
 //import drug_fulfill.drug_fulfill_interface_adapters.DrugFulfillPresenter;
 //import drug_fulfill.drug_fulfill_use_case.*;

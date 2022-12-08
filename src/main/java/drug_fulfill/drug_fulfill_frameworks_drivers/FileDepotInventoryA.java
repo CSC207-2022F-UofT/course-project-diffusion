@@ -21,7 +21,6 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
     private final Map<String, Integer> headers = new LinkedHashMap<>();
     private final Map<String, DrugFulfillDsRequestModel> CurrentInventory = new HashMap<>();
     private final Map<String, DrugFulfillDsRequestModel> MadeOrders = new HashMap<>();
-//    private final String[] drugList = new String[]{"DrugA", "DrugB", "DrugC"};
     private final String[] drugList = new DrugListGenerator().GenerateDrugList();
     private final String[] depotList = new String[]{"Depot1", "Depot2", "Depot3"};
     private final String[] depotIDList = new String[]{"1", "2", "3"};
@@ -38,7 +37,6 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
         this.headers.put("creation_time", 3);
         this.headers.put("batch Number", 4);
         this.headers.put("id Number", 5);
-//        this.headers.put("Depot ID", 6);
 
         if (this.csvFile.length() == 0L) {
             System.out.println("No Corresponding CSV file. Creating default depot Inventory.");
@@ -142,7 +140,6 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
             writer.write(String.join(",", this.headers.keySet()));
             writer.newLine();
             int initial_amount = 20;
-//            initial_amount = randomnum
 
             for (String DepotName : this.depotList) {
                 for (String DrugName : this.drugList) {

@@ -21,7 +21,6 @@ public class FileSiteInventory implements SiteDrugFulfillDsGateway {
     private final Map<String, Integer> headers = new LinkedHashMap<>();
     private final Map<String, SiteDrugFulfillDsRequestModel> CurrentInventory = new HashMap<>();
     private final Map<String, SiteDrugFulfillDsRequestModel> MadeOrders = new HashMap<>();
-//    private final String[] drugList = new String[]{"DrugA", "DrugB", "DrugC"};
     private final String[] drugList = new DrugListGenerator().GenerateDrugList();
 
     private final String[] siteList = new String[]{"Site1", "Site2", "Site3"};

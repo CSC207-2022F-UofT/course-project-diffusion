@@ -13,8 +13,6 @@ public class SiteDrugFulfillDsRequestModel {
     private int drugBottle;
     private final LocalDateTime creationTime;
     private final Boolean isEmergency;
-    private final String BatchNumber;
-    private final int IDNumber;
     private final String siteName;
 
 
@@ -30,8 +28,6 @@ public class SiteDrugFulfillDsRequestModel {
         this.drugBottle = drugBottle;
         this.creationTime = creationTime;
         this.isEmergency = Emergency;
-        this.BatchNumber = "XXX";
-        this.IDNumber = 80085;
         this.siteName = site;
 
     }
@@ -52,10 +48,7 @@ public class SiteDrugFulfillDsRequestModel {
         return creationTime;
     }
 
-    public Boolean getIsEmergency() { return isEmergency;
-    }
-    public String getBatchNumber(){ return BatchNumber;}
-    public int getIDNumber(){return IDNumber;}
+    public Boolean getIsEmergency() { return isEmergency;}
 
     public String getSiteName(){
         return siteName;

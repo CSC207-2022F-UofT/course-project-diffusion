@@ -101,11 +101,11 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
         try {
             userRegisterController.create((String) selectDrug.getSelectedItem(),
                     Integer.parseInt(bottle.getText()),
-                    ie, getLocationID(), (String) selectSite.getSelectedItem()); //placeholder, site goes here
+                    false, getLocationID(), (String) selectSite.getSelectedItem()); //placeholder, site goes here
 
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "please put in a number for amount");
+            JOptionPane.showMessageDialog(this, "Error In order");
         }
 
     }
