@@ -10,7 +10,7 @@ public class DrugSearchResultFrame extends JFrame {
         super("Search Results");
 
         // Initialize and set up GUI
-        setContentPane(new DrugSearchResultScreenNew(entries));
+        setContentPane(new DrugSearchResultScreen(entries));
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pack();
         setVisible(true);

@@ -3,7 +3,7 @@ package main_frame;
 import drug_fulfill.drug_fulfill_depot_inventories.DrugFulfillHelper;
 import drug_fulfill.drug_fulfill_depot_inventories.DrugFulfillScreen;
 import drug_search.frameworks_drivers.DrugSearchHelper;
-import drug_search.frameworks_drivers.DrugSearchScreenNewer;
+import drug_search.frameworks_drivers.DrugSearchScreen;
 import site_drug_request.drug_request_frameworks_drivers.DrugRequestHelper;
 import site_drug_request.drug_request_frameworks_drivers.DrugRequestScreen;
 import user_login.frameworks_and_drivers.screens.UserLogInHelper;
@@ -68,7 +68,7 @@ public class MainFrame {
     /**
      * The drugSearchScreenNewer panel
      */
-    DrugSearchScreenNewer drugSearchScreenNewer;
+    DrugSearchScreen drugSearchScreenNewer;
     /**
      * Helps initialise the drugFulfillScreen
      */
