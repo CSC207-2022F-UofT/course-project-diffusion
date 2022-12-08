@@ -25,8 +25,6 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
     JComboBox<String> selectDrug;
 
 
-
-
     /**
      * The emergency toggle
      */
@@ -40,9 +38,7 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
     /**
      * A window with a title and a JButton.
      */
-
-    String locationRole = "Null";
-    String locationID = "0";
+    String locationID;
     public DrugFulfillScreen(DrugFulfillController controller) {
 
         this.userRegisterController = controller;
@@ -110,7 +106,7 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
             ie = Boolean.TRUE;
         } else if (evt.getActionCommand().equals("Cancel")){
             System.exit(0);
-        };
+        }
         try {
             userRegisterController.create((String) selectDrug.getSelectedItem(),
                     Integer.parseInt(bottle.getText()),
@@ -122,15 +118,6 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
         }
 
     }
-
-    public String getLocationRole() {
-        return locationRole;
-    }
-
-    public void setLocationRole(String locationRole) {
-        this.locationRole = locationRole;
-    }
-
     public String getLocationID() {
         return locationID;
     }

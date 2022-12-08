@@ -249,6 +249,7 @@ public class MainFrame {
 //                    drugFulfillScreen.setLocationID(userLoginScreen.getAccountID());
                     cardLayout.show(contentPane, "Drug Request Screen");
                 } else if (Objects.equals(userLoginScreen.getUserRole(), depotRole)) {
+                    drugFulfillScreen.setLocationID(userLoginScreen.getLocationName());
                 cardLayout.show(contentPane, "Drug Order Screen");
                 }
             } else{
