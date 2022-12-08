@@ -6,7 +6,7 @@ public class CommonDrugFulfill implements DrugFulfill {
 
     private final Boolean isEmergency;
     private final String depotName;
-//    private final String siteName;
+    private final String siteName;
     /**
      *
      * @param drugName of drug being ordered
@@ -15,11 +15,12 @@ public class CommonDrugFulfill implements DrugFulfill {
      * @param depotName name of depot the order will be sent to
      */
 
-     CommonDrugFulfill(String drugName, int drugBottle, Boolean isEmergency, String depotName){
+     CommonDrugFulfill(String drugName, int drugBottle, Boolean isEmergency, String depotName, String siteName){
         this.drugName = drugName;
         this.drugBottle = drugBottle;
         this.isEmergency = isEmergency;
         this.depotName = depotName;
+        this.siteName = siteName;
 
     }
 
@@ -40,4 +41,10 @@ public class CommonDrugFulfill implements DrugFulfill {
     public String getDepotName() {
         return depotName;
     }
+
+    @Override
+    public String getSiteName() {
+        return siteName;
+    }
+
 }

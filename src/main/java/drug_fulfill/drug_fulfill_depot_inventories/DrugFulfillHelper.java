@@ -4,6 +4,7 @@ import drug_fulfill.drug_fulfill_entities.CommonDrugFulfillFactory;
 import drug_fulfill.drug_fulfill_entities.DrugFulfillFactory;
 import drug_fulfill.drug_fulfill_frameworks_drivers.DrugFulfillResponseFormatter;
 import drug_fulfill.drug_fulfill_frameworks_drivers.FileDepotInventoryA;
+import drug_fulfill.drug_fulfill_frameworks_drivers.FileSiteInventory;
 import drug_fulfill.drug_fulfill_interface_adapters.DrugFulfillController;
 import drug_fulfill.drug_fulfill_interface_adapters.DrugFulfillPresenter;
 import drug_fulfill.drug_fulfill_use_case.DrugFulfillDsGateway;
@@ -18,14 +19,16 @@ public class DrugFulfillHelper {
         DrugFulfillDsGateway drugFulfillDsGateway;
 
         FileDepotInventoryA depot;
+        FileSiteInventory site;
         try {
-            depot = new FileDepotInventoryA("./depotAInventory.csv");
+            depot = new FileDepotInventoryA("./DepotInventory.csv");
+            site = new FileSiteInventory("./SiteInventory.csv");
         } catch (IOException var11) {
-            throw new RuntimeException("Could not create file.");
+            throw new RuntimeException("Could not create files.");
         }
         DrugFulfillPresenter presenter = new DrugFulfillResponseFormatter();
         DrugFulfillFactory orderFactory = new CommonDrugFulfillFactory();
-        DrugFulfillInputBoundary interactor = new DrugFulfillInteractor(depot, presenter, orderFactory);
+        DrugFulfillInputBoundary interactor = new DrugFulfillInteractor(depot, presenter, orderFactory, site);
         DrugFulfillController drugRequestController = new DrugFulfillController(interactor);
 
 

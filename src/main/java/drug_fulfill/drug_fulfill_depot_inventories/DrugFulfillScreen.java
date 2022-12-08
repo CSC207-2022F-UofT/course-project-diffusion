@@ -110,7 +110,7 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
         try {
             userRegisterController.create((String) selectDrug.getSelectedItem(),
                     Integer.parseInt(bottle.getText()),
-                    ie, (String) selectDepot.getSelectedItem());
+                    ie, (String) selectDepot.getSelectedItem(), "Site1"); //placeholder, site goes here
 
 
         } catch (Exception e) {
