@@ -1,5 +1,10 @@
 package site_drug_request;
 
+import receive_request.recceive_request_frameworks_drivers.ReceiveRequestDatabaseAccessor;
+import receive_request.receive_request_interface_adapters.ReceiveRequestController;
+import receive_request.receive_request_interface_adapters.ReceiveRequestPresenter;
+import receive_request.receive_request_use_case.ReceiveRequestInputBoundary;
+import receive_request.receive_request_use_case.ReceiveRequestInteractor;
 import site_drug_request.drug_request_entity.CommonDrugRequestGenerator;
 import site_drug_request.drug_request_entity.DrugRequestGenerator;
 import site_drug_request.drug_request_frameworks_drivers.DrugRequestRecorder;
@@ -38,6 +43,12 @@ public class DrugRequestFrame extends JFrame {
         DrugRequestInputBoundary interactor = new DrugRequestInteractor(drugRequestDsGateway,
                 outputBoundary, drugRequestGenerator);
         DrugRequestController drugRequestController = new DrugRequestController(interactor);
+
+
+        ReceiveRequestPresenter receiveOutputBoundary = new ReceiveRequestPresenter();
+        ReceiveRequestDatabaseAccessor receiveDatabaseAccessor = new ReceiveRequestDatabaseAccessor();
+        ReceiveRequestInputBoundary receiveInteractor = new ReceiveRequestInteractor(receiveOutputBoundary, receiveDatabaseAccessor);
+        ReceiveRequestController receiveController = new ReceiveRequestController(receiveInteractor);
 //
         //below is the DrugRequestScreen panel which is added to this JFrame Winfow
         DrugRequestScreen drugRequestScreen = new DrugRequestScreen(drugRequestController);
