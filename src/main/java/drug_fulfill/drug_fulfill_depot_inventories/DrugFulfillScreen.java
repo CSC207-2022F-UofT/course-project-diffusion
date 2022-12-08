@@ -38,6 +38,9 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
     /**
      * A window with a title and a JButton.
      */
+
+    String locationRole = "Null";
+    String locationID = "0";
     public DrugFulfillScreen(DrugFulfillController controller) {
 
         this.userRegisterController = controller;
@@ -133,5 +136,21 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
             JOptionPane.showMessageDialog(this, "please put in a number for amount");
         }
 
+    }
+
+    public String getLocationRole() {
+        return locationRole;
+    }
+
+    public void setLocationRole(String locationRole) {
+        this.locationRole = locationRole;
+    }
+
+    public String getLocationID() {
+        return locationID;
+    }
+
+    public void setLocationID(String locationID) {
+        this.locationID = locationID;
     }
 }

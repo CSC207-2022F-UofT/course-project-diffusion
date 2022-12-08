@@ -22,38 +22,67 @@ public class UserLoginRecorder implements UserLoginDsGateway {
 //        generateUserLoginRequestHelper();
     }
 
+    /**
+     * 
+     * @param identifier
+     * @return
+     */
     @Override
     public boolean usernameExists(String identifier) {
         return Reader(identifier, 3);
 //        return userLoginRequest.containsKey(identifier);
     }
 
+    /**
+     * 
+     * @param identifier
+     * @return
+     */
     @Override
     public boolean passwordExists(String identifier) {
         return Reader(identifier, 4);
     }
 
+    /**
+     * 
+     * @param userLoginDsInputData
+     */
     @Override
     public void saveUserLogin(UserLoginDsInputData userLoginDsInputData) {
         userLoginRequest.put(userLoginDsInputData.getUsername(), userLoginDsInputData);
-        this.generateUserLoginRequestHelper();
+//        this.generateUserLoginRequestHelper();
     }
 
+    /**
+     * 
+     * @param username
+     * @return
+     */
     @Override
-    public String userRole(String identifier) {
-        return RoleChecker(identifier, 3);
+    public String userRole(String username) {
+        return RoleChecker(username, 3);
     }
 
-    private void generateUserLoginRequestHelper(){
-        if (csvFile.length() == 0){
-            generateHeader();
-            appendUserloginRequest();
-
-        }else{
-            appendUserloginRequest();
-
-        }
+    /**
+     * 
+     * @param username the username of the user loggin in.
+     * @return the name of the location attached to this user.
+     */
+    @Override
+    public String locationName(String username) {
+        return RoleChecker(username, 6);
     }
+
+    //    private void generateUserLoginRequestHelper(){
+//        if (csvFile.length() == 0){
+//            generateHeader();
+//            appendUserloginRequest();
+//
+//        }else{
+//            appendUserloginRequest();
+//
+//        }
+//    }
     private boolean Reader(String reference, int column){
         String delimiter = ",";
         BufferedReader bufferedReader;

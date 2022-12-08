@@ -51,7 +51,7 @@ public class MainFrame {
     DrugSearchHelper drugSearchHelper;
     DrugSearchScreenNewer drugSearchScreenNewer;
     DrugFulfillHelper drugFulfillHelper;
-    DrugFulfillScreen drugDrugFulfillScreen;
+    DrugFulfillScreen drugFulfillScreen;
 
     /**
      * Responsible for adding the various Screens into the contentPanel container of the MainFrame.
@@ -84,7 +84,7 @@ public class MainFrame {
          drugSearchScreenNewer = drugSearchHelper.generateDrugSearchScreen();
 
          drugFulfillHelper = new DrugFulfillHelper();
-         drugDrugFulfillScreen = drugFulfillHelper.DrugFulfillGenerator();
+         drugFulfillScreen = drugFulfillHelper.DrugFulfillGenerator();
 
         /*
         Create buttonPanels for the various screen
@@ -154,7 +154,7 @@ public class MainFrame {
         userLoginScreen.add(logInScreenButtonPanel);
         userLoginScreen.add(submitLoginButtonPanel);
         drugRequestScreen.add(drugRequestButtonPanel);
-        drugDrugFulfillScreen.add(drugOrderButtonPanel);
+        drugFulfillScreen.add(drugOrderButtonPanel);
 //        drugSearchScreenNewer.add(drugSearchButtonPanel);
 
 
@@ -167,7 +167,7 @@ public class MainFrame {
         contentPane.add(userRegistrationScreen, "User Registration");
         contentPane.add(userLoginScreen, "User LogIn");
         contentPane.add(drugSearchScreenNewer, "Drug Search");
-        contentPane.add(drugDrugFulfillScreen, "Drug Order Screen");
+        contentPane.add(drugFulfillScreen, "Drug Order Screen");
         contentPane.add(drugRequestScreen, "Drug Request Screen");
 //        contentPane.add(drugDrugFulfillScreen, "Drug Order Screen");
 
@@ -216,10 +216,12 @@ public class MainFrame {
             System.out.println("Clicked " + submitLoginButton.getText());
             if (userLoginScreen.getSubmitLoginStatus()) {
                 CardLayout cardLayout = (CardLayout) contentPane.getLayout();
-                System.out.println(Objects.equals(userLoginScreen.getLoginStatusType(), siteRole));
-                if (Objects.equals(userLoginScreen.getLoginStatusType(), siteRole)) {
+                System.out.println(Objects.equals(userLoginScreen.getUserRole(), siteRole));
+                if (Objects.equals(userLoginScreen.getUserRole(), siteRole)) {
+                    drugFulfillScreen.setLocationRole(siteRole);
+                    drugFulfillScreen.setLocationID(userLoginScreen.getLocationID());
                     cardLayout.show(contentPane, "Drug Request Screen");
-                } else if (Objects.equals(userLoginScreen.getLoginStatusType(), depotRole)) {
+                } else if (Objects.equals(userLoginScreen.getUserRole(), depotRole)) {
                 cardLayout.show(contentPane, "Drug Order Screen");
                 }
             } else{

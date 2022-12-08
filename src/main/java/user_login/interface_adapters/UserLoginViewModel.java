@@ -4,10 +4,12 @@ public class UserLoginViewModel {
     String username;
     String creationTime;
     String role;
-    public UserLoginViewModel(String username, String creationTime, String role) {
+    String locationName;
+    public UserLoginViewModel(String username, String creationTime, String role, String locationName) {
         this.username = username;
         this.creationTime = creationTime;
         this.role = role;
+        this.locationName = locationName;
     }
 
     public String getUsername() {
@@ -32,5 +34,13 @@ public class UserLoginViewModel {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
 }

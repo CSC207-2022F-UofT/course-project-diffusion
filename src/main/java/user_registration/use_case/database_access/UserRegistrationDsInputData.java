@@ -2,6 +2,9 @@ package user_registration.use_case.database_access;
 
 import java.time.LocalDateTime;
 
+/**
+ * Generates Input Data Object.
+ */
 public class UserRegistrationDsInputData {
     private String firstname;
     private String lastname;
@@ -11,6 +14,16 @@ public class UserRegistrationDsInputData {
     private String role;
     private final LocalDateTime userRegistrationTime;
 
+    /**
+     *
+     * @param firstname the first name
+     * @param lastname the last name
+     * @param username the username
+     * @param password the password
+     * @param locationName the name of the location assigned
+     * @param role the users role
+     * @param userRegistrationTime the times at which the user registered
+     */
     public UserRegistrationDsInputData(String firstname, String lastname, String username, String password,
                                        Object locationName, String role, LocalDateTime userRegistrationTime) {
         this.firstname = firstname;
