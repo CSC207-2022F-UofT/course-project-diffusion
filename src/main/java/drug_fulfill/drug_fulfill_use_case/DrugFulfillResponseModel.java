@@ -9,6 +9,7 @@ public class DrugFulfillResponseModel {
 
     Boolean isEmergency;
 
+
     public DrugFulfillResponseModel(String drugName, String creationTime, Boolean isEmergency) {
         this.drugName = drugName;
         this.creationTime = creationTime;

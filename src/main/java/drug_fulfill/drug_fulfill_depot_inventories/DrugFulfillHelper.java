@@ -1,7 +1,4 @@
-package drug_fulfill.drug_fulfill_depot_inventories;//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
+package drug_fulfill.drug_fulfill_depot_inventories;
 
 import drug_fulfill.drug_fulfill_entities.CommonDrugFulfillFactory;
 import drug_fulfill.drug_fulfill_entities.DrugFulfillFactory;
@@ -20,12 +17,6 @@ public class DrugFulfillHelper {
     public DrugFulfillScreen DrugFulfillGenerator() {
         DrugFulfillDsGateway drugFulfillDsGateway;
 
-
-//        JFrame application = new JFrame("Order Example");
-//        CardLayout cardLayout = new CardLayout();
-//        JPanel screens = new JPanel(cardLayout);
-//        application.add(screens);
-
         FileDepotInventoryA depot;
         try {
             depot = new FileDepotInventoryA("./depotAInventory.csv");
@@ -36,12 +27,9 @@ public class DrugFulfillHelper {
         DrugFulfillFactory orderFactory = new CommonDrugFulfillFactory();
         DrugFulfillInputBoundary interactor = new DrugFulfillInteractor(depot, presenter, orderFactory);
         DrugFulfillController drugRequestController = new DrugFulfillController(interactor);
-        DrugFulfillScreen registerScreen = new DrugFulfillScreen(drugRequestController);
-//        screens.add(registerScreensterScreen, "welcome");
-//        cardLayout.show(screens, "register");
-//        application.pack();
-//        application.setVisible(true);
-        return registerScreen;
+
+
+        return new DrugFulfillScreen(drugRequestController);
     }
 
 }

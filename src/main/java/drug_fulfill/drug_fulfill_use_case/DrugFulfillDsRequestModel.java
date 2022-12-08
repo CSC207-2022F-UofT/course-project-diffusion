@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 
 // Use case layer
 
+/**
+ * Generates DsRequestModel, an order, using input data.
+ */
 public class DrugFulfillDsRequestModel {
 
     private final String name;
@@ -15,6 +18,13 @@ public class DrugFulfillDsRequestModel {
     private final String depotName;
 
 
+    /**
+     * @param name of drug
+     * @param drugBottle amount of drug
+     * @param creationTime the time this order was created
+     * @param Emergency Boolean, true if this order is an emergency
+     * @param depot the depot this order is being sent to.
+     */
     public DrugFulfillDsRequestModel(String name, int drugBottle, LocalDateTime creationTime, Boolean Emergency, String depot) {
         this.name = name;
         this.drugBottle = drugBottle;

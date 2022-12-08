@@ -1,5 +1,7 @@
 package drug_fulfill.drug_fulfill_depot_inventories;
 
+import drug_fulfill.drug_fulfill_frameworks_drivers.LabelComboBox;
+import drug_fulfill.drug_fulfill_frameworks_drivers.LabelTextPanel;
 import drug_fulfill.drug_fulfill_interface_adapters.DrugFulfillController;
 
 import javax.swing.*;
@@ -49,22 +51,13 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
         JLabel title = new JLabel("Order Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        //String[] sites = {"Site1", "Site2", "Site3"};
         String[] depots = {"Depot1", "Depot2", "Depot3"};
         String[] drugs = {"DrugA", "DrugB", "DrugC"};
 
         LabelTextPanel drugNameInfo = new LabelTextPanel(
                 new JLabel("Choose drugName (DrugA, DrugB, DrugC)"), drugName);
         selectDrug = new JComboBox<>(drugs);
-
-//        JPanel drugpanel = new JPanel();
-//        drugpanel.add(selectDrug);
         LabelComboBox chooseDrug = new LabelComboBox(new JLabel("Choose drugName"), selectDrug);
-
-
-
-
-
 
         LabelTextPanel bottleInfo = new LabelTextPanel(
                 new JLabel("Choose amount/bottle"), bottle);
@@ -73,8 +66,6 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
                 new JLabel("Choose depot to order from (Depot1, Depot2, Depot3)"), depot);
         selectDepot = new JComboBox<>(depots);
 
-//        JPanel depotpanel = new JPanel();
-//        depotpanel.add(selectDepot);
         LabelComboBox chooseDepot = new LabelComboBox(new JLabel("Choose depot"), selectDepot);
 
 
@@ -96,11 +87,9 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
-        //this.add(drugNameInfo);
         this.add(chooseDrug);
         this.add(chooseDepot);
         this.add(bottleInfo);
-        //this.add(depotInfo);
 
         this.add(isEmergency);
         this.add(buttons);
@@ -124,14 +113,10 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
         };
         try {
             userRegisterController.create((String) selectDrug.getSelectedItem(),
-                    Integer.parseInt(bottle.getText()), //just some number for now
-                    //String.valueOf(password.getPassword()),
-                    //String.valueOf(repeatPassword.getPassword()),
+                    Integer.parseInt(bottle.getText()),
                     ie, (String) selectDepot.getSelectedItem());
 
 
-
-            //JOptionPane.showMessageDialog(this,  String.format("%1$s ", bottle.getText()) + String.format(drugName.getText()) + "is emergency " + isEmergency.isSelected());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "please put in a number for amount");
         }
