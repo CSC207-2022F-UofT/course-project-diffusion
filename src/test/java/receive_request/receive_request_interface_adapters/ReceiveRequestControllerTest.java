@@ -23,7 +23,7 @@ class ReceiveRequestControllerTest {
 
     @Test
     void checkInventoryTestValid2() throws FileNotFoundException {
-        ReceiveRequestOutputModel outputModel = controller.checkInventory("DrugB","20");
+        ReceiveRequestOutputModel outputModel = controller.checkInventory("Levothyroxine","20");
         assertTrue(outputModel.getNameExist());
         assertTrue(outputModel.getSuffientQauntity());
     }
