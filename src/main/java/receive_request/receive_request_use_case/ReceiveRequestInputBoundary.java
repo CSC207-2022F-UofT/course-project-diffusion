@@ -1,8 +1,7 @@
 package receive_request.receive_request_use_case;
 
+import java.io.FileNotFoundException;
+
 public interface ReceiveRequestInputBoundary {
-    String getName();
-    String getBottle();
-    void setName(String name);
-    void setBottle(String bottle);
+    boolean checkInventory(String drugName, String drugBottle) throws FileNotFoundException;
 }
