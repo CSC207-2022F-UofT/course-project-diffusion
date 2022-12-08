@@ -17,7 +17,6 @@ import java.io.IOException;
 
 public class DrugFulfillHelper {
     public DrugFulfillScreen DrugFulfillGenerator() {
-        DrugFulfillDsGateway drugFulfillDsGateway;
 
         FileDepotInventoryA depot;
         FileSiteInventory site;

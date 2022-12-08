@@ -88,10 +88,6 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
      */
     public void actionPerformed(ActionEvent evt) {
 
-        String print = (String) selectDrug.getSelectedItem();
-        System.out.println(print);
-
-        System.out.println("Click " + evt.getActionCommand());
         Boolean ie = Boolean.FALSE;
         if(isEmergency.isSelected()){
             ie = Boolean.TRUE;

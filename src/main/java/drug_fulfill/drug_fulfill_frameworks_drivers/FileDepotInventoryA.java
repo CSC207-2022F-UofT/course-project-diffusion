@@ -19,11 +19,10 @@ import java.util.Objects;
 public class FileDepotInventoryA implements DrugFulfillDsGateway {
     private final File csvFile;
     private final Map<String, Integer> headers = new LinkedHashMap<>();
-    private final Map<String, DrugFulfillDsRequestModel> CurrentInventory = new HashMap<>();
-    private final Map<String, DrugFulfillDsRequestModel> MadeOrders = new HashMap<>();
+    private final Map<String, DrugFulfillDsRequestModel> CurrentInventory = new LinkedHashMap<>();
+    private final Map<String, DrugFulfillDsRequestModel> MadeOrders = new LinkedHashMap<>();
     private final String[] drugList = new DrugListGenerator().GenerateDrugList();
     private final String[] depotList = new String[]{"Depot1", "Depot2", "Depot3"};
-    private final String[] depotIDList = new String[]{"1", "2", "3"};
 
     /**
      * Allows for storing data in memory, and writing corresponding CSV files.
@@ -35,8 +34,6 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
         this.headers.put("drugName", 1);
         this.headers.put("drugAmount", 2);
         this.headers.put("creation_time", 3);
-        this.headers.put("batch Number", 4);
-        this.headers.put("id Number", 5);
 
         if (this.csvFile.length() == 0L) {
             System.out.println("No Corresponding CSV file. Creating default depot Inventory.");
@@ -71,9 +68,7 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
      */
     @Override
     public boolean depotIsInsufficient(int orderAmount, String drugName, String depotName) {
-        System.out.println(CurrentInventory.values());
         for (DrugFulfillDsRequestModel drugBin1 : this.CurrentInventory.values()) {
-            System.out.println(drugBin1.getName());
             if (Objects.equals(drugBin1.getName(), drugName) && Objects.equals(drugBin1.getDepotName(),depotName) ) {
                 return ((drugBin1.getBottle() - orderAmount) < 0);
             }
