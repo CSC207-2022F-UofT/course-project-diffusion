@@ -15,6 +15,10 @@ public class DrugSearchScreenNewer extends JPanel {
         drugSearchViewModel = viewModel;
     }
 
+    public JPanel getSearchButtonPanel() {
+        return searchButtonPanel;
+    }
+
     private void initComponents() {
         // Initialize grid layout
         int i = 8;
@@ -28,6 +32,8 @@ public class DrugSearchScreenNewer extends JPanel {
                 add(panelHolder[m][n]);
             }
         }
+
+        searchButtonPanel = panelHolder[7][2];
 
         // Initialize text field labels
         JLabel drugRequestIDLabel = new JLabel("Drug Request ID");
@@ -130,18 +136,6 @@ public class DrugSearchScreenNewer extends JPanel {
             new DrugSearchResultFrame(drugSearchViewModel.getEntryList());
         else
             JOptionPane.showMessageDialog(this, drugSearchViewModel.getMessage());
-
-        // Temporary debug stuff
-        // String message = "Sent search request with parameters \n"
-        //         + "Account ID: " + accountId + "\n"
-        //         + "Request ID: " + requestId + "\n"
-        //         + "Site ID: " + siteId + "\n"
-        //         + "Drug Name: " + drugName + "\n"
-        //         + "Quantity: " + quantity + "\n"
-        //         + "Date Search: " + dateSearch + "\n"
-        //         + "Date: " + day + "/" + month + "/" + year + "\n"
-        //         + "Relativity: " + relativity;
-        // JOptionPane.showMessageDialog(receiptSearch, message);
     }
 
     private String[] generateDays() {
@@ -187,6 +181,8 @@ public class DrugSearchScreenNewer extends JPanel {
             "November",
             "December"
     };
+
+    private JPanel searchButtonPanel;
 
     private JTextField drugRequestIDTextField;
     private JTextField siteIDTextField;

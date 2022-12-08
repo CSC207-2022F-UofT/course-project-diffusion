@@ -78,6 +78,8 @@ public class MainFrame {
      */
     DrugFulfillScreen drugFulfillScreen;
 
+    String previousScreen = "Home Screen";
+
     /**
      * Responsible for adding the various Screens into the contentPanel container of the MainFrame.
      */
@@ -121,7 +123,7 @@ public class MainFrame {
         JPanel submitLoginButtonPanel = new JPanel();
         JPanel drugRequestButtonPanel = new JPanel();
         JPanel drugOrderButtonPanel = new JPanel();
-        JPanel drugSearchButtonPanel = new JPanel();
+        JPanel drugSearchButtonPanel = drugSearchScreenNewer.getSearchButtonPanel();
 
         /*
         Create buttons for each screen  to add to eachScreens button panel.
@@ -142,7 +144,7 @@ public class MainFrame {
         JButton drugRequestScreensSearchButton = new JButton("Drug Search");
 
         JButton drugSearchButton = new JButton("Drug Search");
-        JButton homeScreenButtonDrugSearchScreen = new JButton("HomeScreen");
+        JButton goBackButtonDrugSearchScreen = new JButton("Go Back");
 
 
         JButton drugOrderButton = new JButton("Drug Order");
@@ -165,7 +167,7 @@ public class MainFrame {
         drugRequestButtonPanel.add(drugRequestScreenHomeButton);
         drugRequestButtonPanel.add(drugRequestScreensSearchButton);
 
-        drugSearchButtonPanel.add(homeScreenButtonDrugSearchScreen);
+        drugSearchButtonPanel.add(goBackButtonDrugSearchScreen);
 
         drugOrderButtonPanel.add(drugSearchButtonDrugOrderScreen);
 
@@ -180,7 +182,6 @@ public class MainFrame {
         userLoginScreen.add(submitLoginButtonPanel);
         drugRequestScreen.add(drugRequestButtonPanel);
         drugFulfillScreen.add(drugOrderButtonPanel);
-//        drugSearchScreenNewer.add(drugSearchButtonPanel);
 
 
         /*
@@ -279,13 +280,13 @@ public class MainFrame {
             System.out.println("Clicked " + drugRequestScreensSearchButton.getText());
             CardLayout cardLayout = (CardLayout) contentPane.getLayout();
             cardLayout.show(contentPane, "Drug Search");
-
+            previousScreen = "Drug Request Screen";
         });
 
-        homeScreenButtonDrugSearchScreen.addActionListener(e -> {
-            System.out.println("Clicked " + homeScreenButtonDrugSearchScreen.getText());
+        goBackButtonDrugSearchScreen.addActionListener(e -> {
+            System.out.println("Clicked " + goBackButtonDrugSearchScreen.getText());
             CardLayout cardLayout = (CardLayout) contentPane.getLayout();
-            cardLayout.show(contentPane, "Home Screen");
+            cardLayout.show(contentPane, previousScreen);
 
         });
 
@@ -293,7 +294,7 @@ public class MainFrame {
             System.out.println("Clicked " + drugSearchButtonDrugOrderScreen.getText());
             CardLayout cardLayout = (CardLayout) contentPane.getLayout();
             cardLayout.show(contentPane, "Drug Search");
-
+            previousScreen = "Drug Order Screen";
         });
 
 
