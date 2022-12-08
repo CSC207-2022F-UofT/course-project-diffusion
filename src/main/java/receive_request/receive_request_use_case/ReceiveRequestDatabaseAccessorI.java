@@ -2,7 +2,7 @@ package receive_request.receive_request_use_case;
 
 import java.io.FileNotFoundException;
 
-public interface ReceiveRequestDatabaseAccessorInterface {
+public interface ReceiveRequestDatabaseAccessorI {
     /**
      * Check if inventory of the depot has enough quantity of the requested drug.
      *

@@ -1,14 +1,13 @@
 package receive_request.recceive_request_frameworks_drivers;
 
-import drug_search.use_case.DrugRequestDBEntry;
-import receive_request.receive_request_use_case.ReceiveRequestDatabaseAccessorInterface;
+import receive_request.receive_request_use_case.ReceiveRequestDatabaseAccessorI;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ReceiveRequestDatabaseAccessor implements ReceiveRequestDatabaseAccessorInterface {
+public class ReceiveRequestDatabaseAccessor implements ReceiveRequestDatabaseAccessorI {
 
     /**
      * {@inheritDoc}

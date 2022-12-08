@@ -7,10 +7,10 @@ import java.io.FileNotFoundException;
 
 public class ReceiveRequestInteractor implements ReceiveRequestInputBoundary{
     // Initialise the Output Boundary
-    ReceiveRequestOutputBoundary receiveRequestOutputBoundary;
+    final ReceiveRequestOutputBoundary receiveRequestOutputBoundary;
     // Initialise the Database Accessor
-    ReceiveRequestDatabaseAccessorInterface databaseAccessor;
-    public ReceiveRequestInteractor(ReceiveRequestOutputBoundary receiveRequestOutputBoundary, ReceiveRequestDatabaseAccessorInterface databaseAccessor) {
+    final ReceiveRequestDatabaseAccessorI databaseAccessor;
+    public ReceiveRequestInteractor(ReceiveRequestOutputBoundary receiveRequestOutputBoundary, ReceiveRequestDatabaseAccessorI databaseAccessor) {
         this.receiveRequestOutputBoundary = receiveRequestOutputBoundary;
         this.databaseAccessor = databaseAccessor;
     }
