@@ -6,12 +6,19 @@ import receive_request.receive_request_entity.ValidRequestGenerator;
 import java.io.FileNotFoundException;
 
 public class ReceiveRequestInteractor implements ReceiveRequestInputBoundary{
-    public ReceiveRequestInteractor(ReceiveRequestInputModel drugRequestInputModel) { //change input type to drugRequestInputModel
-
+    ReceiveRequestOutputBoundary receiveRequestOutputBoundary;
+    ReceiveRequestDatabaseAccessorInterface databaseAccessor;
+    public ReceiveRequestInteractor(ReceiveRequestOutputBoundary receiveRequestOutputBoundary, ReceiveRequestDatabaseAccessorInterface databaseAccessor) {
+        this.receiveRequestOutputBoundary = receiveRequestOutputBoundary;
+        this.databaseAccessor = databaseAccessor;
     }
 
-    public boolean checkInventory(String drugName, String drugBottle) throws FileNotFoundException {
-        ValidRequest validRequest = ValidRequestGenerator.createValidRequest(drugName, drugBottle);
-        return validRequest.checkInventory();
+    public ReceiveRequestOutputModel checkInventory(ReceiveRequestInputModel receiveRequestInputModel) throws FileNotFoundException {
+        ValidRequest validRequest = ValidRequestGenerator.createValidRequest(receiveRequestInputModel.getName(), receiveRequestInputModel.getBottle());
+        ReceiveRequestOutputModel receiveRequestOutputModel = new ReceiveRequestOutputModel();
+        if (databaseAccessor.checkInventory(validRequest.getName(), validRequest.getBottle())) {
+            receiveRequestOutputModel.setValidState(true);
+        }
+        return receiveRequestOutputBoundary.result(receiveRequestOutputModel);
     }
 }
