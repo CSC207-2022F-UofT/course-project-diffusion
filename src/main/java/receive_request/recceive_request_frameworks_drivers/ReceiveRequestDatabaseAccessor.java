@@ -15,7 +15,7 @@ public class ReceiveRequestDatabaseAccessor implements ReceiveRequestDatabaseAcc
     public String checkInventory(String drugName, String drugBottle) throws FileNotFoundException {
         ArrayList<String[]> list = new ArrayList<>();
 
-        Scanner scanner = new Scanner(new File("./depotAInventory.csv"));
+        Scanner scanner = new Scanner(new File("./DepotInventory.csv"));
         scanner.nextLine();
 
         while (scanner.hasNextLine()) {

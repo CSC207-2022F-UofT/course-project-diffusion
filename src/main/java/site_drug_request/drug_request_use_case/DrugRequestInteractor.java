@@ -28,6 +28,8 @@ public class DrugRequestInteractor implements DrugRequestInputBoundary {
         DrugRequest drugRequest = drugRequestGenerator.create(drugRequestInvokeModel.getDrugName(),
                 drugRequestInvokeModel.getDrugBottle(),drugRequestInvokeModel.getSiteName(),
                 drugRequestInvokeModel.getAccountID());
+        boolean nameExist = receiveRequestController.checkInventory(drugRequest.getDrugName(), drugRequest.getDrugBottle()).getNameExist();
+        boolean sufficientInventory = receiveRequestController.checkInventory(drugRequest.getDrugName(), drugRequest.getDrugBottle()).getSuffientQauntity();
         if (drugRequest.drugNameIsEmpty()) {
             return drugRequestOutputBoundary.prepareFailView("Drug Name not entered.");
         } else if (!drugRequest.drugNameIsValid()) {
@@ -39,7 +41,9 @@ public class DrugRequestInteractor implements DrugRequestInputBoundary {
 
         } else if (!drugRequest.drugBottleIsValid()) {
             return drugRequestOutputBoundary.prepareFailView("Drug Bottles ordered must be between 1 and 100 (inclusive)");
-        } else if (!receiveRequestController.checkInventory(drugRequest.getDrugName(), drugRequest.getDrugBottle()).getValidState()){
+        } else if (!nameExist) {
+            return drugRequestOutputBoundary.prepareFailView("Drug not found");
+        } else if (!sufficientInventory) {
             return drugRequestOutputBoundary.prepareFailView("Insufficient inventory");
         }
 
