@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 
 public class DrugFulfillInteractor implements DrugFulfillInputBoundary {
     final DrugFulfillDsGateway fulfillDsGateway;
-    //final some_presenter presenter;
     final DrugFulfillPresenter orderPresenter;
     final DrugFulfillFactory fulfillFactory;
     final SiteDrugFulfillDsGateway sitefulfillDsGateway;

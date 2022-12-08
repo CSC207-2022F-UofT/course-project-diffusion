@@ -19,12 +19,10 @@ import java.util.Objects;
 public class FileDepotInventoryA implements DrugFulfillDsGateway {
     private final File csvFile;
     private final Map<String, Integer> headers = new LinkedHashMap<>();
-    private final Map<String, DrugFulfillDsRequestModel> CurrentInventory = new HashMap<>();
-    private final Map<String, DrugFulfillDsRequestModel> MadeOrders = new HashMap<>();
-//    private final String[] drugList = new String[]{"DrugA", "DrugB", "DrugC"};
+    private final Map<String, DrugFulfillDsRequestModel> CurrentInventory = new LinkedHashMap<>();
+    private final Map<String, DrugFulfillDsRequestModel> MadeOrders = new LinkedHashMap<>();
     private final String[] drugList = new DrugListGenerator().GenerateDrugList();
     private final String[] depotList = new String[]{"Depot1", "Depot2", "Depot3"};
-    private final String[] depotIDList = new String[]{"1", "2", "3"};
 
     /**
      * Allows for storing data in memory, and writing corresponding CSV files.
@@ -36,9 +34,6 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
         this.headers.put("drugName", 1);
         this.headers.put("drugAmount", 2);
         this.headers.put("creation_time", 3);
-        this.headers.put("batch Number", 4);
-        this.headers.put("id Number", 5);
-//        this.headers.put("Depot ID", 6);
 
         if (this.csvFile.length() == 0L) {
             System.out.println("No Corresponding CSV file. Creating default depot Inventory.");
@@ -51,9 +46,9 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
             while((row = reader.readLine()) != null) {
                 String[] col = row.split(",");
                 String drugName = String.valueOf(col[this.headers.get("drugName")]);
-                int drugAmount = Integer.parseInt(col[this.headers.get("drugAmount")]);
+                int drugAmount = Integer.parseInt(col[this.headers.get("drugAmount")].trim());
                 String creationTimeText = String.valueOf(col[this.headers.get("creation_time")]);
-                LocalDateTime ldt = LocalDateTime.parse(creationTimeText);
+                LocalDateTime ldt = LocalDateTime.parse(creationTimeText.trim());
                 String depotName = String.valueOf(col[this.headers.get("Depot Name")]);
                 DrugFulfillDsRequestModel saveReceipt = new DrugFulfillDsRequestModel(drugName, drugAmount, ldt, Boolean.FALSE, depotName);
                 this.CurrentInventory.put(String.valueOf(ldt), saveReceipt);
@@ -73,9 +68,7 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
      */
     @Override
     public boolean depotIsInsufficient(int orderAmount, String drugName, String depotName) {
-        System.out.println(CurrentInventory.values());
         for (DrugFulfillDsRequestModel drugBin1 : this.CurrentInventory.values()) {
-            System.out.println(drugBin1.getName());
             if (Objects.equals(drugBin1.getName(), drugName) && Objects.equals(drugBin1.getDepotName(),depotName) ) {
                 return ((drugBin1.getBottle() - orderAmount) < 0);
             }
@@ -92,6 +85,17 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
         this.MadeOrders.put(time_id, requestModel);
         this.adjustInventory(time_id);
     }
+
+    @Override
+    public Map<String, DrugFulfillDsRequestModel> getCurrentInventory() {
+        return this.CurrentInventory;
+    }
+
+    @Override
+    public Map<String, DrugFulfillDsRequestModel> getMadeOrders() {
+        return this.MadeOrders;
+    }
+
     /**
      * Allows for depot database to adjust based on an order made.
      * @param time_id ID value used as key in our Hashmap. Used to pull a specific order made.
@@ -131,7 +135,6 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
             writer.write(String.join(",", this.headers.keySet()));
             writer.newLine();
             int initial_amount = 20;
-//            initial_amount = randomnum
 
             for (String DepotName : this.depotList) {
                 for (String DrugName : this.drugList) {

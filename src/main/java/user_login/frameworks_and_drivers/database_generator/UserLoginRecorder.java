@@ -1,4 +1,4 @@
-package user_login.frameworks_and_drivers.database_access;
+package user_login.frameworks_and_drivers.database_generator;
 
 import helper_methods.TableHeader;
 import user_login.use_case.database_access.UserLoginDsGateway;

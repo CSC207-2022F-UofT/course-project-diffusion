@@ -1,6 +1,6 @@
 package user_login.frameworks_and_drivers.screens;
 
-import user_login.frameworks_and_drivers.database_access.UserLoginRecorder;
+import user_login.frameworks_and_drivers.database_generator.UserLoginRecorder;
 import user_login.interface_adapters.UserLoginController;
 import user_login.interface_adapters.UserLoginPresenter;
 import user_login.ports.UserLoginFactory;

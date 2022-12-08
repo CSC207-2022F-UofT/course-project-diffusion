@@ -64,7 +64,6 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
             System.out.println("Clicked " + actionEvent.getActionCommand());
             try {
                 userLoginController.createInputObject(username.getText(), password.getText());
-                JOptionPane.showMessageDialog(this, String.format("Login request recorded for %s", username.getText()));
                 setSubmitLoginStatus(true);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());

@@ -16,7 +16,7 @@ public class DrugRequestInteractor implements DrugRequestInputBoundary {
 
     public DrugRequestInteractor(DrugRequestDsGateway drugRequestDsGateway, DrugRequestOutputBoundary
             drugRequestOutputBoundary, DrugRequestGenerator drugRequestGenerator, ReceiveRequestController
-                                         receiveRequestController) {
+            receiveRequestController) {
         this.drugRequestDsGateway = drugRequestDsGateway;
         this.drugRequestOutputBoundary = drugRequestOutputBoundary;
         this.drugRequestGenerator = drugRequestGenerator;

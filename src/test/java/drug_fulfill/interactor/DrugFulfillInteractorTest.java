@@ -3,7 +3,7 @@
 //import drug_fulfill.drug_fulfill_entities.CommonDrugFulfillFactory;
 //import drug_fulfill.drug_fulfill_entities.DrugFulfill;
 //import drug_fulfill.drug_fulfill_entities.DrugFulfillFactory;
-//import drug_fulfill.drug_fulfill_frameworks_drivers.DrugFulfillResponseFormatter;
+//import drug_fulfill.drug_fulfill_interface_adapters.DrugFulfillResponseFormatter;
 //import drug_fulfill.drug_fulfill_frameworks_drivers.FileDepotInventoryA;
 //import drug_fulfill.drug_fulfill_interface_adapters.DrugFulfillPresenter;
 //import drug_fulfill.drug_fulfill_use_case.*;
@@ -13,7 +13,7 @@
 //import user_registration.frameworks_and_drivers.database_generator.UserRegistrationInMemory;
 //import user_registration.interface_adapters.UserRegistrationPresenter;
 //import user_registration.ports.UserRegistrationGenerator;
-//import user_registration.use_case.database_access.UserRegistrationDsGateway;
+//import user_registration.use_case.database_generator.UserRegistrationDsGateway;
 //import user_registration.use_case.input.UserRegistrationInputBoundary;
 //import user_registration.use_case.input.UserRegistrationInputData;
 //import user_registration.use_case.output.UserRegistrationOutputData;
