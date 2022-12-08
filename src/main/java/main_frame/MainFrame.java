@@ -18,6 +18,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
+/**
+ * Responsible for adding the various JPanel frames into the MainFrame
+ */
 public class MainFrame {
     JPanel contentPane;
     String siteRole = "Site User";
@@ -212,7 +215,7 @@ public class MainFrame {
                     System.out.println(siteRole);
                     System.out.println(Objects.equals(userLoginScreen.getLoginStatusType(), siteRole));
                     if (Objects.equals(userLoginScreen.getLoginStatusType(), siteRole)) {
-                        drugOrderScreen.setUserRole(userRegistrationScreen.getRole());
+//                        drugOrderScreen.setUserRole(userRegistrationScreen.getRole());
 //                        System.out.println(true);
                         cardLayout.show(contentPane, "Drug Request Screen");
                     } else if (Objects.equals(userLoginScreen.getLoginStatusType(), depotRole)) {
