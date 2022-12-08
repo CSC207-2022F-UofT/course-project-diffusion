@@ -4,9 +4,12 @@ public class UserloginOutputData {
     String username;
     String creationTime;
 
-    public UserloginOutputData(String username, String creationTime) {
+    String role;
+
+    public UserloginOutputData(String username, String creationTime, String role) {
         this.username = username;
         this.creationTime = creationTime;
+        this.role = role;
     }
 
     public String getCreationTime() {
@@ -23,5 +26,13 @@ public class UserloginOutputData {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

@@ -26,7 +26,7 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
         headers.put("Password", 4);
         headers.put("User Role", 5);
         headers.put("Location Name", 6);
-        headers.put("Site / Depot ID (sites 2000's depots are 3000's", 7);
+        headers.put("Site / Depot ID (sites 3000's depots are 4000's", 7);
         headers.put("User Registration Date and Time", 8);
 
         //Check to see if file already exists, if it does not then add a header and the first drug request,
@@ -37,15 +37,15 @@ public class UserRegistrationRecorder implements UserRegistrationDsGateway {
         }
     }
 
-    @Override
-    public boolean firstNameExists(String identifier) {
-        return userRegistrationRequest.containsKey(identifier);
-    }
+//    @Override
+//    public boolean firstNameExists(String identifier) {
+//        return userRegistrationRequest.containsKey(identifier);
+//    }
 
-    @Override
-    public boolean lastNameExists(String identifier) {
-        return userRegistrationRequest.containsKey(identifier);
-    }
+//    @Override
+//    public boolean lastNameExists(String identifier) {
+//        return userRegistrationRequest.containsKey(identifier);
+//    }
 
     @Override
     public boolean usernameExists(String identifier) {

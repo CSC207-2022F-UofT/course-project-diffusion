@@ -16,12 +16,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class MainFrame {
-//    static JFrame mainFrame = new JFrame("Card Layout Test");
-
-    //    static Container contentPane = mainFrame.getContentPane();
     JPanel contentPane;
+    String siteRole = "Site User";
+    String depotRole = "Depot User";
     public MainFrame() {
 
         JFrame mainFrame = new JFrame("Welcome to Diffusion");
@@ -49,17 +49,13 @@ public class MainFrame {
         DrugSearchScreenNewer drugSearchScreenNewer = drugSearchHelper.generateDrugSearchScreen();
 
         DrugFulfillHelper drugFulfillHelper = new DrugFulfillHelper();
-        OrderScreen orderScreen = drugFulfillHelper.DrugFulfillGenerator();
+        OrderScreen drugOrderScreen = drugFulfillHelper.DrugFulfillGenerator();
 
         /*
-        Using a helper for the use case engine setup and creating the screens
-         */
-
-
-        /*
-        Create a homeScreenButtonPanel
+        Create a buttonPanels for the various screen
          */
         JPanel homeScreenButtonPanel = new JPanel();
+        JPanel homeScreenButtonPanel2 = new JPanel();
         JPanel registrationScreenButtonPanel = new JPanel();
         JPanel logInScreenButtonPanel = new JPanel();
         JPanel submitLoginButtonPanel = new JPanel();
@@ -68,104 +64,89 @@ public class MainFrame {
         JPanel drugSearchButtonPanel = new JPanel();
 
         /*
-        Create buttons login and registration to add to buttonPanel.
+        Create buttons for each screen  to add to eachScreens button panel.
          */
         JButton login = new JButton("LogIn");
         JButton registration = new JButton("Registration");
 
-        JButton registrationLI = new JButton("Login");
-        JButton registrationHS = new JButton("Return Home");
+        JButton registrationScreenLogInButton = new JButton("Login");
+        JButton registrationScreenHomeScreenButton = new JButton("Return Home");
 
-        JButton logInHS = new JButton("Return Home");
-        JButton logInR = new JButton("Registration");
+        JButton logInScreenHomeScreenButton = new JButton("Return Home");
+        JButton logInScreenRegistrationButton = new JButton("Registration");
 
-        JButton submitLoginButton = new JButton("Submit Login");
+        JButton submitLoginButton = new JButton("Click Here if login Status is Approved");
+
+        JButton drugRequestButton = new JButton("Drug Request");
+        JButton drugRequestScreenHomeButton = new JButton("Return Home");
+        JButton drugRequestScreensSearchButton = new JButton("Drug Search");
 
         JButton drugSearchButton = new JButton("Drug Search");
-//        submitLoginButton.setEnabled(true);
+        JButton homeScreenButtonDrugSearchScreen = new JButton("HomeScreen");
+
+
+        JButton drugOrderButton = new JButton("Drug Order");
+        JButton drugSearchButtonDrugOrderScreen = new JButton("Drug Search");
+//        submitLoginButton.setEnabled(false);
 
 
         /*
-        Add buttons login and registration to buttonPanel
+        Add the various buttons to their respective screens button panel
          */
         homeScreenButtonPanel.add(login);
         homeScreenButtonPanel.add(registration);
-        homeScreenButtonPanel.add(drugSearchButton);
+        /*
+        Add a login and HomeScreen navigation button to the registrationScreenButtonPanel.
+         */
+        registrationScreenButtonPanel.add(registrationScreenLogInButton);
+        registrationScreenButtonPanel.add(registrationScreenHomeScreenButton);
 
-        registrationScreenButtonPanel.add(registrationLI);
-        registrationScreenButtonPanel.add(registrationHS);
-
-        logInScreenButtonPanel.add(logInHS);
-        logInScreenButtonPanel.add(logInR);
+        /*
+        Add logIn and homeScreen navigation buttons to loginScreenButtonPanel.
+         */
+        logInScreenButtonPanel.add(logInScreenHomeScreenButton);
+        logInScreenButtonPanel.add(logInScreenRegistrationButton);
 
         submitLoginButtonPanel.add(submitLoginButton);
 
-        drugRequestButtonPanel.add(homeScreen);
-        drugRequestButtonPanel.add(drugRequestScreen);
+        drugRequestButtonPanel.add(drugRequestScreenHomeButton);
+        drugRequestButtonPanel.add(drugRequestScreensSearchButton);
+
+        drugSearchButtonPanel.add(homeScreenButtonDrugSearchScreen);
+
+        drugOrderButtonPanel.add(drugSearchButtonDrugOrderScreen);
 
 
         /*
         Add the button panels to the Screens.
          */
         homeScreen.add(homeScreenButtonPanel);
+        homeScreen.add(homeScreenButtonPanel2);
         userRegistrationScreen.add(registrationScreenButtonPanel);
         userLoginScreen.add(logInScreenButtonPanel);
         userLoginScreen.add(submitLoginButtonPanel);
-
-        /*
-        Note the Below will add the button panel to the HomeScreen panel directly. Look for Ref - 1 below where
-        buttonPanel is added to the mainFrame contentPane instead.
-         */
-
-        /*
-        Adds the homeScreen to the contentPane.
-         */
-
-        /*
-        The usecase engine construction has been outsourced to the UserRegistrationHelper to clean up the
-        mainFrame.
-         */
-
+        drugRequestScreen.add(drugRequestButtonPanel);
+        drugOrderScreen.add(drugOrderButtonPanel);
+//        drugSearchScreenNewer.add(drugSearchButtonPanel);
 
 
         /*
-        Adding the screen to the mainframe container, contentpane,
+        Adding the screen to the mainframe container, contentpane.
+        Import Note, the Text entered is a constraint which needs to match exactly with how it is written in the Action Listener.
          */
-        /**
-         * Import Note, the Text entered is a constraint which needs to match exactly with how it is written in the Action Listener.
-         */
-//        contentPane.add(userRegistrationScreen, "User Registration");
         contentPane.add(homeScreen, "Home Screen");
         contentPane.add(userRegistrationScreen, "User Registration");
-//        contentPane.add(userLoginScreen, "User LogIn");
+        contentPane.add(userLoginScreen, "User LogIn");
         contentPane.add(drugSearchScreenNewer, "Drug Search");
-//        contentPane.add(drugSearchScreenNewer, "User LogIn");
-//        contentPane.add(drugRequestScreen, "Drug Request Screen");
-
-
-        contentPane.add(orderScreen, "User LogIn");
-
-
+        contentPane.add(drugOrderScreen, "Drug Order Screen");
+        contentPane.add(drugRequestScreen, "Drug Request Screen");
+//        contentPane.add(drugOrderScreen, "Drug Order Screen");
 
 
         /*
-        Create a RegistrationScreen Navigation Panel
-         */
-//        JPanel registrationScreenButtonPanel = new JPanel();
-//        registrationScreenButtonPanel.add(new JButton(login));
-//        userRegistrationHelper.GenerateRegistrationScreen().add(login);
-
-        /*
-        Was commented out since previously this had to be done after adding in the userRegistrationScreen to the
-        mainFrame. However, order doesn't seem to matter.
-         */
-//        userRegistrationOutputBoundary.setView(userRegistrationScreen);
-
-
-        /*
-        Add a ActionListener to the LogIn button. Also add a action performed method to it.
+        Add a ActionListener to the  button. Also add an action performed method to it.
         Cast type Cardlayout to Layout manager of contentPane. Allowing cardlayout to access it.
-        Flip to the card of the specified container.
+        Flip to the specified card in the contentPane.
          */
         login.addActionListener(new ActionListener() {
             @Override
@@ -184,36 +165,36 @@ public class MainFrame {
                 cardLayout.show(contentPane,"User Registration");
             }
         });
-        registrationLI.addActionListener(new ActionListener() {
+        registrationScreenLogInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Clicked " + registrationLI.getText());
+                System.out.println("Clicked " + registrationScreenLogInButton.getText());
                 CardLayout cardLayout = (CardLayout) contentPane.getLayout();
                 cardLayout.show(contentPane,"User LogIn");
             }
         });
-        registrationHS.addActionListener(new ActionListener() {
+        registrationScreenHomeScreenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Clicked " + registrationHS.getText());
+                System.out.println("Clicked " + registrationScreenHomeScreenButton.getText());
                 CardLayout cardLayout = (CardLayout) contentPane.getLayout();
                 cardLayout.show(contentPane, "Home Screen");
 
             }
         });
-        logInHS.addActionListener(new ActionListener() {
+        logInScreenHomeScreenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Clicked " + logInHS.getText());
+                System.out.println("Clicked " + logInScreenHomeScreenButton.getText());
                 CardLayout cardLayout = (CardLayout) contentPane.getLayout();
                 cardLayout.show(contentPane, "Home Screen");
             }
         });
 
-        logInR.addActionListener(new ActionListener() {
+        logInScreenRegistrationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Clicked " + logInR.getText());
+                System.out.println("Clicked " + logInScreenRegistrationButton.getText());
                 CardLayout cardLayout = (CardLayout) contentPane.getLayout();
                 cardLayout.show(contentPane, "User Registration");
 
@@ -224,10 +205,20 @@ public class MainFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Clicked " + submitLoginButton.getText());
-                if (userLoginScreen.getSubmitLoginStatus().equals(true)) {
-                    submitLoginButton.setEnabled(true);
+                if (userLoginScreen.getSubmitLoginStatus()) {
+                    System.out.println(true);
                     CardLayout cardLayout = (CardLayout) contentPane.getLayout();
-                    cardLayout.show(contentPane, "Drug Request Screen");
+                    System.out.println(userLoginScreen.getLoginStatusType());
+                    System.out.println(siteRole);
+                    System.out.println(Objects.equals(userLoginScreen.getLoginStatusType(), siteRole));
+                    if (Objects.equals(userLoginScreen.getLoginStatusType(), siteRole)) {
+                        drugOrderScreen.setUserRole(userRegistrationScreen.getRole());
+//                        System.out.println(true);
+                        cardLayout.show(contentPane, "Drug Request Screen");
+                    } else if (Objects.equals(userLoginScreen.getLoginStatusType(), depotRole)) {
+                    cardLayout.show(contentPane, "Drug Order Screen");
+                    }
+//                    submitLoginButton.setEnabled(true);
                 } else{
                     JOptionPane.showMessageDialog(userLoginScreen, "User Login Status Not Approved.");
                 }
@@ -248,12 +239,61 @@ public class MainFrame {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Clicked " + drugSearchButton.getText());
                 CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+                cardLayout.show(contentPane, "Home Screen");
+
+            }
+        });
+
+        drugOrderButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Clicked " + drugOrderButton.getText());
+                CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+                cardLayout.show(contentPane, "Drug Order Screen");
+
+            }
+        });
+
+        drugRequestScreenHomeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Clicked " + drugRequestScreenHomeButton.getText());
+                CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+                cardLayout.show(contentPane, "Home Screen");
+
+            }
+        });
+
+        drugRequestScreensSearchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Clicked " + drugRequestScreensSearchButton.getText());
+                CardLayout cardLayout = (CardLayout) contentPane.getLayout();
                 cardLayout.show(contentPane, "Drug Search");
 
             }
         });
 
-        // REF - 1) Add the contentPane (JPanel) and buttonPanel to the JFrame.
+        homeScreenButtonDrugSearchScreen.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Clicked " + homeScreenButtonDrugSearchScreen.getText());
+                CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+                cardLayout.show(contentPane, "Home Screen");
+
+            }
+        });
+
+        drugSearchButtonDrugOrderScreen.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Clicked " + drugSearchButtonDrugOrderScreen.getText());
+                CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+                cardLayout.show(contentPane, "Drug Search");
+
+            }
+        });
+
         mainFrame.add(contentPane, BorderLayout.CENTER);
 
         /*
@@ -261,6 +301,7 @@ public class MainFrame {
         the mainframe will only be as big as the open, close and minimize buttons.
          */
         mainFrame.pack();
+
         /*
         Exits program when close button is clicked.
          */
@@ -270,61 +311,6 @@ public class MainFrame {
         Makes the mainFrame visible.
          */
         mainFrame.setVisible(true);
-
-
-        /*
-        Older code has been commented out below.
-         */
-//        CardLayout cardLayout = new CardLayout();
-//
-//        mainFrame.setLayout(cardLayout);
-//        HomeScreen homeScreen = new HomeScreen();
-//        homeScreen.
-
-//        //Below are the parts for the use case entities engine
-//        UserRegistrationDsGateway userRegistrationDsGateway;
-//        try{
-//            userRegistrationDsGateway = new UserRegistrationRecorder("./RegistrationList3.csv");
-//
-//        } catch (IOException e) {
-//            throw new RuntimeException("Can't create file.");
-//        }
-//
-////        UserRegistrationDsGateway userRegistrationDsGateway = null;
-//        UserRegistrationPresenter userRegistrationOutputBoundary = new UserRegistrationPresenter();
-//        UserRegistrationGenerator userRegistrationGenerator = new CommonUserRegistrationFactory();
-//        UserRegistrationInteractor userRegistrationInteractor = new UserRegistrationInteractor(userRegistrationDsGateway,
-//                userRegistrationOutputBoundary, userRegistrationGenerator);
-//        UserRegistrationController userRegistrationController = new UserRegistrationController(userRegistrationInteractor);
-//
-//        //below is the DrugRequestScreen panel which is added to this JFrame Window
-//        UserRegistrationScreen userRegistrationScreen = new UserRegistrationScreen(userRegistrationController);
-//
-//
-//
-////        add(userRegistrationScreen);
-////        userRegistrationScreen.add(userRegistrationController);
-//        mainFrame.add(userRegistrationScreen);
-//
-//        userRegistrationOutputBoundary.setView(userRegistrationScreen);
-//
-////        mainFrame.add(userRegistrationScreen);
-//
-//
-//
-//
-////        mainFrame.add(new UserRegistrationScreen(new UserRegistrationHelper()), "1");
-
-
-//        cardLayout.show(mainFrame.getContentPane(), "1");
-
-//        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        mainFrame.pack();
-//        mainFrame.setLocationRelativeTo(null);
-//        mainFrame.pack();
-//
-//        mainFrame.setVisible(true);
-
 
     }
 }

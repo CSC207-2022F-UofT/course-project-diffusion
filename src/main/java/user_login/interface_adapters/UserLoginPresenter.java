@@ -13,6 +13,7 @@ public class UserLoginPresenter implements UserLoginOutputBoundary {
         LocalDateTime responseDate = LocalDateTime.parse(userloginOutputData.getCreationTime());
         userloginOutputData.setCreationTime(responseDate.format(DateTimeFormatter.ofPattern("hh:mm:ss")));
         userLoginPresenterOutputBoundary.presenterOutput(userloginOutputData);
+        System.out.println(userloginOutputData.getRole());
         return userloginOutputData;
     }
 

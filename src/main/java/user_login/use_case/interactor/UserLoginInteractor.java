@@ -41,8 +41,20 @@ public class UserLoginInteractor implements UserloginInputBoundary {
                 userLoginRequest.getPassword(), userLoginRequestTime);
 //        userLoginDsGateway.saveUserLogin(loginDsInputData);
 
+        /*
+        Retrieve the role of the user from the database.
+         */
+        String role = userLoginDsGateway.userRole(userloginPOJO.getUsername());
+
+        /*
+        Create the return object
+         */
         UserloginOutputData  userloginOutputData = new UserloginOutputData(userloginPOJO.getUsername(),
-                userLoginRequestTime.toString());
+                userLoginRequestTime.toString(), role);
+
+        /*
+        Return out if successful
+         */
         return userLoginOutputBoundary.successView(userloginOutputData);
 
     }

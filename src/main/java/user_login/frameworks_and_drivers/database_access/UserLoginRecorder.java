@@ -19,7 +19,7 @@ public class UserLoginRecorder implements UserLoginDsGateway {
         headers.put("Login Successful (YES, NO)", 3);
         headers.put("Time of Login Request", 4);
 
-        generateUserLoginRequestHelper();
+//        generateUserLoginRequestHelper();
     }
 
     @Override
@@ -38,6 +38,12 @@ public class UserLoginRecorder implements UserLoginDsGateway {
         userLoginRequest.put(userLoginDsInputData.getUsername(), userLoginDsInputData);
         this.generateUserLoginRequestHelper();
     }
+
+    @Override
+    public String userRole(String identifier) {
+        return RoleChecker(identifier, 3);
+    }
+
     private void generateUserLoginRequestHelper(){
         if (csvFile.length() == 0){
             generateHeader();
@@ -57,18 +63,46 @@ public class UserLoginRecorder implements UserLoginDsGateway {
         try {
             bufferedReader = new BufferedReader(new FileReader(csvFile));
 
-            while  ((currentline = bufferedReader.readLine())!= null){
+            while ((currentline = bufferedReader.readLine())!= null){
                 data = currentline.split(delimiter);
-                System.out.println(data[column]);
-                System.out.println(reference);
+//                System.out.println(data[column].trim());
+//                System.out.println(reference);
 //                System.out.println(Arrays.toString(new String[]{data[column]}));
                 if (Objects.equals(data[column].trim(), reference)){
+//                    System.out.println(Objects.equals(data[column].trim(), reference));
                     return true;
                 }
             }
+//            bufferedReader.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         } return false;
+
+    }
+    private String RoleChecker(String reference, int column){
+        String delimiter = ",";
+        BufferedReader bufferedReader;
+        String currentline;
+        String[] data;
+//        ArrayList<String> collectedData = new ArrayList<String>();
+        try {
+            bufferedReader = new BufferedReader(new FileReader(csvFile));
+
+            while  ((currentline = bufferedReader.readLine())!= null){
+                data = currentline.split(delimiter);
+                System.out.println(data[column].trim());
+//                System.out.println(reference);
+//                System.out.println(Arrays.toString(new String[]{data[column]}));
+                if (Objects.equals(data[column].trim(), reference)){
+                    System.out.println(data[5].trim());
+                    return data[5].trim();
+
+                }
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } return "None";
 
     }
 

@@ -13,12 +13,14 @@ import java.awt.event.ActionListener;
 public class UserLoginScreen extends JPanel implements ActionListener, UserLoginPresenterOutputBoundary {
     JTextField username = new JTextField(15);
     JTextField password = new JTextField(15);
-    JTextField requestResponse = new JTextField(20);
+    JTextField requestResponse = new JTextField(50);
 
     UserLoginController userLoginController;
     JButton submitUserLogin;
     JButton cancelUserLogin;
     Boolean submitLoginStatus = false;
+
+    String loginStatusType;
 
     public UserLoginScreen(UserLoginController userLoginController) {
         this.userLoginController = userLoginController;
@@ -72,9 +74,10 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
     @Override
     public UserloginOutputData presenterOutput(UserloginOutputData userloginOutputData) {
         UserLoginViewModel userLoginViewModel = new UserLoginViewModel(userloginOutputData.getUsername(),
-                userloginOutputData.getCreationTime());
-        requestResponse.setText(String.format("%s successfully logged in at %s", userLoginViewModel.getUsername(),
-                userLoginViewModel.getCreationTime()));
+                userloginOutputData.getCreationTime(), userloginOutputData.getRole());
+        setLoginStatusType(userLoginViewModel.getRole());
+        requestResponse.setText(String.format("Approved! %s successfully logged in at %s as a %s",
+                userLoginViewModel.getUsername(), userLoginViewModel.getCreationTime(), userLoginViewModel.getRole()));
         return userloginOutputData;
     }
 
@@ -84,5 +87,13 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
 
     public void setSubmitLoginStatus(Boolean submitLoginStatus) {
         this.submitLoginStatus = submitLoginStatus;
+    }
+
+    public String getLoginStatusType() {
+        return loginStatusType;
+    }
+
+    public void setLoginStatusType(String loginStatusType) {
+        this.loginStatusType = loginStatusType;
     }
 }

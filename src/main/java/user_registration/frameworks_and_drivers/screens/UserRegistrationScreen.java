@@ -67,7 +67,8 @@ public class UserRegistrationScreen extends JPanel implements ActionListener, Us
      The role will be specified with an integer, initially it's assigned a value of 0. A value of 1 will represent a
      site user role and a value of 2 will represent a depot user role.
      */
-    String role = "";
+    String role;
+    String locationName;
 
     public UserRegistrationScreen(UserRegistrationController userRegistrationController) {
         this.userRegistrationController = userRegistrationController;
@@ -213,7 +214,7 @@ public class UserRegistrationScreen extends JPanel implements ActionListener, Us
             System.out.println("Clicked " + actionEvent.getActionCommand());
             try {
                 userRegistrationController.createInputObject(firstName.getText(), lastName.getText(), username.getText(),
-                        password.getText(), selectSite.getSelectedItem(), role);
+                        password.getText(), defaultBox.getSelectedItem(), role);
                 JOptionPane.showMessageDialog(this, String.format("User Registration Request recorded for " +
                         "%s", username.getText()));
             } catch (Exception e) {
@@ -229,8 +230,9 @@ public class UserRegistrationScreen extends JPanel implements ActionListener, Us
 
             submitUserRegistration.setEnabled(true);
 
-
-            role = "Site User";
+            setRole("Site User");
+            setLocationName(defaultBox.getModel().toString());
+//            role = "Site User";
         } else if (actionEvent.getSource().equals(depotUserButton)) {
             System.out.println(selectDepot.getSelectedItem());
 
@@ -240,7 +242,10 @@ public class UserRegistrationScreen extends JPanel implements ActionListener, Us
 
             submitUserRegistration.setEnabled(true);
 
-            role = "Depot User";
+            setRole("Depot User");
+            setLocationName(defaultBox.getModel().toString());
+
+//            role = "Depot User";
         }
 
     }
@@ -254,5 +259,21 @@ public class UserRegistrationScreen extends JPanel implements ActionListener, Us
                 userRegistrationViewmodel.getFirstName(), userRegistrationViewmodel.getLastname(),
                 userRegistrationViewmodel.getUsername(), userRegistrationViewmodel.getCreationTime()));
         return presenterOutputData;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
 }
