@@ -13,7 +13,7 @@
 //import user_registration.frameworks_and_drivers.database_generator.UserRegistrationInMemory;
 //import user_registration.interface_adapters.UserRegistrationPresenter;
 //import user_registration.ports.UserRegistrationGenerator;
-//import user_registration.use_case.database_access.UserRegistrationDsGateway;
+//import user_registration.use_case.database_generator.UserRegistrationDsGateway;
 //import user_registration.use_case.input.UserRegistrationInputBoundary;
 //import user_registration.use_case.input.UserRegistrationInputData;
 //import user_registration.use_case.output.UserRegistrationOutputData;
