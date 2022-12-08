@@ -16,42 +16,42 @@ class ReceiveRequestInteractorTest {
     @Test
     void checkInventoryTestValid1() throws FileNotFoundException {
         ReceiveRequestInputModel inputModel = new ReceiveRequestInputModel("DrugA", "20");
-        assertTrue(interactor.checkInventory(inputModel).validRequestState);
+        assertTrue(interactor.checkInventory(inputModel).getSuffientQauntity());
     }
 
     @Test
     void checkInventoryTestValid2() throws FileNotFoundException {
         ReceiveRequestInputModel inputModel = new ReceiveRequestInputModel("DrugB", "20");
-        assertTrue(interactor.checkInventory(inputModel).validRequestState);
+        assertTrue(interactor.checkInventory(inputModel).getSuffientQauntity());
     }
 
     @Test
     void checkInventoryTest0() throws FileNotFoundException {
         ReceiveRequestInputModel inputModel = new ReceiveRequestInputModel("DrugA", "0");
-        assertTrue(interactor.checkInventory(inputModel).validRequestState);
+        assertTrue(interactor.checkInventory(inputModel).getSuffientQauntity());
     }
 
     @Test
     void checkInventoryTestUnder() throws FileNotFoundException {
         ReceiveRequestInputModel inputModel = new ReceiveRequestInputModel("DrugA", "10");
-        assertTrue(interactor.checkInventory(inputModel).validRequestState);
+        assertTrue(interactor.checkInventory(inputModel).getSuffientQauntity());
     }
 
     @Test
     void checkInventoryTestOver() throws FileNotFoundException {
         ReceiveRequestInputModel inputModel = new ReceiveRequestInputModel("DrugA", "21");
-        assertFalse(interactor.checkInventory(inputModel).validRequestState);
+        assertFalse(interactor.checkInventory(inputModel).getSuffientQauntity());
     }
 
     @Test
     void checkInventoryTestWrongName() throws FileNotFoundException {
         ReceiveRequestInputModel inputModel = new ReceiveRequestInputModel("DrugD", "20");
-        assertFalse(interactor.checkInventory(inputModel).validRequestState);
+        assertFalse(interactor.checkInventory(inputModel).getNameExist());
     }
 
     @Test
     void checkInventoryTestWrongNameQuantity() throws FileNotFoundException {
         ReceiveRequestInputModel inputModel = new ReceiveRequestInputModel("DrugD", "100");
-        assertFalse(interactor.checkInventory(inputModel).validRequestState);
+        assertFalse(interactor.checkInventory(inputModel).getNameExist());
     }
 }

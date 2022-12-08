@@ -12,7 +12,7 @@ public class ReceiveRequestDatabaseAccessor implements ReceiveRequestDatabaseAcc
     /**
      * {@inheritDoc}
      */
-    public boolean checkInventory(String drugName, String drugBottle) throws FileNotFoundException {
+    public String checkInventory(String drugName, String drugBottle) throws FileNotFoundException {
         ArrayList<String[]> list = new ArrayList<>();
 
         Scanner scanner = new Scanner(new File("./depotAInventory.csv"));
@@ -28,14 +28,20 @@ public class ReceiveRequestDatabaseAccessor implements ReceiveRequestDatabaseAcc
             list.add(line);
         }
 
+        int i = 0;
         for (String[] line : list) {
             if (line[1].equals(drugName)) {
                 if (Integer.parseInt(line[2]) >= Integer.parseInt(drugBottle)) {
-                    return true;
+                    return "Sufficient Inventory";
                 }
+                i++;
             }
         }
 
-        return false;
+        if (i == 0) {
+            return "Drug not found";
+        }
+
+        return "Insufficient Inventory";
     }
 }

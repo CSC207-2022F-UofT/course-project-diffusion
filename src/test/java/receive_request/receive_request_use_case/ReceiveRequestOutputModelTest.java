@@ -8,19 +8,36 @@ class ReceiveRequestOutputModelTest {
     ReceiveRequestOutputModel outputModel = new ReceiveRequestOutputModel();
 
     @Test
-    void getValidStateTest1() {
-        assertFalse(outputModel.getValidState());
+    void getNameExistTestDefault() {
+        assertFalse(outputModel.getNameExist());
     }
 
     @Test
-    void setValidStateTest1() {
-        outputModel.setValidState(true);
-        assertTrue(outputModel.validRequestState);
+    void getSuffientQauntityTestDefault() {
+        assertFalse(outputModel.getSuffientQauntity());
     }
 
     @Test
-    void setValidStateTest2() {
-        outputModel.setValidState(false);
-        assertFalse(outputModel.validRequestState);
+    void setNameExistTrueTest() {
+        outputModel.setNameExistTrue();
+        assertTrue(outputModel.nameExist);
+        assertTrue(outputModel.getNameExist());
+    }
+
+    @Test
+    void setSuffientQauntityTrue() {
+        outputModel.setSuffientQauntityTrue();
+        assertTrue(outputModel.suffientQauntity);
+        assertTrue(outputModel.getSuffientQauntity());
+    }
+
+    @Test
+    void setBothTrue() {
+        outputModel.setNameExistTrue();
+        outputModel.setSuffientQauntityTrue();
+        assertTrue(outputModel.nameExist);
+        assertTrue(outputModel.getNameExist());
+        assertTrue(outputModel.suffientQauntity);
+        assertTrue(outputModel.getSuffientQauntity());
     }
 }

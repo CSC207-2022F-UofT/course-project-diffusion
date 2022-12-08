@@ -17,42 +17,49 @@ class ReceiveRequestControllerTest {
     @Test
     void checkInventoryTestValid1() throws FileNotFoundException {
         ReceiveRequestOutputModel outputModel = controller.checkInventory("DrugA","20");
-        assertTrue(outputModel.getValidState());
+        assertTrue(outputModel.getNameExist());
+        assertTrue(outputModel.getSuffientQauntity());
     }
 
     @Test
     void checkInventoryTestValid2() throws FileNotFoundException {
         ReceiveRequestOutputModel outputModel = controller.checkInventory("DrugB","20");
-        assertTrue(outputModel.getValidState());
+        assertTrue(outputModel.getNameExist());
+        assertTrue(outputModel.getSuffientQauntity());
     }
 
     @Test
     void checkInventoryTest0() throws FileNotFoundException {
         ReceiveRequestOutputModel outputModel = controller.checkInventory("DrugA","0");
-        assertTrue(outputModel.getValidState());
+        assertTrue(outputModel.getNameExist());
+        assertTrue(outputModel.getSuffientQauntity());
     }
 
     @Test
     void checkInventoryTestUnder() throws FileNotFoundException {
         ReceiveRequestOutputModel outputModel = controller.checkInventory("DrugB","10");
-        assertTrue(outputModel.getValidState());
+        assertTrue(outputModel.getNameExist());
+        assertTrue(outputModel.getSuffientQauntity());
     }
 
     @Test
     void checkInventoryTestOver() throws FileNotFoundException {
         ReceiveRequestOutputModel outputModel = controller.checkInventory("DrugA","21");
-        assertFalse(outputModel.getValidState());
+        assertTrue(outputModel.getNameExist());
+        assertFalse(outputModel.getSuffientQauntity());
     }
 
     @Test
     void checkInventoryTestWrongName() throws FileNotFoundException {
         ReceiveRequestOutputModel outputModel = controller.checkInventory("DrugD","20");
-        assertFalse(outputModel.getValidState());
+        assertFalse(outputModel.getNameExist());
+        assertFalse(outputModel.getSuffientQauntity());
     }
 
     @Test
     void checkInventoryTestWrongNameQuantity() throws FileNotFoundException {
         ReceiveRequestOutputModel outputModel = controller.checkInventory("DrugD","100");
-        assertFalse(outputModel.getValidState());
+        assertFalse(outputModel.getNameExist());
+        assertFalse(outputModel.getSuffientQauntity());
     }
 }

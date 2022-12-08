@@ -24,8 +24,13 @@ public class ReceiveRequestInteractor implements ReceiveRequestInputBoundary{
     public ReceiveRequestOutputModel checkInventory(ReceiveRequestInputModel receiveRequestInputModel) throws FileNotFoundException {
         ValidRequest validRequest = ValidRequestGenerator.createValidRequest(receiveRequestInputModel.getName(), receiveRequestInputModel.getBottle());
         ReceiveRequestOutputModel receiveRequestOutputModel = new ReceiveRequestOutputModel();
-        if (databaseAccessor.checkInventory(validRequest.getName(), validRequest.getBottle())) {
-            receiveRequestOutputModel.setValidState(true);
+        String checker = databaseAccessor.checkInventory(validRequest.getName(), validRequest.getBottle());
+        if (checker.equals("Insufficient Inventory")) {
+            receiveRequestOutputModel.setNameExistTrue();
+        }
+        else if (checker.equals("Sufficient Inventory")) {
+            receiveRequestOutputModel.setNameExistTrue();
+            receiveRequestOutputModel.setSuffientQauntityTrue();
         }
         return receiveRequestOutputBoundary.result(receiveRequestOutputModel);
     }
