@@ -30,7 +30,7 @@ public class ReceiveRequestInteractor implements ReceiveRequestInputBoundary{
         }
         else if (checker.equals("Sufficient Inventory")) {
             receiveRequestOutputModel.setNameExistTrue();
-            receiveRequestOutputModel.setSuffientQauntityTrue();
+            receiveRequestOutputModel.setSufficientQuantityTrue();
         }
         return receiveRequestOutputBoundary.result(receiveRequestOutputModel);
     }

@@ -1,7 +1,5 @@
 package receive_request.receive_request_entity;
 
-import drug_search.use_case.DrugRequestDBEntry;
-
 public interface ValidRequestGenerator {
     /**
      * Create a validRequest object

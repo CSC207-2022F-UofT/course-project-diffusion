@@ -32,7 +32,7 @@ public class DrugRequestInteractor implements DrugRequestInputBoundary {
         boolean nameExist = receiveRequestController.checkInventory(drugRequest.getDrugName(),
                 drugRequest.getDrugBottle()).getNameExist();
         boolean sufficientInventory = receiveRequestController.checkInventory(drugRequest.getDrugName(),
-                drugRequest.getDrugBottle()).getSuffientQauntity();
+                drugRequest.getDrugBottle()).getSufficientQuantity();
         if (drugRequest.drugNameIsEmpty()) {
             return drugRequestOutputBoundary.prepareFailView("Drug Name not entered.");
         } else if (!drugRequest.drugNameIsValid()) {
