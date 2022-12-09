@@ -15,10 +15,10 @@ public class DatabaseAccessor implements IDrugListAccessor {
      * Reads the drug request database and returns a list of the drug requests contained therein.
      * @return The deserialized {@link List<DrugRequestDBEntry>}.
      */
-    public List<DrugRequestDBEntry> getDrugRequestList() throws FileNotFoundException {
+    public List<DrugRequestDBEntry> getDrugRequestList(String pathname) throws FileNotFoundException {
         ArrayList<DrugRequestDBEntry> list = new ArrayList<>();
 
-        Scanner scanner = new Scanner(new File("./DrugRequestsLog.csv"));
+        Scanner scanner = new Scanner(new File(pathname));
 
         // Skip header
         scanner.nextLine();

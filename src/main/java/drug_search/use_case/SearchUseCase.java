@@ -23,7 +23,7 @@ public class SearchUseCase implements ISearchRequestor {
 
         if (request.getMessage() == null) {
             try {
-                List<DrugRequestDBEntry> db = drugListAccessor.getDrugRequestList();
+                List<DrugRequestDBEntry> db = drugListAccessor.getDrugRequestList("./DrugRequestsLog.csv");
 
                 response = new SearchResponse(getMatchingEntries(db, request), null);
             }
