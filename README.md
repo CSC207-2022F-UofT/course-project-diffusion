@@ -103,3 +103,6 @@ All methods are tested except for a few basic getters and setters.
 * can be provided as input and it can go and be processed by the interactor using the API rules and be stored in a csv 
 * file and then be returned as an output
 
+### drug_search.frameworks_drivers and drug_search.interface_adapters
+* Tests if the database accessor can accurately deserialize a drug request from a .csv database file.
+* Tests if the drug search controller can handle invalid input and communicate what went wrong to the user.
