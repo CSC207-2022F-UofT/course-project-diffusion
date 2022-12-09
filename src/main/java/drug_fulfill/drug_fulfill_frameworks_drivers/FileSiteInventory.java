@@ -50,7 +50,7 @@ public class FileSiteInventory implements SiteDrugFulfillDsGateway {
                 String creationTimeText = String.valueOf(col[this.headers.get("creation_time")]);
                 LocalDateTime ldt = LocalDateTime.parse(creationTimeText);
                 String siteName = String.valueOf(col[this.headers.get("Site Name")]);
-                SiteDrugFulfillDsRequestModel saveReceipt = new SiteDrugFulfillDsRequestModel(drugName, drugAmount, ldt, Boolean.FALSE, siteName);
+                SiteDrugFulfillDsRequestModel saveReceipt = new SiteDrugFulfillDsRequestModel(drugName, drugAmount, ldt, siteName);
                 this.CurrentInventory.put(String.valueOf(ldt), saveReceipt);
             }
 
@@ -140,7 +140,7 @@ public class FileSiteInventory implements SiteDrugFulfillDsGateway {
                 String creationTimeText = String.valueOf(col[(Integer)this.headers.get("creation_time")]);
                 LocalDateTime ldt = LocalDateTime.parse(creationTimeText);
                 String siteName = String.valueOf(col[this.headers.get("Site Name")]);
-                SiteDrugFulfillDsRequestModel saveReceipt = new SiteDrugFulfillDsRequestModel(drugName, drugAmount, ldt, Boolean.FALSE, siteName);
+                SiteDrugFulfillDsRequestModel saveReceipt = new SiteDrugFulfillDsRequestModel(drugName, drugAmount, ldt, siteName);
                 this.CurrentInventory.put(String.valueOf(ldt), saveReceipt);
             }
 

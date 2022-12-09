@@ -22,10 +22,6 @@ class DrugFulfillRequestModelTest {
         inputData.setDrugBottle(10);
         assertEquals(inputData.getDrugBottle(), 10);
     }
-    @Test
-    void getIsEmergency() {
-        assertEquals(inputData.getIsEmergency(), false);
-    }
 
     @Test
     void getDepot() {

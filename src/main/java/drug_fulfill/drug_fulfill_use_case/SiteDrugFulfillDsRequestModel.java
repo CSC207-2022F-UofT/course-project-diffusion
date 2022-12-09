@@ -12,7 +12,6 @@ public class SiteDrugFulfillDsRequestModel {
     private final String name;
     private int drugBottle;
     private final LocalDateTime creationTime;
-    private final Boolean isEmergency;
     private final String siteName;
 
 
@@ -20,14 +19,12 @@ public class SiteDrugFulfillDsRequestModel {
      * @param name of drug
      * @param drugBottle amount of drug
      * @param creationTime the time this order was created
-     * @param Emergency Boolean, true if this order is an emergency
      * @param site the depot this order is being sent to.
      */
-    public SiteDrugFulfillDsRequestModel(String name, int drugBottle, LocalDateTime creationTime, Boolean Emergency, String site) {
+    public SiteDrugFulfillDsRequestModel(String name, int drugBottle, LocalDateTime creationTime, String site) {
         this.name = name;
         this.drugBottle = drugBottle;
         this.creationTime = creationTime;
-        this.isEmergency = Emergency;
         this.siteName = site;
 
     }

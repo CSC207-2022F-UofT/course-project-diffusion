@@ -19,11 +19,6 @@ class CommonDrugFulfillTest {
     }
 
     @Test
-    void getIsEmergency() {
-        assertFalse(DrugOrder.getIsEmergency());
-    }
-
-    @Test
     void getDepotName() {
         assertEquals(DrugOrder.getDepotName(), "Depot1");
     }

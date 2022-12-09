@@ -2,11 +2,14 @@ package drug_fulfill.drug_fulfill_use_case;
 
 // Use case layer
 
+/**
+ * Input Data from controller
+ */
 public class DrugFulfillRequestModel {
 
-    private String drugName;
+    private final String drugName;
     private int drugBottle;
-    private Boolean isEmergency;
+    private final Boolean isEmergency;
     private final String depot;
     private final String site;
 

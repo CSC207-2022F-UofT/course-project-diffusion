@@ -6,11 +6,14 @@ import drug_fulfill.drug_fulfill_interface_adapters.DrugFulfillPresenter;
 
 import java.time.LocalDateTime;
 
+/**
+ * Inputs user input from DrugFulfillController, and adjusts Site and Depot CSV databases using two Data Access interfaces
+ */
 public class DrugFulfillInteractor implements DrugFulfillInputBoundary {
     final DrugFulfillDsGateway fulfillDsGateway;
     final DrugFulfillPresenter orderPresenter;
     final DrugFulfillFactory fulfillFactory;
-    final SiteDrugFulfillDsGateway sitefulfillDsGateway;
+    final SiteDrugFulfillDsGateway siteFulfillDsGateway;
 
 
     /**
@@ -23,7 +26,7 @@ public class DrugFulfillInteractor implements DrugFulfillInputBoundary {
         this.fulfillDsGateway = fulfillDsGateway;
         this.orderPresenter = drugPresenter;
         this.fulfillFactory = fulfillFactory;
-        this.sitefulfillDsGateway = sitefulfillDsGateway;
+        this.siteFulfillDsGateway = sitefulfillDsGateway;
     }
 
     @Override
@@ -38,22 +41,24 @@ public class DrugFulfillInteractor implements DrugFulfillInputBoundary {
         DrugFulfillDsRequestModel OrderDsModel = new DrugFulfillDsRequestModel(order.getDrugName(),
                 order.getDrugBottle(), now, order.getIsEmergency(), order.getDepotName());
         SiteDrugFulfillDsRequestModel OrderDsModelSite = new SiteDrugFulfillDsRequestModel(order.getDrugName(),
-                order.getDrugBottle(), now, order.getIsEmergency(), order.getSiteName());
-        /**
-         * Check if depot the order is going to have sufficient inventory.
-         * If yes, execute method fulfillOrder to adjust hashmap and CSV database for both Site and Depot.
-         * Else, will notify depot user of insufficient drug amount.
+                order.getDrugBottle(), now, order.getSiteName());
+
+
+        /*
+          Check if depot the order is going to have sufficient inventory.
+          If yes, execute method fulfillOrder to adjust hashmap and CSV database for both Site and Depot.
+          Else, will notify depot user of insufficient drug amount.
          */
         if (!fulfillDsGateway.depotIsInsufficient(order.getDrugBottle(), order.getDrugName(), order.getDepotName())){
             fulfillDsGateway.fulfillOrder(OrderDsModel);
-            sitefulfillDsGateway.fulfillOrderToSite(OrderDsModelSite);
+            siteFulfillDsGateway.fulfillOrderToSite(OrderDsModelSite);
         } else {
             System.out.println("Insufficient depot amount");
             return orderPresenter.prepareFailView("Insufficient depot amount");
 
         }
 
-        DrugFulfillResponseModel orderResponseModel = new DrugFulfillResponseModel(order.getDrugName(), now.toString(), order.getIsEmergency(), 1, order.getDepotName(), order.getSiteName()); //arbitrary placeholders
+        DrugFulfillResponseModel orderResponseModel = new DrugFulfillResponseModel(order.getDrugName(), now.toString(), order.getDepotName(), order.getSiteName()); //arbitrary placeholders
         return orderPresenter.prepareSuccessView(orderResponseModel);
 
     }

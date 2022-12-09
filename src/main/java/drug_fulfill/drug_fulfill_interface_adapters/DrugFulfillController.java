@@ -6,6 +6,9 @@ import drug_fulfill.drug_fulfill_use_case.DrugFulfillRequestModel;
 
 // Interface adapters layer
 
+/**
+ * Construct controller using order screen input.
+ */
 public class DrugFulfillController {
 
     final DrugFulfillInputBoundary userInput;

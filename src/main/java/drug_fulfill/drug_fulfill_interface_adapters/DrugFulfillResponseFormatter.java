@@ -9,6 +9,9 @@ import java.time.format.DateTimeFormatter;
 
 // Interface adapters layer
 
+/**
+ * Formats output for success and failures.
+ */
 public class DrugFulfillResponseFormatter implements DrugFulfillPresenter {
 
     @Override
