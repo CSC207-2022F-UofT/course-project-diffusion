@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 
 // Frameworks/Drivers layer
 
+/**
+ * Constructing the Screen of the orderscreen.
+ */
 public class DrugFulfillScreen extends JPanel implements ActionListener {
     /**
      * The amount of drugs chosen by the user

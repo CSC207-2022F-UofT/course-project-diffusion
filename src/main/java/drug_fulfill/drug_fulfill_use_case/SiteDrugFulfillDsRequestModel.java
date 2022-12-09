@@ -47,9 +47,7 @@ public class SiteDrugFulfillDsRequestModel {
     public LocalDateTime getCreationTime() {
         return creationTime;
     }
-
-    public Boolean getIsEmergency() { return isEmergency;}
-
+    
     public String getSiteName(){
         return siteName;
     }

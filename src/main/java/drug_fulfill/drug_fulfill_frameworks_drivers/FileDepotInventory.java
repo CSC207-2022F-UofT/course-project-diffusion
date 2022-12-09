@@ -85,15 +85,6 @@ public class FileDepotInventory implements DrugFulfillDsGateway {
         this.adjustInventory(time_id);
     }
 
-
-    /**
-     * @return LinkedHashMap for ease of access to information on Current Inventory
-     */
-    @Override
-    public Map<String, DrugFulfillDsRequestModel> getCurrentInventory() {
-        return this.CurrentInventory;
-    }
-
     /**
      * @return LinkedHashMap for ease of access to information on made orders
      */
@@ -159,9 +150,9 @@ public class FileDepotInventory implements DrugFulfillDsGateway {
             String row;
             while((row = reader.readLine()) != null) {
                 String[] col = row.split(",");
-                String drugName = String.valueOf(col[(Integer)this.headers.get("drugName")]);
-                int drugAmount = Integer.parseInt(col[(Integer)this.headers.get("drugAmount")]);
-                String creationTimeText = String.valueOf(col[(Integer)this.headers.get("creation_time")]);
+                String drugName = String.valueOf(col[this.headers.get("drugName")]);
+                int drugAmount = Integer.parseInt(col[this.headers.get("drugAmount")]);
+                String creationTimeText = String.valueOf(col[this.headers.get("creation_time")]);
                 LocalDateTime ldt = LocalDateTime.parse(creationTimeText);
                 String depotName = String.valueOf(col[this.headers.get("Depot Name")]);
                 DrugFulfillDsRequestModel saveReceipt = new DrugFulfillDsRequestModel(drugName, drugAmount,

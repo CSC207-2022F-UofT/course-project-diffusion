@@ -29,20 +29,12 @@ public class DrugFulfillRequestModel {
         return drugName;
     }
 
-    void setDrugName(String name) {
-        this.drugName = name;
-    }
-
     int getDrugBottle() {
         return drugBottle;
     }
 
     void setDrugBottle(int DrugBottle){
         this.drugBottle=DrugBottle;
-    }
-
-    void setEmergency(Boolean isEmergency) {
-        this.isEmergency = isEmergency;
     }
 
     public Boolean getIsEmergency() {

@@ -5,7 +5,6 @@ package drug_fulfill.drug_fulfill_use_case;
 public class DrugFulfillResponseModel {
 
     private final String drugName;
-    private int drugBottle;
     private String creationTime;
     private final Boolean isEmergency;
     private final int IDNumber;
@@ -31,18 +30,8 @@ public class DrugFulfillResponseModel {
         return creationTime;
     }
 
-    public Boolean getIsEmergency() {
-        return isEmergency;
-    }
-
-    public int getIDNumber(){
-        return IDNumber;
-    }
     public String getDepotName(){
         return depotName;
-    }
-    public int getDrugBottle(){
-        return drugBottle;
     }
     public void setCreationTime(String creationTime){
         this.creationTime = creationTime;

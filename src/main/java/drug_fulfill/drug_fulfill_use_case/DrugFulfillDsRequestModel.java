@@ -52,11 +52,6 @@ public class DrugFulfillDsRequestModel {
         return creationTime;
     }
 
-    public Boolean getIsEmergency() { return isEmergency;
-    }
-    public String getBatchNumber(){ return BatchNumber;}
-    public int getIDNumber(){return IDNumber;}
-
     public String getDepotName(){
         return depotName;
     }

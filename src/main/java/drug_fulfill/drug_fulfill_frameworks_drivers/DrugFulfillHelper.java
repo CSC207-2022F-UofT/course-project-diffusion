@@ -11,6 +11,9 @@ import drug_fulfill.drug_fulfill_use_case.DrugFulfillInteractor;
 import java.io.IOException;
 
 
+/**
+ * Sets up the use case engine for the Drug Fulfill/Order Screen
+ * */
 public class DrugFulfillHelper {
     public DrugFulfillScreen DrugFulfillGenerator() {
 

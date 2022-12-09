@@ -7,6 +7,5 @@ public interface DrugFulfillDsGateway {
     boolean depotIsInsufficient(int orderAmount, String drugName, String depotName);
 
     void fulfillOrder(DrugFulfillDsRequestModel fulfillModel);
-    Map<String, DrugFulfillDsRequestModel> getCurrentInventory();
     Map<String, DrugFulfillDsRequestModel> getMadeOrders();
 }

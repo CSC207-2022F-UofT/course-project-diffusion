@@ -60,13 +60,6 @@ public class FileSiteInventory implements SiteDrugFulfillDsGateway {
 
     }
 
-    /**
-     * Allows for an order to be checked against the depot inventory. Returns True if there is not enough drugs to
-     * fulfill the order.
-     */
-
-
-
 
     /**
      * Allows for an order made by a user to be saved in our Hashmap database of fulfilled orders.
@@ -76,14 +69,6 @@ public class FileSiteInventory implements SiteDrugFulfillDsGateway {
         String fake_id = String.valueOf(requestModel.getCreationTime());
         this.MadeOrders.put(fake_id, requestModel);
         this.adjustInventory(fake_id);
-    }
-
-    /**
-     * @return LinkedHashMap for ease of access to information on Current Inventory
-     */
-    @Override
-    public Map<String, SiteDrugFulfillDsRequestModel> getCurrentInventory() {
-        return this.CurrentInventory;
     }
 
     /**
@@ -103,13 +88,13 @@ public class FileSiteInventory implements SiteDrugFulfillDsGateway {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(this.csvFile));
             writer.write(String.join(",", this.headers.keySet()));
-            SiteDrugFulfillDsRequestModel plsfulfill = this.MadeOrders.get(fake_id);
+            SiteDrugFulfillDsRequestModel toBeFulfilled = this.MadeOrders.get(fake_id);
 
             for (SiteDrugFulfillDsRequestModel drugBin : this.CurrentInventory.values()) {
 
-                if (Objects.equals(drugBin.getSiteName(),plsfulfill.getSiteName())){
-                    if (Objects.equals(drugBin.getName(), plsfulfill.getName())) {
-                        drugBin.setBottle(drugBin.getBottle() + plsfulfill.getBottle());
+                if (Objects.equals(drugBin.getSiteName(),toBeFulfilled.getSiteName())){
+                    if (Objects.equals(drugBin.getName(), toBeFulfilled.getName())) {
+                        drugBin.setBottle(drugBin.getBottle() + toBeFulfilled.getBottle());
                     }
                 }
 
