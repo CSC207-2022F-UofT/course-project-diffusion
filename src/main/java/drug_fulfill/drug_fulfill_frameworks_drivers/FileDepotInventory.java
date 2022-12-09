@@ -15,6 +15,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Allows for storing data in memory, and writing corresponding CSV files.
+ */
 public class FileDepotInventory implements DrugFulfillDsGateway {
     private final File csvFile;
     private final Map<String, Integer> headers = new LinkedHashMap<>();

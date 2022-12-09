@@ -14,6 +14,9 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
+/**
+ * Allows for storing data in memory, and writing corresponding CSV files.
+ */
 
 public class FileSiteInventory implements SiteDrugFulfillDsGateway {
     private final File csvFile;
@@ -24,10 +27,6 @@ public class FileSiteInventory implements SiteDrugFulfillDsGateway {
 
     private final String[] siteList = new String[]{"Site1", "Site2", "Site3"};
 
-
-    /**
-     * Allows for storing data in memory, and writing corresponding CSV files.
-     */
 
     public FileSiteInventory(String csvPath) throws IOException {
         this.csvFile = new File(csvPath);
