@@ -14,7 +14,7 @@ class ReceiveRequestOutputModelTest {
 
     @Test
     void getSuffientQauntityTestDefault() {
-        assertFalse(outputModel.getSuffientQauntity());
+        assertFalse(outputModel.getSufficientQuantity());
     }
 
     @Test
@@ -26,18 +26,18 @@ class ReceiveRequestOutputModelTest {
 
     @Test
     void setSuffientQauntityTrue() {
-        outputModel.setSuffientQauntityTrue();
-        assertTrue(outputModel.suffientQauntity);
-        assertTrue(outputModel.getSuffientQauntity());
+        outputModel.setSufficientQuantityTrue();
+        assertTrue(outputModel.sufficientQuantity);
+        assertTrue(outputModel.getSufficientQuantity());
     }
 
     @Test
     void setBothTrue() {
         outputModel.setNameExistTrue();
-        outputModel.setSuffientQauntityTrue();
+        outputModel.setSufficientQuantityTrue();
         assertTrue(outputModel.nameExist);
         assertTrue(outputModel.getNameExist());
-        assertTrue(outputModel.suffientQauntity);
-        assertTrue(outputModel.getSuffientQauntity());
+        assertTrue(outputModel.sufficientQuantity);
+        assertTrue(outputModel.getSufficientQuantity());
     }
 }
