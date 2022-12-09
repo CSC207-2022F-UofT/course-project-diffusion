@@ -23,9 +23,6 @@ public class FileDepotInventory implements DrugFulfillDsGateway {
     private final String[] drugList = new DrugListGenerator().GenerateDrugList();
     private final String[] depotList = new String[]{"Depot1", "Depot2", "Depot3"};
 
-    /**
-     * Allows for storing data in memory, and writing corresponding CSV files.
-     */
 
     public FileDepotInventory(String csvPath) throws IOException {
         this.csvFile = new File(csvPath);
