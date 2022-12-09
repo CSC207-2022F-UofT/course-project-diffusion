@@ -249,7 +249,7 @@ public class UserRegistrationScreen extends JPanel implements ActionListener, Us
 
     }
     @Override
-    public UserRegistrationOutputData presenterOutput (UserRegistrationOutputData presenterOutputData){
+    public void presenterOutput (UserRegistrationOutputData presenterOutputData){
         UserRegistrationViewmodel userRegistrationViewmodel =
                 new UserRegistrationViewmodel(presenterOutputData.getFirstName(),
                         presenterOutputData.getLastname(), presenterOutputData.getUsername(),
@@ -257,7 +257,6 @@ public class UserRegistrationScreen extends JPanel implements ActionListener, Us
         requestResponse.setText(String.format("Welcome %s, %s,! Your new user, %s, was created at %s",
                 userRegistrationViewmodel.getFirstName(), userRegistrationViewmodel.getLastname(),
                 userRegistrationViewmodel.getUsername(), userRegistrationViewmodel.getCreationTime()));
-        return presenterOutputData;
     }
 
     public String getRole() {

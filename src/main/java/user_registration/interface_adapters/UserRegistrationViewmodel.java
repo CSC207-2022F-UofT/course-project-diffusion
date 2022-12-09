@@ -16,16 +16,8 @@ public class UserRegistrationViewmodel {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastname() {
         return lastName;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastName = lastname;
     }
 
     public String getUsername() {

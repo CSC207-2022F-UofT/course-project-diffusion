@@ -29,13 +29,16 @@ public class DrugFulfillInteractor implements DrugFulfillInputBoundary {
     @Override
     public DrugFulfillResponseModel create(DrugFulfillRequestModel requestModel) {
 
-        DrugFulfill order = fulfillFactory.create(requestModel.getDrugName(), requestModel.getDrugBottle(), requestModel.getIsEmergency(), requestModel.getDepot(), requestModel.getSite());
+        DrugFulfill order = fulfillFactory.create(requestModel.getDrugName(), requestModel.getDrugBottle(),
+                requestModel.getIsEmergency(), requestModel.getDepot(), requestModel.getSite());
 
 
 
         LocalDateTime now = LocalDateTime.now();
-        DrugFulfillDsRequestModel OrderDsModel = new DrugFulfillDsRequestModel(order.getDrugName(), order.getDrugBottle(), now, order.getIsEmergency(), order.getDepotName());
-        SiteDrugFulfillDsRequestModel OrderDsModelSite = new SiteDrugFulfillDsRequestModel(order.getDrugName(), order.getDrugBottle(), now, order.getIsEmergency(), order.getSiteName());
+        DrugFulfillDsRequestModel OrderDsModel = new DrugFulfillDsRequestModel(order.getDrugName(),
+                order.getDrugBottle(), now, order.getIsEmergency(), order.getDepotName());
+        SiteDrugFulfillDsRequestModel OrderDsModelSite = new SiteDrugFulfillDsRequestModel(order.getDrugName(),
+                order.getDrugBottle(), now, order.getIsEmergency(), order.getSiteName());
         /**
          * Check if depot the order is going to have sufficient inventory.
          * If yes, execute method fulfillOrder to adjust hashmap and CSV database for both Site and Depot.

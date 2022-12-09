@@ -1,39 +1,105 @@
-# Project Template
+# Welcome to Diffusion
 
-This is a template repository for CSC 207 projects. 
-This repository contains starter code for a gradle project.
-It also contains workflow documents that give instructions on how to manage your Github repository and how to use Github Projects for efficient collaboration.
+This is the repository for the project Diffusion of group 123. This project contains the starter code required to run
+the program. It also contains some tests in order to test the program.
 
-## Checklist For Your Project
-- [ ] Verify the correct settings for your project repository
-- [ ] Set up Github Projects
-- [ ] Create the implementation plan using issues and Github Projects
-- [ ] Create deveopment branches for your features
-- [ ] Use pull requests to merge finished features into main branch
-- [ ] Conduct code reviews
+This document also contains some instructions which explain how to use the program.
 
-**If your team has trouble with any of these steps, please ask on Piazza. For example, with how GitHub Classroom works, your team *may* not have permissions to do some of the first few steps, in which case we'll post alternative instructions as needed.**
+## The followin sections wil be covered in this document
+- [ ] Home Screen and User Registration - Taha
+- [ ] User Login Screen - Taha
+- [ ] Drug Request Screen - Taha
+- [ ] Drug Search Screen - Owen
+- [ ] Drug Order Screen  - Joshua
+- [ ] Inventory Checker(Request Request) - Khang
+- [ ] Testing 
+- [ ] Design Patterns
 
-## Workflow Documents
+Presentation link: https://docs.google.com/presentation/d/1GYFGUaJPnMJFPHOOkQpkMRDOHfbERJV8x7qUJtbpNmc/edit#slide=id.g1b3a0494ccb_0_0
 
-* Github Workflow: Please refer to the workflow that was introduced in the first lab. You should follow this when working on your code. The following document provides additional details too.
+** This README.MD document is supposed to be a group effort, each member is expected to write the document for the 
+part which they worked on. As of now only one group member has completed their part.**
 
-* [Project Planning and Development Guide](project_plan_dev.md): This document helps you to understand how to create and maintain a project plan for your class project. **This document helps you to complete the Implementation Plan Milestone.**
+## Home Screen
 
-## Gradle Project
-Import this project into your Intellij editor. It should automatically recognise this as a gradle repository.
-The starter code was built using SDK version 11.0.1. Ensure that you are using this version for this project. (You can, of course, change the SDK version as per your requirement if your team has all agreed to use a different version)
+* After starting the program, a home screen is shown with a "Login" and "Registration" button.
 
-You have been provided with two starter files for demonstration: HelloWorld and HelloWorldTest.
+  ![](/Users/prospecops/Documents/home_screen.png)home_screen.png
 
-You will find HelloWorld in `src/main/java/tutorial` directory. Right click on the HelloWorld file and click on `Run HelloWorld.main()`.
-This should run the program and print on your console.
 
-You will find HelloWorldTest in `src/test/java/tutorial` directory. Right click on the HelloWorldTest file and click on `Run HelloWorldTest`.
-All tests should pass. Your team can remove this sample of how testing works once you start adding your project code to the repo.
 
-Moving forward, we expect you to maintain this project structure. You *should* use Gradle as the build environment, but it is fine if your team prefers to use something else -- just remove the gradle files and push your preferred project setup. Assuming you stick with Gradle, your source code should go into `src/main/java` (you can keep creating more subdirectories as per your project requirement). Every source class can auto-generate a test file for you. For example, open HelloWorld.java file and click on the `HelloWorld` variable as shown in the image below. You should see an option `Generate` and on clicking this your should see an option `Test`. Clicking on this will generate a JUnit test file for `HelloWorld` class. This was used to generate the `HelloWorldTest`.
+* The Registration screen will ask for your first name, last name, username, password, and whether you are a site or a 
+depot user.
 
-![image](https://user-images.githubusercontent.com/5333020/196066655-d3c97bf4-fdbd-46b0-b6ae-aeb8dbcf351d.png)
+## Registration screen
 
-You can create another simple class and try generating a test for this class.
+* The Registration screen will ask for your first name, last name, username, password, and whether you are a site or a 
+depot user.
+![](/Users/prospecops/Documents/user_registration_screen.png)
+
+## Login screen
+
+* The Login screen lets you log into your existing account with the same username and password that you registered with.
+* After entering username and password, click "Check User Login".
+* If login status bar respond "Approved", Choose "Click Here if login status" to log in.
+
+![](/Users/prospecops/Documents/user_login_success.png)
+
+
+## Drug Request Screen
+
+* The user will then be able to requests drug, they can use the drop down menu to see the lists
+![](/Users/prospecops/Documents/drug_request_screen.png)
+
+
+## Drug Request Search Screen
+
+* Users are able to search for drug requests matching certain criteria, allowing them to see made requests.
+* User can provide any criteria for date, Drug request ID, Site ID, Account ID, Drug Name, and quantity requested.
+![](/Users/prospecops/Documents/drug_search_screen.png)
+
+
+## Drug Order Screen
+
+* The depot user is able to fulfill drug requests and accordingly adjust database inventories for sites and their depot.
+* The depot user provides site recipient, drug name, through a dropdown and drug amount through text panel.
+![](/Users/prospecops/Documents/drug_order_screen.png)
+
+
+* [image]/Users/prospecops/IdeaProjects/course-project-diffusion/project_images/home_screen.png
+* home_screen.png
+
+
+
+## Design Patterns
+* The factory design pattern was implemented. Examples of this can be found in the packages user_registration user_login
+* and site_drug_request. Then navigate to the entity and ports folder. There you can see we have methods which allows 
+* for the construction of the object without exposing the creation logic to the client refer to the newly created
+* objected using a common interface, such as UserRegistration.
+* We also made use of the dependency inversion design models. This is seen in the Presenter, View Model, Screen and
+* controller interactions (it's also seen in many places throughout the code). For instance the presenter 
+* in the user_registration user case does not depend on the lower level modules of the screen, instead they make use of
+* interfaces to allow for abstractions and communication of information between them, this is done with 
+* UserPresenterOutputBoundary.
+* The Facade desgin pattern was implemented through the mainFrame class. This class has many moving parts, as it has 
+* several listeners for buttons placed on the various screens. This pattern allows for navigation between the 
+* various subsystem screens which make up the program and allows for integration in our program.
+
+
+
+## Test Cases
+
+### receive_request package
+All methods are tested except for a few basic getters and setters.
+
+### drug_fulfill package
+* simple tests were used on the CommonDrugFulfill and DrugFulfillRequestModel to ensure getters and setters were
+* working correctly.
+* More involved tests for DrugFulfillInteractor were used to insure the use cases ability to absorb user input and
+* properly adjust databases using the site and depot data access interface.
+
+### user_registration and user_login use_case
+* complete test of the use case interactor engine and all the parts that plug into it. This allowed us to test that data
+* can be provided as input and it can go and be processed by the interactor using the API rules and be stored in a csv 
+* file and then be returned as an output
+
