@@ -25,12 +25,10 @@ public class DrugRequestHelper {
             throw new RuntimeException("Can't create file.");
         }
 
-//        DrugRequestPresenterOutputBoundary drugRequestPresenterOutputBoundary = new DrugRequestViewmodel();
-////        DrugRequestScreen drugRequestScreen = new DrugRequestScreen(drugRequestPresenterOutputBoundary);
-
         ReceiveRequestDatabaseAccessor receiveDatabaseAccessor = new ReceiveRequestDatabaseAccessor();
         ReceiveRequestPresenter receiveOutputBoundary = new ReceiveRequestPresenter();
-        ReceiveRequestInputBoundary receiveInteractor = new ReceiveRequestInteractor(receiveOutputBoundary, receiveDatabaseAccessor);
+        ReceiveRequestInputBoundary receiveInteractor = new ReceiveRequestInteractor(receiveOutputBoundary,
+                receiveDatabaseAccessor);
         ReceiveRequestController receiveController = new ReceiveRequestController(receiveInteractor);
 
         DrugRequestPresenter outputBoundary = new DrugRequestPresenter();

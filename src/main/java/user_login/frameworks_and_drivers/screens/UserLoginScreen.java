@@ -1,5 +1,6 @@
 package user_login.frameworks_and_drivers.screens;
 
+import helper_methods.PanelCreator;
 import user_login.interface_adapters.UserLoginController;
 import user_login.interface_adapters.UserLoginPresenterOutputBoundary;
 import user_login.interface_adapters.UserLoginViewModel;
@@ -12,7 +13,7 @@ import java.awt.event.ActionListener;
 
 public class UserLoginScreen extends JPanel implements ActionListener, UserLoginPresenterOutputBoundary {
     JTextField username = new JTextField(15);
-    JTextField password = new JTextField(15);
+    JPasswordField password = new JPasswordField(15);
     JTextField requestResponse = new JTextField(50);
 
     UserLoginController userLoginController;
@@ -63,7 +64,6 @@ public class UserLoginScreen extends JPanel implements ActionListener, UserLogin
             System.out.println("Clicked " + actionEvent.getActionCommand());
             try {
                 userLoginController.createInputObject(username.getText(), password.getText());
-                JOptionPane.showMessageDialog(this, String.format("Login request recorded for %s", username.getText()));
                 setSubmitLoginStatus(true);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());

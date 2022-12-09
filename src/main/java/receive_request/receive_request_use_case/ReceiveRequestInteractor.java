@@ -7,9 +7,9 @@ import java.io.FileNotFoundException;
 
 public class ReceiveRequestInteractor implements ReceiveRequestInputBoundary{
     // Initialise the Output Boundary
-    ReceiveRequestOutputBoundary receiveRequestOutputBoundary;
+    final ReceiveRequestOutputBoundary receiveRequestOutputBoundary;
     // Initialise the Database Accessor
-    ReceiveRequestDatabaseAccessorInterface databaseAccessor;
+    final ReceiveRequestDatabaseAccessorInterface databaseAccessor;
     public ReceiveRequestInteractor(ReceiveRequestOutputBoundary receiveRequestOutputBoundary, ReceiveRequestDatabaseAccessorInterface databaseAccessor) {
         this.receiveRequestOutputBoundary = receiveRequestOutputBoundary;
         this.databaseAccessor = databaseAccessor;
@@ -24,8 +24,13 @@ public class ReceiveRequestInteractor implements ReceiveRequestInputBoundary{
     public ReceiveRequestOutputModel checkInventory(ReceiveRequestInputModel receiveRequestInputModel) throws FileNotFoundException {
         ValidRequest validRequest = ValidRequestGenerator.createValidRequest(receiveRequestInputModel.getName(), receiveRequestInputModel.getBottle());
         ReceiveRequestOutputModel receiveRequestOutputModel = new ReceiveRequestOutputModel();
-        if (databaseAccessor.checkInventory(validRequest.getName(), validRequest.getBottle())) {
-            receiveRequestOutputModel.setValidState(true);
+        String checker = databaseAccessor.checkInventory(validRequest.getName(), validRequest.getBottle());
+        if (checker.equals("Insufficient Inventory")) {
+            receiveRequestOutputModel.setNameExistTrue();
+        }
+        else if (checker.equals("Sufficient Inventory")) {
+            receiveRequestOutputModel.setNameExistTrue();
+            receiveRequestOutputModel.setSuffientQauntityTrue();
         }
         return receiveRequestOutputBoundary.result(receiveRequestOutputModel);
     }

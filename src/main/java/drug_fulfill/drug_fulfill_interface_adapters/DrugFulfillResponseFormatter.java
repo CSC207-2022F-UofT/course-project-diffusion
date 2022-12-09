@@ -1,5 +1,6 @@
-package drug_fulfill.drug_fulfill_frameworks_drivers;
+package drug_fulfill.drug_fulfill_interface_adapters;
 
+import drug_fulfill.drug_fulfill_frameworks_drivers.OrderFailed;
 import drug_fulfill.drug_fulfill_interface_adapters.DrugFulfillPresenter;
 import drug_fulfill.drug_fulfill_use_case.DrugFulfillResponseModel;
 

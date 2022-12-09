@@ -25,11 +25,12 @@ class UserRegistrationInteractorTest {
         UserRegistrationPresenter presenter = new UserRegistrationPresenter(){
             public UserRegistrationOutputData successView(UserRegistrationOutputData user){
                 assertEquals("Fyodor", user.getFirstName());
+                assertEquals("Dostoevsky", user.getLastname());
+                assertEquals("Karamazov", user.getUsername());
                 assertNotNull(user.getCreationTime());
                 assertTrue(userRegistrationRepository.usernameExists("Karamazov"));
                 return null;
             }
-
             public UserRegistrationOutputData prepareFailView(String error){
                 fail("User Registration User Case has failed");
                 return null;

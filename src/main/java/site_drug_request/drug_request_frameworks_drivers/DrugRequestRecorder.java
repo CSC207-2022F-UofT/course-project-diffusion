@@ -1,6 +1,7 @@
 package site_drug_request.drug_request_frameworks_drivers;
 
-import helper_methods.HelperMethods;
+import helper_methods.RetrieveLastID;
+import helper_methods.TableHeader;
 import site_drug_request.drug_request_use_case.DrugRequestDsGateway;
 import site_drug_request.drug_request_use_case.DrugRequestDsInvokeModel;
 
@@ -67,7 +68,7 @@ public class DrugRequestRecorder implements DrugRequestDsGateway {
         try {
             drugRequestWriter = new BufferedWriter(new FileWriter(csvFile, true));
                 DrugRequestDsInvokeModel drugRequest = drugRequests.get(accountID);
-                int drugRequestID = new HelperMethods().LastIDRetriever(1000, csvFile);
+                int drugRequestID = new RetrieveLastID().LastIDRetriever(1000, csvFile);
                 String line = String.format("%s, %s, %s, %s, %s, %s", drugRequestID, drugRequest.getSiteName(),
                         drugRequest.getAccountID(), drugRequest.getDrugName(), drugRequest.getDrugBottle(),
                         drugRequest.getDrugRequestCreationTime());
@@ -80,21 +81,13 @@ public class DrugRequestRecorder implements DrugRequestDsGateway {
 
     }
 
+    /**
+     * Use the TableHeaderGenerator to make the DrugRequest tables header.
+     */
     private void generateHeader(){
-        TableGeneratorHelper(csvFile, headers);
+        TableHeader.TableGeneratorHelper(csvFile, headers);
     }
 
-    public static void TableGeneratorHelper(File csvFile, Map<String, Integer> headers) {
-        BufferedWriter drugRequestWriter;
-        try{
-        drugRequestWriter = new BufferedWriter(new FileWriter(csvFile));
-        drugRequestWriter.write(String.join(",", headers.keySet()));
-        drugRequestWriter.newLine();
-        drugRequestWriter.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
 
 

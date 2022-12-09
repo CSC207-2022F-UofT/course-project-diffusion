@@ -26,7 +26,7 @@ public class UserRegistrationHelper {
         UserRegistrationDsGateway userRegistrationDsGateway;
         System.out.println("construct the database");
         try{
-            userRegistrationDsGateway = new UserRegistrationRecorder("./UsersRegistered5.csv");
+            userRegistrationDsGateway = new UserRegistrationRecorder("./UserRegistrationLog.csv");
 
         } catch (IOException e) {
             e.printStackTrace();

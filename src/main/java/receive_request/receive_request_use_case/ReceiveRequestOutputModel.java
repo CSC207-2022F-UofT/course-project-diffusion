@@ -1,19 +1,29 @@
 package receive_request.receive_request_use_case;
 
 public class ReceiveRequestOutputModel{
-    boolean validRequestState;
+    boolean nameExist;
+    boolean suffientQauntity;
     /**
      * The default output is false
      */
     public ReceiveRequestOutputModel() {
-        this.validRequestState = false;
+        this.nameExist = false;
+        this.suffientQauntity = false;
     }
 
-    public boolean getValidState() {
-        return validRequestState;
+    public boolean getNameExist() {
+        return nameExist;
     }
 
-    public void setValidState(boolean validRequest) {
-        this.validRequestState = validRequest;
+    public boolean getSuffientQauntity() {
+        return suffientQauntity;
+    }
+
+    public void setNameExistTrue() {
+        this.nameExist = true;
+    }
+
+    public void setSuffientQauntityTrue() {
+        this.suffientQauntity = true;
     }
 }

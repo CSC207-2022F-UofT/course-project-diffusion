@@ -1,7 +1,7 @@
 package main_frame;
 
-import drug_fulfill.drug_fulfill_depot_inventories.DrugFulfillHelper;
-import drug_fulfill.drug_fulfill_depot_inventories.DrugFulfillScreen;
+import drug_fulfill.drug_fulfill_frameworks_drivers.DrugFulfillHelper;
+import drug_fulfill.drug_fulfill_frameworks_drivers.DrugFulfillScreen;
 import drug_search.frameworks_drivers.DrugSearchHelper;
 import drug_search.frameworks_drivers.DrugSearchScreen;
 import site_drug_request.drug_request_frameworks_drivers.DrugRequestHelper;
@@ -90,7 +90,7 @@ public class MainFrame {
         mainFrame = new JFrame("Welcome to Diffusion");
         contentPane = mainFrame.getContentPane();
         contentPane = new JPanel();
-        contentPane.setLayout(new CardLayout(200, 200));
+        contentPane.setLayout(new CardLayout());
         mainFrame.add(contentPane, BorderLayout.CENTER);
 
 
@@ -135,11 +135,10 @@ public class MainFrame {
         JButton registrationScreenHomeScreenButton = new JButton("Return Home");
 
         JButton logInScreenHomeScreenButton = new JButton("Return Home");
-        JButton logInScreenRegistrationButton = new JButton("Registration");
+        JButton logInScreenRegistrationButton = new JButton("Go To Registration");
 
         JButton submitLoginButton = new JButton("Click Here if login Status is Approved");
 
-//        JButton drugRequestButton = new JButton("Drug Request");
         JButton drugRequestScreenHomeButton = new JButton("Return Home");
         JButton drugRequestScreensSearchButton = new JButton("Drug Search");
 
@@ -178,8 +177,8 @@ public class MainFrame {
         homeScreen.add(homeScreenButtonPanel);
         homeScreen.add(homeScreenButtonPanel2);
         userRegistrationScreen.add(registrationScreenButtonPanel);
-        userLoginScreen.add(logInScreenButtonPanel);
         userLoginScreen.add(submitLoginButtonPanel);
+        userLoginScreen.add(logInScreenButtonPanel);
         drugRequestScreen.add(drugRequestButtonPanel);
         drugFulfillScreen.add(drugOrderButtonPanel);
 
@@ -249,6 +248,7 @@ public class MainFrame {
 //                    drugFulfillScreen.setLocationID(userLoginScreen.getAccountID());
                     cardLayout.show(contentPane, "Drug Request Screen");
                 } else if (Objects.equals(userLoginScreen.getUserRole(), depotRole)) {
+                    drugFulfillScreen.setLocationID(userLoginScreen.getLocationName());
                 cardLayout.show(contentPane, "Drug Order Screen");
                 }
             } else{

@@ -9,7 +9,7 @@ import java.io.IOException;
  *
  */
 
-public class HelperMethods {
+public class RetrieveLastID {
     /**
      *
      * @param receivedID

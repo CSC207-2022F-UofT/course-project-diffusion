@@ -14,9 +14,9 @@ public class DrugFulfillController {
         this.userInput = depotGateway;
     }
 
-    public DrugFulfillResponseModel create(String drug, int bottle, Boolean emergencyToggle, String depot) {
+    public DrugFulfillResponseModel create(String drug, int bottle, Boolean emergencyToggle, String depot, String site) {
         DrugFulfillRequestModel requestModel = new DrugFulfillRequestModel(
-                drug, bottle, emergencyToggle, depot);
+                drug, bottle, emergencyToggle, depot, site);
 
         return userInput.create(requestModel);
     }

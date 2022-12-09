@@ -6,5 +6,6 @@ public interface DrugFulfill {
 
     boolean getIsEmergency();
     String getDepotName();
+    String getSiteName();
 
 }
