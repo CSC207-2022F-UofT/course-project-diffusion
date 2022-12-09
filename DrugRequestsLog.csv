@@ -1,0 +1,10 @@
+Drug Request ID,Site ID,Account ID,Requested Drug Name,Requested Bottle Quantity,Drug Request Date and Time
+1000, Site1, 2000, Metforming, 7, 2022-12-08T16:43:49.015629
+1001, Site1, 2000, Metformin, 7, 2022-12-08T16:44:01.025759
+1002, Site1, 2000, Metformin, 5, 2022-12-08T17:36:03.647576
+1003, Site1, 2000, Metformin, 5, 2022-12-08T17:57:21.683824
+1004, Site1, 2000, Metformin, 5, 2022-12-08T18:02:31.902818
+1005, Site1, 2000, Metformin, 10, 2022-12-08T20:30:04.146959
+1006, Site1, 2005, Metformin, 10, 2022-12-08T21:09:56.494361
+1007, Site1, 2011, Vyvanse, 100, 2022-12-08T22:13:33.187602
+1008, Site1, 2011, Vyvanse, 10, 2022-12-08T22:14:09.459251
