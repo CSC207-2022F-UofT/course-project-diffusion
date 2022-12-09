@@ -51,14 +51,15 @@ depot user.
 ## Drug Request Search Screen
 
 * Users are able to search for drug requests matching certain criteria, providing them with a robust method to see and filter past drug requests.
-* Users may specify the following search parameters:
+* Users may specify the following search parameters, all of which are optional:
   * The ID of the drug request
   * The ID of the site which ordered the drug
   * The ID of the account which made the request
   * The name of the requested drug
   * The quantity requested (this value must be an integer)
-  * The date the request was made (optional, must be a valid date)
+  * The date the request was made (must be a valid date)
     * The user may search for requests made before, on, or after the specified date
+* Leaving all fields blank will simply return a list of all drug requests.
 * Gracefully handles invalid input and lets users know what went wrong.
 
 ![](project_images/drug_search_screen.png)
