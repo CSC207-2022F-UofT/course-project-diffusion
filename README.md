@@ -80,6 +80,10 @@ depot user.
   * This is seen in all Presenter, View Model, Screen, and Controller interactions, as well as in many other places throughout the code. For instance, the presenter in the user_registration user case does not depend on the lower level modules of the screen; instead, it make use of interfaces to allow for abstractions and communication of information between them, using UserPresenterOutputBoundary.
 * Facade 
   * This design pattern was implemented in the MainFrame class. This class has many moving parts, as it has several listeners for buttons placed on the various screens. This pattern allows for navigation between the various subsystem screens which make up the program and allows for all our use cases to be fully integrated with one another.
+* Builder
+  * This design pattern can be seen in the various helper classes which set up the use case screens and all the classes required to construct them. For example, in the drug search use case, the DrugSearchHelper class' generateDrugSearchScreen() method initializes all the dependencies of the DrugSearchScreen class, as well as their dependencies (and so on...), eventually returning a fully usable screen class.
+* Dependency Injection
+  * This design pattern is used in many places throughout the code, mostly in various constructors. For example, in the generateDrugSearchScreen(), requisite classes are initialized and then passed as arguments to other class constructors, building up the classes necessary for the DrugSearchScreen to run. This avoids the need for the use of (for example) the singlet design pattern in all the relevant classes.
 
 
 
