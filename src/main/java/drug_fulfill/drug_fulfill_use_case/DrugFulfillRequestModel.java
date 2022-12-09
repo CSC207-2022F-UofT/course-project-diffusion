@@ -7,9 +7,16 @@ public class DrugFulfillRequestModel {
     private String drugName;
     private int drugBottle;
     private Boolean isEmergency;
-    private String depot;
-    private String site;
+    private final String depot;
+    private final String site;
 
+    /**
+     * @param name name of the Drug in the order
+     * @param drugBottle amount of drugs in the order
+     * @param isEmergency Whether the drug order is an emergency
+     * @param depot the depot the order is coming from
+     * @param site the site the order is going to
+     */
     public DrugFulfillRequestModel(String name, int drugBottle, Boolean isEmergency, String depot, String site) {
         this.drugName = name;
         this.drugBottle = drugBottle;

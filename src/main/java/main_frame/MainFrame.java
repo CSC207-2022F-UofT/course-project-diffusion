@@ -1,6 +1,6 @@
 package main_frame;
 
-import drug_fulfill.drug_fulfill_depot_inventories.DrugFulfillHelper;
+import drug_fulfill.drug_fulfill_frameworks_drivers.DrugFulfillHelper;
 import drug_fulfill.drug_fulfill_frameworks_drivers.DrugFulfillScreen;
 import drug_search.frameworks_drivers.DrugSearchHelper;
 import drug_search.frameworks_drivers.DrugSearchScreen;

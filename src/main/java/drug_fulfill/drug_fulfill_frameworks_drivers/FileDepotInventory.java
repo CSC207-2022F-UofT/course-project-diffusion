@@ -11,12 +11,11 @@ import helper_methods.DrugListGenerator;
 
 import java.io.*;
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class FileDepotInventoryA implements DrugFulfillDsGateway {
+public class FileDepotInventory implements DrugFulfillDsGateway {
     private final File csvFile;
     private final Map<String, Integer> headers = new LinkedHashMap<>();
     private final Map<String, DrugFulfillDsRequestModel> CurrentInventory = new LinkedHashMap<>();
@@ -28,7 +27,7 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
      * Allows for storing data in memory, and writing corresponding CSV files.
      */
 
-    public FileDepotInventoryA(String csvPath) throws IOException {
+    public FileDepotInventory(String csvPath) throws IOException {
         this.csvFile = new File(csvPath);
         this.headers.put("Depot Name", 0);
         this.headers.put("drugName", 1);
@@ -86,11 +85,18 @@ public class FileDepotInventoryA implements DrugFulfillDsGateway {
         this.adjustInventory(time_id);
     }
 
+
+    /**
+     * @return LinkedHashMap for ease of access to information on Current Inventory
+     */
     @Override
     public Map<String, DrugFulfillDsRequestModel> getCurrentInventory() {
         return this.CurrentInventory;
     }
 
+    /**
+     * @return LinkedHashMap for ease of access to information on made orders
+     */
     @Override
     public Map<String, DrugFulfillDsRequestModel> getMadeOrders() {
         return this.MadeOrders;

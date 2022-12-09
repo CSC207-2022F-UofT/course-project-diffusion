@@ -96,40 +96,18 @@ public class DrugSearchScreen extends JPanel {
         String requestId = drugRequestIDTextField.getText();
         String siteId = siteIDTextField.getText();
         String drugName = drugNameTextField.getText();
-        int quantity = -1;
-
-        // Try parse quantity requested
-        if (quantityRequestedTextField.getText() != null && !quantityRequestedTextField.getText().isBlank()) {
-            try {
-                quantity = Integer.parseInt(quantityRequestedTextField.getText());
-            }
-            catch (Exception e) {
-                JOptionPane.showMessageDialog(this,
-                        "Quantity requested must be an integer, please try again.");
-                return;
-            }
-        }
+        String quantity = quantityRequestedTextField.getText();
 
         // Date-based search parameters
         boolean dateSearch = isDateSearch.isSelected();
         int relativity = relativityComboBox.getSelectedIndex() - 1;
-        int year = yearComboBox.getSelectedIndex() + 2000;
+        int year = LocalDateTime.now().getYear() - yearComboBox.getSelectedIndex();
         int month = monthComboBox.getSelectedIndex() + 1;
         int day = dayComboBox.getSelectedIndex() + 1;
-        LocalDateTime date;
-
-        // Ensure selected date is valid
-        try {
-            date = LocalDateTime.of(year, month, day, 0, 0);
-        }
-        catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Impossible date selection, please try again!");
-            return;
-        }
 
         // Send search request
-        drugSearchController.sendSearchRequest(accountId, requestId, siteId, drugName, quantity, dateSearch, date,
-                relativity);
+        drugSearchController.sendSearchRequest(accountId, requestId, siteId, drugName, quantity, dateSearch,
+                relativity, year, month, day);
 
         // Display relevant info from view model
         if (drugSearchViewModel.getMessage() == null)

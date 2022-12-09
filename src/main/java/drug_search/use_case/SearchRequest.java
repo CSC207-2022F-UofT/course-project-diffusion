@@ -1,14 +1,14 @@
 package drug_search.use_case;
 
 import java.time.LocalDateTime;
-import java.util.*;
 
 /**
  * Represents a user-generated search request.
  */
 public class SearchRequest {
-    public SearchRequest(String accountId, String requestId, String siteId, String drugName, int quantity,
+    public SearchRequest(String message, String accountId, String requestId, String siteId, String drugName, int quantity,
                          boolean dateSearch, LocalDateTime date, int relativity) {
+        this.message = message;
         this.accountId = accountId;
         this.requestId = requestId;
         this.siteId = siteId;
@@ -19,6 +19,10 @@ public class SearchRequest {
         this.relativity = relativity;
     }
 
+    /**
+     * Gets the message associated with the search request.
+     */
+    public String getMessage() { return message; }
     /**
      * Gets the account ID to search for, if any.
      */
@@ -53,6 +57,7 @@ public class SearchRequest {
      */
     public int getRelativity() { return relativity; }
 
+    private final String message;
     private final String accountId;
     private final String requestId;
     private final String siteId;

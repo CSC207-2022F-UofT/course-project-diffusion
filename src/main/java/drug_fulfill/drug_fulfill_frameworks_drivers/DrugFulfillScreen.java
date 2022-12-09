@@ -12,12 +12,18 @@ import java.awt.event.ActionListener;
 
 public class DrugFulfillScreen extends JPanel implements ActionListener {
     /**
-     * The drugName chosen by the user
+     * The amount of drugs chosen by the user
      */
 
     JTextField bottle = new JTextField(15);
 
+    /**
+     * The site chosen by the user
+     */
     JComboBox<String> selectSite;
+    /**
+     * The drugName chosen by the user
+     */
     JComboBox<String> selectDrug;
 
 
@@ -32,7 +38,7 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
     DrugFulfillController userRegisterController;
 
     /**
-     * A window with a title and a JButton.
+     * The order window
      */
     String locationID;
     public DrugFulfillScreen(DrugFulfillController controller) {
@@ -82,7 +88,7 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
     }
 
     /**
-     * React to a button click that results in evt.
+     * React to a button click exit and close window.
      */
     public void actionPerformed(ActionEvent evt) {
 
@@ -101,10 +107,17 @@ public class DrugFulfillScreen extends JPanel implements ActionListener {
         }
 
     }
+
+    /**
+     * @return the depot Location of the depotUser
+     */
     public String getLocationID() {
         return locationID;
     }
 
+    /**
+     * @param locationID set the depot Location of the depotUser
+     */
     public void setLocationID(String locationID) {
         this.locationID = locationID;
     }
