@@ -17,25 +17,20 @@ This document also contains some instructions which explain how to use the progr
 
 Presentation link: https://docs.google.com/presentation/d/1GYFGUaJPnMJFPHOOkQpkMRDOHfbERJV8x7qUJtbpNmc/edit#slide=id.g1b3a0494ccb_0_0
 
-** This README.MD document is supposed to be a group effort, each member is expected to write the document for the 
-part which they worked on. As of now only one group member has completed their part.**
-
 ## Home Screen
 
 * After starting the program, a home screen is shown with a "Login" and "Registration" button.
-
-  ![](/Users/prospecops/Documents/home_screen.png)home_screen.png
-
-
-
 * The Registration screen will ask for your first name, last name, username, password, and whether you are a site or a 
 depot user.
+
+![](project_images/home_screen.png)
 
 ## Registration screen
 
 * The Registration screen will ask for your first name, last name, username, password, and whether you are a site or a 
 depot user.
-![](/Users/prospecops/Documents/user_registration_screen.png)
+
+![](project_images/user_registration_screen.png)
 
 ## Login screen
 
@@ -43,13 +38,14 @@ depot user.
 * After entering username and password, click "Check User Login".
 * If login status bar respond "Approved", Choose "Click Here if login status" to log in.
 
-![](/Users/prospecops/Documents/user_login_success.png)
+![](project_images/user_login_success.png)
 
 
 ## Drug Request Screen
 
 * The user will then be able to requests drug, they can use the drop down menu to see the lists
-![](/Users/prospecops/Documents/drug_request_screen.png)
+
+![](project_images/drug_request_screen.png)
 
 
 ## Drug Request Search Screen
@@ -64,18 +60,16 @@ depot user.
   * The date the request was made (optional, must be a valid date)
     * The user may search for requests made before, on, or after the specified date
 * Gracefully handles invalid input and lets users know what went wrong.
-![](/Users/prospecops/Documents/drug_search_screen.png)
+
+![](project_images/drug_search_screen.png)
 
 
 ## Drug Order Screen
 
 * The depot user is able to fulfill drug requests and accordingly adjust database inventories for sites and their depot.
 * The depot user provides site recipient, drug name, through a dropdown and drug amount through text panel.
-![](/Users/prospecops/Documents/drug_order_screen.png)
 
-
-* [image]/Users/prospecops/IdeaProjects/course-project-diffusion/project_images/home_screen.png
-* home_screen.png
+![](project_images/drug_order_screen.png)
 
 
 
