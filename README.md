@@ -75,11 +75,11 @@ depot user.
 
 ## Design Patterns
 * Factory
- * Examples of this design pattern can be found in the packages user_registration, user_login, and site_drug_request. Then navigate to the entity and ports folder. There you can see we have methods which allow for the construction of the object without exposing the creation logic to the client refer to the newly created objects using a common interface, such as UserRegistration.
+  * Examples of this design pattern can be found in the packages user_registration, user_login, and site_drug_request. Then navigate to the entity and ports folder. There you can see we have methods which allow for the construction of the object without exposing the creation logic to the client refer to the newly created objects using a common interface, such as UserRegistration.
 * Dependecy Inversion
- * This is seen in all Presenter, View Model, Screen, and Controller interactions, as well as in many other places throughout the code. For instance, the presenter in the user_registration user case does not depend on the lower level modules of the screen; instead, it make use of interfaces to allow for abstractions and communication of information between them, using UserPresenterOutputBoundary.
+  * This is seen in all Presenter, View Model, Screen, and Controller interactions, as well as in many other places throughout the code. For instance, the presenter in the user_registration user case does not depend on the lower level modules of the screen; instead, it make use of interfaces to allow for abstractions and communication of information between them, using UserPresenterOutputBoundary.
 * Facade 
- * This design pattern was implemented in the MainFrame class. This class has many moving parts, as it has several listeners for buttons placed on the various screens. This pattern allows for navigation between the various subsystem screens which make up the program and allows for all our use cases to be fully integrated with one another.
+  * This design pattern was implemented in the MainFrame class. This class has many moving parts, as it has several listeners for buttons placed on the various screens. This pattern allows for navigation between the various subsystem screens which make up the program and allows for all our use cases to be fully integrated with one another.
 
 
 
