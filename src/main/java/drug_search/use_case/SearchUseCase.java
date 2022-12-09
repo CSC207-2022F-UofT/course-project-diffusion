@@ -21,15 +21,18 @@ public class SearchUseCase implements ISearchRequestor {
     public void searchFor(SearchRequest request) {
         SearchResponse response;
 
-        try {
-            List<DrugRequestDBEntry> db = drugListAccessor.getDrugRequestList();
+        if (request.getMessage() == null) {
+            try {
+                List<DrugRequestDBEntry> db = drugListAccessor.getDrugRequestList();
 
-            response = new SearchResponse(getMatchingEntries(db, request), null);
+                response = new SearchResponse(getMatchingEntries(db, request), null);
+            }
+            catch (FileNotFoundException e) {
+                response = new SearchResponse(new ArrayList<>(),
+                        "Could not find a search request database file!");
+            }
         }
-        catch (FileNotFoundException e) {
-            response = new SearchResponse(new ArrayList<>(),
-                    "Could not find a search request database file!");
-        }
+        else response = new SearchResponse(new ArrayList<>(), request.getMessage());
 
         searchResponder.searchRespond(response);
     }
