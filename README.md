@@ -5,7 +5,7 @@ the program. It also contains some tests in order to test the program.
 
 This document also contains some instructions which explain how to use the program.
 
-## The followin sections wil be covered in this document
+## The following sections wil be covered in this document
 - [ ] Home Screen and User Registration - Taha
 - [ ] User Login Screen - Taha
 - [ ] Drug Request Screen - Taha
