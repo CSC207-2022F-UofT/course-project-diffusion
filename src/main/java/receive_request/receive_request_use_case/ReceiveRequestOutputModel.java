@@ -19,7 +19,8 @@ public class ReceiveRequestOutputModel{
         return sufficientQuantity;
     }
 
-    public void setNameExistTrue() {
+    public void setNameExistTrue
+            () {
         this.nameExist = true;
     }
 

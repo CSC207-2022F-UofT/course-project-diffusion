@@ -16,31 +16,31 @@ class ReceiveRequestInteractorTest {
     @Test
     void checkInventoryTestValid1() throws FileNotFoundException {
         ReceiveRequestInputModel inputModel = new ReceiveRequestInputModel("Atorvastatin", "20");
-        assertTrue(interactor.checkInventory(inputModel).getSuffientQauntity());
+        assertTrue(interactor.checkInventory(inputModel).getSufficientQuantity());
     }
 
     @Test
     void checkInventoryTestValid2() throws FileNotFoundException {
         ReceiveRequestInputModel inputModel = new ReceiveRequestInputModel("Levothyroxine", "20");
-        assertTrue(interactor.checkInventory(inputModel).getSuffientQauntity());
+        assertTrue(interactor.checkInventory(inputModel).getSufficientQuantity());
     }
 
     @Test
     void checkInventoryTest0() throws FileNotFoundException {
         ReceiveRequestInputModel inputModel = new ReceiveRequestInputModel("Atorvastatin", "0");
-        assertTrue(interactor.checkInventory(inputModel).getSuffientQauntity());
+        assertTrue(interactor.checkInventory(inputModel).getSufficientQuantity());
     }
 
     @Test
     void checkInventoryTestUnder() throws FileNotFoundException {
         ReceiveRequestInputModel inputModel = new ReceiveRequestInputModel("Atorvastatin", "10");
-        assertTrue(interactor.checkInventory(inputModel).getSuffientQauntity());
+        assertTrue(interactor.checkInventory(inputModel).getSufficientQuantity());
     }
 
     @Test
     void checkInventoryTestOver() throws FileNotFoundException {
         ReceiveRequestInputModel inputModel = new ReceiveRequestInputModel("Levothyroxine", "21");
-        assertFalse(interactor.checkInventory(inputModel).getSuffientQauntity());
+        assertFalse(interactor.checkInventory(inputModel).getSufficientQuantity());
     }
 
     @Test
