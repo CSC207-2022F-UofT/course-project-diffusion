@@ -114,3 +114,6 @@ All methods are tested except for a few basic getters and setters.
 ### drug_search.frameworks_drivers and drug_search.interface_adapters
 * Tests if the database accessor can accurately deserialize a drug request from a .csv database file.
 * Tests if the drug search controller can handle invalid input and communicate what went wrong to the user.
+* Things which were not tested:
+  * The use case itself—the way it's coded makes it difficult to direct it to a test .csv file.
+  * How the GUI looks across different platforms/device resolutions, beyond that it works on all group members' computers.
